@@ -2,6 +2,7 @@
     {
         "id": 1,
         "movieId": 1,
+        "score": 5,
         "review": "The best movie i have seen!"
     }
 ]
