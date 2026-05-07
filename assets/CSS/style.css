@@ -1,5 +1,11 @@
+@font-face {
+    font-family: main-title;
+    src: url(Google_Sans_Flex/GoogleSansFlex-VariableFont_GRAD\,ROND\,opsz\,slnt\,wdth\,wght.ttf);
+}
+
 body {
-    font-family: arial;
+    font-family: main-title;
+    color: black;
 }
 
 #logo {
@@ -18,17 +24,21 @@ h1 {
 
 #navigation {
     border-bottom: 1px solid rgb(176, 176, 176);
+    background-color: rgb(160, 45, 45);
+    color: white;
     padding: 10px 20px;
 }
 
 #login {
-    background-color: rgb(255, 243, 254);
-    border: 1px solid rgb(243, 223, 240);
+    background-color: rgb(241, 190, 4);
+    border: 1px solid rgb(214, 140, 49);
     padding: 10px 15px;
     border-radius: 5px;
 }
 
 #login a {
-    color: black;
+    color: white;
+    font-family: main-title;
+    font-weight: 700;
     text-decoration: none;
 }
