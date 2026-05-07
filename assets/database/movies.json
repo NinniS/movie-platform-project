@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "title": "Hoodwinked",
+        "director": "Cory Edwards",
+        "year": 2005,
+        "duration": 81,
+        "genre": [
+            "animation",
+            "comedy",
+            "family"
+        ],
+        "description": "Little Red Riding Hood: A classic story, but there’s more to every tale than meets the eye. Before you judge a book by its cover, you’ve got to flip through the pages. In the re-telling of this classic fable, the story begins at the end of the tale and winds its way back. Chief Grizzly and Detective Bill Stork investigate a domestic disturbance at Granny’s cottage, involving a karate-kicking Red Riding Hood, a sarcastic wolf and an oafish Woodsman.",
+        "imageURL": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FM%2FMV5BY2E5MGI2OTAtZDA1Yy00MTg5LTk3OTMtM2ZkNTQwMDAxMGVkXkEyXkFqcGdeQXVyMTMxMTY0OTQ%40._V1_FMjpg_UX1000_.jpg&f=1&nofb=1&ipt=afa25cb2affba1189e6d32c1b6f340cdad0bb262797b26f8974bb98007689242"
+    },
+    {
+        "id": 2,
+        "title": "Bee Team",
+        "director": "Evan Tramel",
+        "year": 2018,
+        "duration": 70,
+        "genre": ["animation"],
+        "description": "Zip and Zap track down honey thieves, encountering many new friends during their adventure.",
+        "imageURL": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpics.filmaffinity.com%2Fbee_team-902260698-large.jpg&f=1&nofb=1&ipt=b6003f0a65abcdf701459f07cb94f5945392f9a71fa284d56d4ff920f3eb3dd7"
+    },
+    {
+        "id": 3,
+        "title": "Aliens in the attic",
+        "director": "John Schultz",
+        "year": 2009,
+        "duration": 86,
+        "genre": ["family", "science fiction", "adventure"],
+        "description": "A group of kids must protect their vacation home from invading aliens.",
+        "imageURL": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.themoviedb.org%2Ft%2Fp%2Fw600_and_h900_bestv2%2Fbj9vlTikyVbonCuj65bDDW6Wyzi.jpg&f=1&nofb=1&ipt=df5e527f78d276f79102cf4a29687d7a72df228473e9376b760907d6b89446e2"
+    },
+    {
+        "id": 4,
+        "title": "Shrek 2",
+        "director": "Andrew Adamson Kelly Asbury, Conrad Vernon",
+        "year": 2004,
+        "duration": 92,
+        "genre": ["family", "comedy", "romance", "animation", "fantasy"],
+        "description": "Happily ever after never seemed so far far away when a trip to meet the in-laws turns into a hilariously twisted adventure for Shrek and Fiona. With the help of his faithful Donkey, Shrek takes on a potion-brewing Fairy Godmother, the pompous Prince Charming, and the ogre-killer, Puss In Boots.",
+        "imageURL": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F28%2F39%2F06%2F2839066d49e985d62fc7921922067bf6.png&f=1&nofb=1&ipt=b2ae21584976b1624b0a2f1d33b421c738a7a0fe325b88664e55909604681cd9"
+    }
+]
