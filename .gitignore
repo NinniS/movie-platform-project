@@ -105,4 +105,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-/assets/database/users.json
+assets/database/users.json
