@@ -46,5 +46,71 @@
         "genre": ["family", "comedy", "romance", "animation", "fantasy"],
         "description": "Happily ever after never seemed so far far away when a trip to meet the in-laws turns into a hilariously twisted adventure for Shrek and Fiona. With the help of his faithful Donkey, Shrek takes on a potion-brewing Fairy Godmother, the pompous Prince Charming, and the ogre-killer, Puss In Boots.",
         "imageURL": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F28%2F39%2F06%2F2839066d49e985d62fc7921922067bf6.png&f=1&nofb=1&ipt=b2ae21584976b1624b0a2f1d33b421c738a7a0fe325b88664e55909604681cd9"
+    },
+    {
+        "id": 5,
+        "title": "The Cat in The Hat",
+        "director": "Bo Welch",
+        "year": 2003,
+        "duration": 82,
+        "rating": 0,
+        "genre": ["family", "comedy", "adventure"],
+        "description": "During a rainy day, and while their mother is out, Conrad and Sally, and their pet fish, are visited by the mischievous Cat in the Hat. Fun soon turns to mayhem, and the siblings must figure out how to rid themselves of the maniacal Cat.",
+        "imageURL": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.movieguide.org%2Fwp-content%2Fuploads%2F2012%2F08%2F6862.jpg&f=1&nofb=1&ipt=d37e4ca37ba1974b38b6fd4f6b9bb863a7d45f4f606180be0da7d7368e6e0710"
+    },
+    {
+        "id": 6,
+        "title": "The Emoji movie",
+        "director": "Tony Leondis",
+        "year": 2017,
+        "duration": 86,
+        "rating": 0,
+        "genre": ["family", "comedy", "animation"],
+        "description": "Gene, a multi-expressional emoji, sets out on a journey to become a normal emoji.",
+        "imageURL": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2F60bTx5z9zL1AqCjZ0gmWoRMJ6Bb.jpg&f=1&nofb=1&ipt=310d06742ec56be638e239e6b802981408bd912a7aa067872b94f1cf6d304703"
+    },
+    {
+        "id": 7,
+        "title": "Interstellar",
+        "director": "Christopher Nolan",
+        "year": 2014,
+        "duration": 169,
+        "rating": 0,
+        "genre": ["science fiction", "drama", "adventure"],
+        "description": "The adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage.",
+        "imageURL": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fs3.amazonaws.com%2Fnightjarprod%2Fcontent%2Fuploads%2Fsites%2F130%2F2021%2F08%2F19085635%2FgEU2QniE6E77NI6lCU6MxlNBvIx-scaled.jpg&f=1&nofb=1&ipt=4a8a99c1c6e85296e9c706a3cf79a92cdda1e5bffd5743e1edb5405741472e23"
+    },
+    {
+        "id": 8,
+        "title": "Parasite",
+        "director": "Bong Joon Ho",
+        "year": 2019,
+        "duration": 133,
+        "rating": 0,
+        "genre": ["thriller", "comedy", "drama"],
+        "description": "All unemployed, Ki-taek’s family takes peculiar interest in the wealthy and glamorous Parks for their livelihood until they get entangled in an unexpected incident.",
+        "imageURL": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcinephilecorner.com%2Fwp-content%2Fuploads%2F2024%2F11%2Fparasite-movie-2019.webp&f=1&nofb=1&ipt=02382544c0954a0e2dafb5f8498654368feb85c93d52aec838b651cd1c68fa3f"
+    },
+    {
+        "id": 9,
+        "title": "Saltburn",
+        "director": "Emerald Fennell",
+        "year": 2023,
+        "duration": 131,
+        "rating": 0,
+        "genre": ["comedy", "drama", "thriller"],
+        "description": "Struggling to find his place at Oxford University, student Oliver Quick finds himself drawn into the world of the charming and aristocratic Felix Catton, who invites him to Saltburn, his eccentric family’s sprawling estate, for a summer never to be forgotten.",
+        "imageURL": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpics.filmaffinity.com%2Fsaltburn-405752716-large.jpg&f=1&nofb=1&ipt=ef8d939a88d930b443b617e3018ec02a406d396e7933f631e7e2388e85c7258a"  
+    },
+    {
+        "id": 10,
+        "title": "Sonic The Hedgehog 3",
+        "director": "Jeff Fowler",
+        "year": 2024,
+        "duration": 110,
+        "rating": 0,
+        "genre": ["comedy", "science fiction", "action", "family"],
+        "description": "Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.",
+        "imageURL": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FS%2Fpv-target-images%2Fd3d170cab1ef757a9a437cb9aa70bb33a8897f31f327f02c2de4d5a50dd32ff4.jpg&f=1&nofb=1&ipt=61a47383d7936b91370455a18323eacb8180fe11cc6a3fdbf8f04029335d0b2f"
     }
 ]
