@@ -3,10 +3,12 @@ Backend:
         getAllMovies
         getMovieById
         getAllGenrer
+        getMovieByGenre
         getMoviesByYear - filtrera
         filterMoviesByDuration
         searchMovie - söka på titel, genre, discription
         getReviewByMovieId
+        updateRating - updaterar rating på en film när en användare lagt en ny review
 
     Functioner users:
         getUserById
