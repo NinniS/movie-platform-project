@@ -13,9 +13,26 @@ class BACKEND_SERVER {
         const MOVIE_ID = new URLPattern({ pathname: "/movies/:id" });
 
 
-        if(URL == "/movies"){
+        if (URL.pathname == "/movies") {
             //om url är movies, ska vi ha detta som bas url? Här får man alla filmer
         }
+
+        if (URL.pathname == "/movies/genres") {
+            //kod om att ta ut alla genres
+        }
+
+        if (url.pathname == "/movies/search") {
+            let searchQuery = url.searchParams.get("q");
+//Vill vi ha liknade koller efter felkoder som i U?
+            if (!searchQuery) {
+                return new Response({ error: "Bad Request" }, {
+                    status: 400,
+                    headers: HEADERS
+                });
+            }
+
+        }
+
     }
 }
 
