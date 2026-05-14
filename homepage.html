@@ -1,24 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Homepage</title>
-        <link rel="stylesheet" href="assets/CSS/style.css">
-    </head>
-    <body>
-        <div id="navigation">
-            <div>
-                <img id="logo" src="assets/images/angry-emoji.png">
-                <h1>MWN Movieloverz</h1>
-                <div id="login">
-                    <a href="log-in.html">LOG IN</a>
-                </div>
+
+<head>
+    <meta charset="utf-8">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="assets/CSS/style.css">
+</head>
+
+<body>
+    <div id="navigation">
+        <div>
+            <img id="logo" src="assets/images/angry-emoji.png">
+            <h1>MWN Movieloverz</h1>
+            <div id="login">
+                <a href="log-in.html">LOG IN</a>
             </div>
         </div>
+    </div>
+    <section id="filtering">
         <h1>Welcome!</h1>
         <div>
-            <h2>Movies in rotation</h2>
-            <img src="assets/images/expressions.gif">
+            <input id="search-bar" type="text" placeholder="Search...">
+            <form id="movie-filter">
+                <select id="genre">
+                    <option value="">Genre</option>
+                </select>
+                <select id="filter">
+                    <option value="">Filter</option>
+                </select>
+            </form>
         </div>
-    </body>
+    </section>
+
+    <div>
+        <h2>Movies</h2>
+        <div id="movies">
+
+        </div>
+        <img src="assets/images/expressions.gif">
+    </div>
+</body>
+
 </html>
