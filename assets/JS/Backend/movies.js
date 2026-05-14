@@ -1,10 +1,36 @@
-class MOVIES_CLASS{
-    constructor(){
+class MOVIES_CLASS {
+    constructor() {
         this.db = new DB_CLASS();
     }
 
-    getAllMovies(){
-        
+    searchMovies(searchQuery) {
+        const movies = this.db.readDatabase();
+        let foundMovies = [];
+
+        for (let movie of movies) {
+            const queryLower = searchQuery.toLowerCase(); //gör om så man kan söka på shrek och få fram Shrek (stora bokstäver)
+            const titleLower = movie.title.toLowerCase();
+            const genresLower = movie.genre.join(" ").toLowerCase(); //join för att slå ihop array till en sträng
+            const descLower = movie.description.toLowerCase();
+
+            if (titleLower.includes(searchQuery) || genresLower.includes(searchQuery) || descLower.includes(searchQuery)) {
+                foundMovies.push(movie);
+            }
+        }
+        return foundMovies;
+    }
+
+    getMovieById(id) {
+        const movies = this.db.readDatabase();
+        let movieById;
+
+        for (let movie of movies) {
+            if (movie.id === id) {
+                movieById = movie;
+                return movieById;
+            }
+        }
+        return null;
     }
 }
 
