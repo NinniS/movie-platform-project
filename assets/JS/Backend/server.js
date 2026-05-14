@@ -1,42 +1,43 @@
-import { } from
-    class BACKEND_SERVER {
-        constructor() {
-            this.HEADERS = {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS",
-                "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept"
-            }
-        }
+import { MOVIES } from "./movies.js";
 
-        async handler(request) {
-            const URL = new URL(request.url);
-            const ACCEPT_HEADER = request.headers.get("accept");
-            const CONTENT_TYPE_HEADER = request.headers.get("Content-Type");
-            const MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/:id" });
+async function handler(request) {
+    const URL = new URL(request.url);
+    const HEADERS = {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept"
+    }
+    const ACCEPT_HEADER = request.headers.get("accept");
+    const CONTENT_TYPE_HEADER = request.headers.get("Content-Type");
+    const MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/:id" });
 
-
-            if (URL.pathname == "/movies") {
-                //om url är movies, ska vi ha detta som bas url? Här får man alla filmer
-            }
-
-            if (URL.pathname == "/movies/genres") {
-                //kod om att ta ut alla genres
-            }
-
-            if (url.pathname == "/movies/search") {
-                let searchQuery = url.searchParams.get("q");
-                //Vill vi ha liknade koller efter felkoder som i U?
-                if (!searchQuery) {
-                    return new Response({ error: "Bad Request" }, {
-                        status: 400,
-                        headers: HEADERS
-                    });
-                }
-
-            }
-
-        }
+    if (request.method === "OPTIONS") {
+        return new Response(null, {
+            status: 204,
+            headers: HEADERS
+        });
     }
 
-const BACKEND = new BACKEND_SERVER();
+
+    if (URL.pathname == "/movies") {
+        //om url är movies, ska vi ha detta som bas url? Här får man alla filmer
+    }
+
+    if (URL.pathname == "/movies/genres") {
+        //kod om att ta ut alla genres
+    }
+
+    if (url.pathname == "/movies/search") {
+        let searchQuery = url.searchParams.get("q");
+        //Vill vi ha liknade koller efter felkoder som i U?
+        if (!searchQuery) {
+            return new Response({ error: "Bad Request" }, {
+                status: 400,
+                headers: HEADERS
+            });
+        }
+
+    }
+
+}
