@@ -7,3 +7,5 @@ class MOVIES_CLASS{
         
     }
 }
+
+export const MOVIES = new MOVIES_CLASS();
