@@ -24,3 +24,5 @@ export class DB_CLASS {
         }
     }
 }
+
+Deno.serve(handler);
