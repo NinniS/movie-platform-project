@@ -1,0 +1,69 @@
+@font-face {
+    font-family: main-title;
+    src: url(Google_Sans_Flex/GoogleSansFlex-VariableFont_GRAD\,ROND\,opsz\,slnt\,wdth\,wght.ttf);
+}
+
+body {
+    font-family: main-title;
+    color: black;
+}
+
+#logo {
+    height: 25px;
+}
+
+h1 {
+    margin: 0;
+}
+
+#navigation div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#navigation {
+    border-bottom: 1px solid rgb(176, 176, 176);
+    background-color: rgb(160, 45, 45);
+    color: white;
+    padding: 10px 20px;
+}
+
+#login {
+    background-color: rgb(241, 190, 4);
+    border: 1px solid rgb(214, 140, 49);
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+#login a {
+    color: white;
+    font-family: main-title;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+#log-sign {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#log-in, #sign-up {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+
+    background-color: rgb(253, 215, 126);
+    border: 1px solid rgb(214, 165, 50);
+    padding: 40px;
+    border-radius: 5px;
+}
+
+.submit {
+    background-color: rgb(255, 232, 179);
+    border: 2px solid rgb(214, 165, 50);
+    padding: 3px;
+}

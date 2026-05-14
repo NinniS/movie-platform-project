@@ -1,0 +1,42 @@
+import { } from
+    class BACKEND_SERVER {
+        constructor() {
+            this.HEADERS = {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept"
+            }
+        }
+
+        async handler(request) {
+            const URL = new URL(request.url);
+            const ACCEPT_HEADER = request.headers.get("accept");
+            const CONTENT_TYPE_HEADER = request.headers.get("Content-Type");
+            const MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/:id" });
+
+
+            if (URL.pathname == "/movies") {
+                //om url är movies, ska vi ha detta som bas url? Här får man alla filmer
+            }
+
+            if (URL.pathname == "/movies/genres") {
+                //kod om att ta ut alla genres
+            }
+
+            if (url.pathname == "/movies/search") {
+                let searchQuery = url.searchParams.get("q");
+                //Vill vi ha liknade koller efter felkoder som i U?
+                if (!searchQuery) {
+                    return new Response({ error: "Bad Request" }, {
+                        status: 400,
+                        headers: HEADERS
+                    });
+                }
+
+            }
+
+        }
+    }
+
+const BACKEND = new BACKEND_SERVER();
