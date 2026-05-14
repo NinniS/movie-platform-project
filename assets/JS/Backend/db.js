@@ -24,3 +24,5 @@ export class DB_CLASS {
         }
     }
 }
+
+const DB_BACKEND = new DB_CLASS();
