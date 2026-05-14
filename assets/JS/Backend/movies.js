@@ -32,6 +32,20 @@ class MOVIES_CLASS {
         }
         return null;
     }
+
+    getGenres() {
+        const movies = this.db.readDatabase();
+        let genres = [];
+
+        for (let movie of movies) {
+            for (let genre of movie.genre) { //loopar igenom genre-array för varje film(movie)
+                if (!genres.includes(genre)) {
+                    genres.push(genre);
+                }
+            }
+        }
+        return genres;
+    }
 }
 
 export const MOVIES = new MOVIES_CLASS();
