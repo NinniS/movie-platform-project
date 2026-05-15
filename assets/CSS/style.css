@@ -101,3 +101,9 @@ h1 {
 #movie-filter {
     text-align: center;
 }
+
+.button {
+    padding: 8px 25px;
+    font-size: 15px;
+    font-family: text;
+}
