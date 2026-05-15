@@ -4,7 +4,7 @@
 }
 @font-face {
     font-family: text;
-    src: url(test-geograph-vf-roman.woff2);
+    src: url(test-signifier-vf-roman.woff2);
 }
 
 body {
@@ -100,4 +100,10 @@ h1 {
 
 #movie-filter {
     text-align: center;
+}
+
+.button {
+    padding: 8px 25px;
+    font-size: 15px;
+    font-family: text;
 }
