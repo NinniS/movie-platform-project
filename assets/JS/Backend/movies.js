@@ -46,6 +46,26 @@ class MOVIES_CLASS {
         }
         return genres;
     }
+
+    filterMovies(genre, minYear, maxYear) {
+        const movies = this.db.readDatabase();
+        let filteredMovies = [];
+
+        for (let movie of movies) {
+
+            if (selectedGenre && moive.genre.includes(selectedGenre)){
+                continue;
+            }
+            if (minYear && movie.year < minYear) {
+                continue;
+            }
+            if (maxYear && movie.year > maxYear) {
+                continue;
+            }
+            filteredMovies.push(movie);
+        }
+        return filteredMovies;
+    }
 }
 
 export const MOVIES = new MOVIES_CLASS();
