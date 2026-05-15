@@ -7,20 +7,34 @@
     src: url(test-signifier-vf-roman.woff2);
 }
 
+:root {
+    --main-yellow-color: rgb(243, 183, 0);
+    --main-red-color: rgb(202, 60, 37)
+}
+
 body {
     color: rgb(255, 255, 255);
     margin: 0;
-    background-color:rgb(54, 52, 52);
+    background-color:rgb(35, 29, 29);
+}
+
+main {
+    width: 500px;
+    margin: auto;
 }
 
 #logo {
     height: 25px;
 }
 
-h1 {
+h1 { /* Stora titlar som sidnamn*/
     font-family: main-title;
     letter-spacing: 1px;
     margin: 10px;
+}
+
+h2 {
+    font-family: main-title;
 }
 
 #navigation div {
@@ -30,22 +44,22 @@ h1 {
 }
 
 #navigation {
-    border-bottom: 1px solid rgb(176, 176, 176);
-    background-color: rgb(29, 26, 5);
+    border-bottom: 1px solid rgb(0, 0, 0);
+    background-color: rgb(23, 22, 16);
     color: white;
     padding: 10px 20px;
 }
 
 #login {
-    background-color: rgb(241, 190, 4);
-    border: 1px solid rgb(214, 140, 49);
+    background-color: var(--main-yellow-color);
+
     padding: 10px 15px;
     border-radius: 5px;
 }
 
 #login a {
-    color: white;
-    font-family: main-title;
+    color: var(--main-red-color);
+    font-family: text;
     font-weight: 700;
     text-decoration: none;
 }
@@ -104,6 +118,36 @@ h1 {
 
 .button {
     padding: 8px 25px;
+    margin: 0px 5px;
     font-size: 15px;
     font-family: text;
+    font-weight: 600;
+    color: var(--main-red-color);
+    background-color: var(--main-yellow-color);
+    border: 0px;
+    border-radius: 5px;
 }
+
+#movie-section {
+    text-align: center;
+}
+
+#all-movies {
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.movie img {
+   height: 200px;
+    width: 150px;
+}
+
+.movie img:hover {
+    border: 3px solid var(--main-yellow-color);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
