@@ -52,6 +52,10 @@ class MOVIES_CLASS {
         return genres;
     }
 
+    getMovieByGenre(){
+        
+    }
+
     filterMovies(selectedGenre, minYear, maxYear, minDuration, maxDuration) {
         const movies = this.db.readDatabase();
         let filteredMovies = [];
