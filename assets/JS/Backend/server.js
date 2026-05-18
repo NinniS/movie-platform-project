@@ -1,4 +1,5 @@
 import { MOVIES } from "./movies.js";
+import { serveDir, serveFile } from "jsr:@std/http/file-server";
 
 async function handler(request) {
     const url = new URL(request.url);
@@ -68,7 +69,7 @@ async function handler(request) {
     if (url.pathname == "/movies") {
         // if (ACCEPT_HEADER != "application/json") {
         //     return makeResponse("accept");
-        // }
+        // } 
 
         if (request.method == "GET") {
             let allMovies = MOVIES.getAllMovies();
@@ -79,7 +80,7 @@ async function handler(request) {
 
     if (url.pathname == "/movies/genres") {
         //kod om att ta ut alla genres
-        if (acceptHeader != "application/json") {
+        if (ACCEPT_HEADER != "application/json") {
             return makeResponse("accept");
         }
     }
@@ -87,14 +88,11 @@ async function handler(request) {
     if (url.pathname == "/movies/search") {
         let searchQuery = url.searchParams.get("q");
         //Vill vi ha liknade koller efter felkoder som i U?
-        if (acceptHeader != "application/json") {
+        if (ACCEPT_HEADER != "application/json") {
             return makeResponse("accept");
         }
         if (!searchQuery) {
-            return new Response({ error: "Bad Request" }, {
-                status: 400,
-                headers: HEADERS
-            });
+            return makeResponse("not found");
         }
 
     }
