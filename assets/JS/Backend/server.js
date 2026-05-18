@@ -56,8 +56,6 @@ async function handler(request) {
     const ACCEPT_HEADER = request.headers.get("accept");
     const CONTENT_TYPE_HEADER = request.headers.get("Content-Type");
     const MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/:id" });
-
-    const acceptHeader = request.headers.get("accept");
     
 
     if (request.method === "OPTIONS") {
@@ -70,14 +68,14 @@ async function handler(request) {
 
     if (URL.pathname == "/movies") {
         //om url är movies, ska vi ha detta som bas url? Här får man alla filmer
-        if (acceptHeader != "application/json") {
+        if (ACCEPT_HEADER != "application/json") {
             return makeResponse("accept");
         }
     }
 
     if (URL.pathname == "/movies/genres") {
         //kod om att ta ut alla genres
-        if (acceptHeader != "application/json") {
+        if (ACCEPT_HEADER != "application/json") {
             return makeResponse("accept");
         }
     }
@@ -85,14 +83,11 @@ async function handler(request) {
     if (url.pathname == "/movies/search") {
         let searchQuery = url.searchParams.get("q");
         //Vill vi ha liknade koller efter felkoder som i U?
-        if (acceptHeader != "application/json") {
+        if (ACCEPT_HEADER != "application/json") {
             return makeResponse("accept");
         }
         if (!searchQuery) {
-            return new Response({ error: "Bad Request" }, {
-                status: 400,
-                headers: HEADERS
-            });
+            return makeResponse("not found");
         }
 
     }
