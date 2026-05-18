@@ -1,24 +1,69 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Homepage</title>
-        <link rel="stylesheet" href="assets/CSS/style.css">
-    </head>
-    <body>
-        <div id="navigation">
+
+<head>
+    <meta charset="utf-8">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="assets/CSS/style.css">
+</head>
+
+<body>
+    <div id="navigation">
+        <div>
+            <img id="logo" src="assets/images/angry-emoji.png">
+            <h1>MWN Movieloverz</h1>
+            <div id="login">
+                <a href="log-in.html">LOG IN</a>
+            </div>
+        </div>
+    </div>
+    <main>
+        <section id="filtering">
+            <h1>Welcome!</h1>
             <div>
-                <img id="logo" src="assets/images/angry-emoji.png">
-                <h1>MWN Movieloverz</h1>
-                <div id="login">
-                    <a href="log-in.html">LOG IN</a>
+                <input id="search-bar" type="text" placeholder="Search...">
+                <form id="movie-filter">
+                    <select class="button" id="genre">
+                        <option value="">GENRE</option>
+                    </select>
+                    <select class="button" id="filter">
+                        <option value="">FILTER</option>
+                    </select>
+                </form>
+            </div>
+        </section>
+
+        <div id="movie-section">
+            <h2>Movies</h2>
+            <div id="all-movies">
+                <!--Endast test för CSS, dessa kommer tas bort senare-->
+                <div class="movie">
+                    <div>
+                        <img src="assets/images/expressions.gif">
+                    </div>
+                    <h2>Title</h2>
+                </div>
+                <div class="movie">
+                    <div>
+                        <img src="assets/images/expressions.gif">
+                    </div>
+                    <h2>Title</h2>
+                </div>
+                <div class="movie">
+                    <div>
+                        <img src="assets/images/expressions.gif">
+                    </div>
+                    <h2>Title</h2>
+                </div>
+                <div class="movie">
+                    <div>
+                        <img src="assets/images/expressions.gif">
+                    </div>
+                    <h2>Title</h2>
                 </div>
             </div>
         </div>
-        <h1>Welcome!</h1>
-        <div>
-            <h2>Movies in rotation</h2>
-            <img src="assets/images/expressions.gif">
-        </div>
-    </body>
+    </main>
+</body>
+
 </html>
