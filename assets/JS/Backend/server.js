@@ -68,7 +68,7 @@ async function handler(request) {
     if (url.pathname == "/movies") {
         // if (ACCEPT_HEADER != "application/json") {
         //     return makeResponse("accept");
-        // }
+        // } 
 
         if (request.method == "GET") {
             let allMovies = MOVIES.getAllMovies();
