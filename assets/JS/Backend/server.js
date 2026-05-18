@@ -1,52 +1,7 @@
 import { MOVIES } from "./movies.js";
 
-function makeResponse(type) {
-    if (type == "authorization") {
-        return new Response(
-            JSON.stringify({ error: "Not Authorized" }),
-            {
-                status: 401,
-                headers: { "Content-Type": "application/json" }
-            }
-        );
-    } else if (type == "accept") {
-        return new Response(
-            JSON.stringify({ error: "Not Accepted Header" }),
-            {
-                status: 406,
-                headers: { "Content-Type": "application/json" }
-            }
-        );
-    } else if (type == "not found") {
-        return new Response(
-            JSON.stringify({ error: "Not Found" }),
-            {
-                status: 404,
-                headers: { "Content-Type": "application/json" }
-            }
-        );
-    } else if (type == "bad request") {
-        return new Response(
-            JSON.stringify({ error: "Bad Request" }),
-            {
-                status: 400,
-                headers: { "Content-Type": "application/json" }
-            }
-        );
-    } else if (type == "no content") {
-        return new Response(null, {
-            status: 204,
-        });
-    } else if (type == "created") {
-        return new Response(null, {
-            status: 201,
-        });
-    }
-}
-
-
 async function handler(request) {
-    const URL = new URL(request.url);
+    const url = new URL(request.url);
     const HEADERS = {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
@@ -57,8 +12,50 @@ async function handler(request) {
     const CONTENT_TYPE_HEADER = request.headers.get("Content-Type");
     const MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/:id" });
 
-    const acceptHeader = request.headers.get("accept");
-    
+    function makeResponse(type) {
+        if (type == "authorization") {
+            return new Response(
+                JSON.stringify({ error: "Not Authorized" }),
+                {
+                    status: 401,
+                    headers: HEADERS
+                }
+            );
+        } else if (type == "accept") {
+            return new Response(
+                JSON.stringify({ error: "Not Accepted Header" }),
+                {
+                    status: 406,
+                    headers: HEADERS
+                }
+            );
+        } else if (type == "not found") {
+            return new Response(
+                JSON.stringify({ error: "Not Found" }),
+                {
+                    status: 404,
+                    headers: HEADERS
+                }
+            );
+        } else if (type == "bad request") {
+            return new Response(
+                JSON.stringify({ error: "Bad Request" }),
+                {
+                    status: 400,
+                    headers: HEADERS
+                }
+            );
+        } else if (type == "no content") {
+            return new Response(null, {
+                status: 204,
+            });
+        } else if (type == "created") {
+            return new Response(null, {
+                status: 201,
+            });
+        }
+    }
+
 
     if (request.method === "OPTIONS") {
         return new Response(null, {
@@ -68,14 +65,19 @@ async function handler(request) {
     }
 
 
-    if (URL.pathname == "/movies") {
-        //om url är movies, ska vi ha detta som bas url? Här får man alla filmer
-        if (acceptHeader != "application/json") {
-            return makeResponse("accept");
+    if (url.pathname == "/movies") {
+        // if (ACCEPT_HEADER != "application/json") {
+        //     return makeResponse("accept");
+        // }
+
+        if (request.method == "GET") {
+            let allMovies = MOVIES.getAllMovies();
+            return new Response(JSON.stringify(allMovies), { headers: HEADERS });
         }
+
     }
 
-    if (URL.pathname == "/movies/genres") {
+    if (url.pathname == "/movies/genres") {
         //kod om att ta ut alla genres
         if (acceptHeader != "application/json") {
             return makeResponse("accept");
@@ -98,3 +100,5 @@ async function handler(request) {
     }
 
 }
+
+Deno.serve(handler);

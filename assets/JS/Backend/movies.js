@@ -1,3 +1,5 @@
+import { DB_CLASS } from "./db.js";
+
 class MOVIES_CLASS {
     constructor() {
         this.db = new DB_CLASS();
@@ -81,8 +83,6 @@ class MOVIES_CLASS {
         }
         return filteredMovies;
     }
-
-
 }
 
 export const MOVIES = new MOVIES_CLASS();
