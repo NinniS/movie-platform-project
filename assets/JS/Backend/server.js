@@ -1,4 +1,5 @@
 import { MOVIES } from "./movies.js";
+import { serveDir, serveFile } from "jsr:@std/http/file-server";
 
 async function handler(request) {
     const url = new URL(request.url);
