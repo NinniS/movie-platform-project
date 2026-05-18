@@ -12,6 +12,8 @@ async function handler(request) {
     const CONTENT_TYPE_HEADER = request.headers.get("Content-Type");
     const MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/:id" });
 
+    const acceptHeader = request.headers.get("accept");
+
     if (request.method === "OPTIONS") {
         return new Response(null, {
             status: 204,
@@ -22,15 +24,24 @@ async function handler(request) {
 
     if (URL.pathname == "/movies") {
         //om url är movies, ska vi ha detta som bas url? Här får man alla filmer
+        if (acceptHeader != "application/json") {
+            // Skicka felrespons som säger att det saknas accept
+        }
     }
 
     if (URL.pathname == "/movies/genres") {
         //kod om att ta ut alla genres
+        if (acceptHeader != "application/json") {
+            // Skicka felrespons som säger att det saknas accept
+        }
     }
 
     if (url.pathname == "/movies/search") {
         let searchQuery = url.searchParams.get("q");
         //Vill vi ha liknade koller efter felkoder som i U?
+        if (acceptHeader != "application/json") {
+            // Skicka felrespons som säger att det saknas accept
+        }
         if (!searchQuery) {
             return new Response({ error: "Bad Request" }, {
                 status: 400,
