@@ -52,13 +52,13 @@ class MOVIES_CLASS {
         return genres;
     }
 
-    filterMovies(genre, minYear, maxYear) {
+    filterMovies(selectedGenre, minYear, maxYear, minDuration, maxDuration) {
         const movies = this.db.readDatabase();
         let filteredMovies = [];
+        //kollar om filmen är inom filtreringen, om inte så continue; annars push
 
         for (let movie of movies) {
-
-            if (selectedGenre && moive.genre.includes(selectedGenre)) {
+            if (selectedGenre && !movie.genre.includes(selectedGenre)) {
                 continue;
             }
             if (minYear && movie.year < minYear) {
@@ -67,10 +67,18 @@ class MOVIES_CLASS {
             if (maxYear && movie.year > maxYear) {
                 continue;
             }
+            if(minDuration && movie.duration < minDuration){
+                continue;
+            }
+            if(maxDuration && movie.duration > maxDuration){
+                continue;
+            }
             filteredMovies.push(movie);
         }
         return filteredMovies;
     }
+
+
 }
 
 export const MOVIES = new MOVIES_CLASS();
