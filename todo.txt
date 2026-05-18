@@ -11,8 +11,8 @@ Backend:
         updateRating - updaterar rating på en film när en användare lagt en ny review
 
     Functioner users:
-        getUserById
+        x getUserById
         createUser
-        getFavoriteMoviesByUserId
-        getWatchlistMoviesByUserId
-        getReviewsByUser
+        x getFavoriteMoviesByUserId
+        x getWatchlistMoviesByUserId
+        x getReviewsByUserId
