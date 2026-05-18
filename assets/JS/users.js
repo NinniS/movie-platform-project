@@ -29,21 +29,3 @@ export class Review{
     }
 }
 
-const db = {
-    users: [],
-    reviews: [],
-    initUsers(){
-        const data = JSON.parse(Deno.readTextFileSync("./database/users.json"));
-        const users = [];
-        for (let oneUser of data) {
-            const userInstance = new User(oneUser);
-            db.users.push(userInstance);
-        }
-        return users;
-    }
-}
-
-db.initUsers();
-console.log(db.users);
-
-//Deno.serve(handler);

@@ -1,4 +1,5 @@
-import { MOVIES } from "./movies.js";
+// import { MOVIES } from "./movies.js";
+import { User } from "../users.js";
 
 async function handler(request) {
     const URL = new URL(request.url);
@@ -41,5 +42,23 @@ async function handler(request) {
     }
 
 }
+
+const db = {
+    users: [],
+    reviews: [],
+    initUsers(){
+        const data = JSON.parse(Deno.readTextFileSync("../../database/users.json"));
+        const users = [];
+        for (let oneUser of data) {
+            const userInstance = new User(oneUser);
+            db.users.push(userInstance);
+        }
+        return users;
+    }
+}
+
+db.initUsers();
+console.log(db.users);
+
 
 Deno.serve(handler);
