@@ -1,4 +1,4 @@
-class MOVIES_CLASS {
+export class MOVIES_CLASS {
     constructor() {
         this.db = new DB_CLASS();
     }
@@ -73,4 +73,3 @@ class MOVIES_CLASS {
     }
 }
 
-export const MOVIES = new MOVIES_CLASS();

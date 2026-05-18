@@ -1,4 +1,6 @@
-import { MOVIES } from "./movies.js";
+import { MOVIES_CLASS } from "./movies.js";
+import { UI_CLASS } from "../ui.js";
+const ui = new UI_CLASS;
 
 async function handler(request) {
     const URL = new URL(request.url);
@@ -26,6 +28,8 @@ async function handler(request) {
         //om url är movies, ska vi ha detta som bas url? Här får man alla filmer
         if (acceptHeader != "application/json") {
             // Skicka felrespons som säger att det saknas accept
+        } else {
+            ui.fillAllMovies();
         }
     }
 
