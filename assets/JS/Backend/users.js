@@ -10,7 +10,7 @@ class USERS_CLASS{
         return users;
     }
     getUserById(id){
-        const users = this.db.readDatabase();
+        const users = this.getAllUsers();
         for (let user of users){
             if(user.id == id){
                 return user;
@@ -48,7 +48,6 @@ class USERS_CLASS{
     createUser(data){
 
     }
-
 }
 
 class REVIEW_CLASS{
@@ -61,7 +60,7 @@ class REVIEW_CLASS{
     }
     
     getAllReviewsByMovieId(id){
-        const reviews = this.db.readDatabase();
+        const reviews = this.getAllReviews();
         let foundReviews = []
         for (let review of reviews){
             if(review.movieId == id){
@@ -71,7 +70,7 @@ class REVIEW_CLASS{
         return foundReviews;
     }
     getReviewsByUserId(id){
-        const reviews = this.db.readDatabase();
+        const reviews = this.getAllReviews();
         let foundReviews = []
         for (let review of reviews){
             if(review.userId == id){
@@ -81,7 +80,6 @@ class REVIEW_CLASS{
         return foundReviews;
     }
 }
-
 
 export const USERS = new USERS_CLASS();
 export const REVIEWS = new REVIEW_CLASS();

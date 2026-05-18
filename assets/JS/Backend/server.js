@@ -1,6 +1,7 @@
-import { MOVIES } from "./movies.js";
 import { serveDir, serveFile } from "jsr:@std/http/file-server";
+import { MOVIES } from "./movies.js";
 import { USERS } from "./users.js";
+import { REVIEWS } from "./users.js";
 
 async function handler(request) {
     const url = new URL(request.url);
@@ -99,5 +100,7 @@ async function handler(request) {
     }
 
 }
+
+console.log(REVIEWS.getReviewsByUserId(2));
 
 Deno.serve(handler);
