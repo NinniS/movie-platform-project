@@ -3,7 +3,7 @@ class MOVIES_CLASS {
         this.db = new DB_CLASS();
     }
 
-    getMovies() {
+    getAllMovies() {
         const movies = this.db.readDatabase();
         return movies;
     }
