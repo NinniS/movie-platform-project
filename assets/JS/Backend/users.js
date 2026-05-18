@@ -1,8 +1,3 @@
-// Jag tog inspiration från lektioner/uppgifter som vi
-// hade med employees och departments, där vi hade en register
-// konstant som vi sparade alla departments och employees i.
-// import {db} from "./Backend/server.js";
-
 import { DB_CLASS } from "./db.js";
 import { MOVIES } from "./movies.js";
 
@@ -27,23 +22,28 @@ class USERS_CLASS{
         return REVIEWS.getReviewsByUserId(id);
     }
     getFavoriteMoviesByUserId(id){
-        const users = this.db.readDatabase();
-        let foundUser = null;
-        for (let user of users){
-            if(user.id == id){
-                foundUser = user;
-                break;
-            }
+        let foundUser = this.getUserById(id);
+        if(foundUser == null){
+            return null;
         }
-        const favorieMoviesId = foundUser.favoriteMovies;
+        const favorieMoviesIds = foundUser.favoriteMovies;
         let favorieMovies = [];
-        for(let movieId of favorieMoviesId){
+        for(let movieId of favorieMoviesIds){
             favorieMovies.push(MOVIES.getMovieById(movieId));
         }
         return favorieMovies;
     }
     getWatchlistMoviesByUserId(id){
-
+        let foundUser = this.getUserById(id);
+        if(foundUser == null){
+            return null;
+        }
+        const watchlistMoviesIds = foundUser.watchlistMovies;
+        let watchlistMovies = [];
+        for(let movieId of watchlistMoviesIds){
+            watchlistMovies.push(MOVIES.getMovieById(movieId));
+        }
+        return watchlistMovies;
     }
     createUser(data){
 
@@ -85,27 +85,3 @@ class REVIEW_CLASS{
 
 export const USERS = new USERS_CLASS();
 export const REVIEWS = new REVIEW_CLASS();
-
-
-// export const db = {
-//     users: [],
-//     reviews: [],
-//     initUsers(){
-//         const data = JSON.parse(Deno.readTextFileSync("../../database/users.json"));
-//         for (let oneUser of data) {
-//             const userInstance = new User(oneUser);
-//             db.users.push(userInstance);
-//         }
-//     },
-//     initReviews(){
-//         const data = JSON.parse(Deno.readTextFileSync("../../database/reviews.json"));
-//         for (let oneReview of data) {
-//             const reviewInstance = new Review(oneReview);
-//             db.reviews.push(reviewInstance);
-//         }
-//     }
-// }
-
-// db.initUsers();
-// db.initReviews();
-

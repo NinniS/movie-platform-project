@@ -103,14 +103,4 @@ async function handler(request) {
 
 }
 
-console.log(USERS.getFavoriteMoviesByUserId(2));
-
-// console.log(db.users);
-// console.log(db.reviews);
-
-// console.log(User.getAllUsers());
-// console.log(Review.getAllReviews());
-
-// console.log(Review.getAllReviewsByMovieId(6));
-
 Deno.serve(handler);
