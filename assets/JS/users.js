@@ -44,5 +44,6 @@ const db = {
 }
 
 db.initUsers();
+console.log(db.users);
 
 //Deno.serve(handler);
