@@ -3,6 +3,11 @@ class MOVIES_CLASS {
         this.db = new DB_CLASS();
     }
 
+    getMovies() {
+        const movies = this.db.readDatabase();
+        return movies;
+    }
+
     searchMovies(searchQuery) {
         const movies = this.db.readDatabase();
         let foundMovies = [];
@@ -13,7 +18,7 @@ class MOVIES_CLASS {
             const genresLower = movie.genre.join(" ").toLowerCase(); //join för att slå ihop array till en sträng
             const descLower = movie.description.toLowerCase();
 
-            if (titleLower.includes(searchQuery) || genresLower.includes(searchQuery) || descLower.includes(searchQuery)) {
+            if (titleLower.includes(queryLower) || genresLower.includes(queryLower) || descLower.includes(queryLower)) {
                 foundMovies.push(movie);
             }
         }
@@ -53,7 +58,7 @@ class MOVIES_CLASS {
 
         for (let movie of movies) {
 
-            if (selectedGenre && moive.genre.includes(selectedGenre)){
+            if (selectedGenre && moive.genre.includes(selectedGenre)) {
                 continue;
             }
             if (minYear && movie.year < minYear) {
