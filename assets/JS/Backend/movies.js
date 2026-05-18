@@ -1,3 +1,5 @@
+import { DB_CLASS } from "./db.js";
+
 class MOVIES_CLASS {
     constructor() {
         this.db = new DB_CLASS();
@@ -52,19 +54,29 @@ class MOVIES_CLASS {
         return genres;
     }
 
-    filterMovies(genre, minYear, maxYear) {
+    getMovieByGenre(){
+        
+    }
+
+    filterMovies(selectedGenre, minYear, maxYear, minDuration, maxDuration) {
         const movies = this.db.readDatabase();
         let filteredMovies = [];
+        //kollar om filmen är inom filtreringen, om inte så continue; annars push
 
         for (let movie of movies) {
-
-            if (selectedGenre && moive.genre.includes(selectedGenre)) {
+            if (selectedGenre && !movie.genre.includes(selectedGenre)) {
                 continue;
             }
             if (minYear && movie.year < minYear) {
                 continue;
             }
             if (maxYear && movie.year > maxYear) {
+                continue;
+            }
+            if(minDuration && movie.duration < minDuration){
+                continue;
+            }
+            if(maxDuration && movie.duration > maxDuration){
                 continue;
             }
             filteredMovies.push(movie);

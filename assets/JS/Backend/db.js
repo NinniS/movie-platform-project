@@ -3,7 +3,7 @@ export class DB_CLASS {
     constructor(){
         //skapar en url instans för sökvägen
         //import.meta.url är till så att deno hittar sökvägen oavsett ifall vi startar programmet(demo) från rotmappen 
-        this.dbUrl = new URL("../../assets/database/movies.json", import.meta.url);
+        this.dbUrl = new URL("../../../assets/database/movies.json", import.meta.url);
     }
     
     readDatabase() {
@@ -24,5 +24,3 @@ export class DB_CLASS {
         }
     }
 }
-
-Deno.serve(handler);
