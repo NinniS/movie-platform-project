@@ -15,4 +15,4 @@ Backend:
         createUser
         getFavoriteMoviesByUserId
         getWatchlistMoviesByUserId
-        getReviewsByUser
+        getReviewsByUserId

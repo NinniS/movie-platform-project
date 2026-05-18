@@ -1,5 +1,6 @@
-// import { MOVIES } from "./movies.js";
-import { Review, User} from "../users.js";
+import { MOVIES } from "./movies.js";
+import { USERS } from "./users.js";
+// import { Review, User} from "../users.js";
 
 async function handler(request) {
     const url = new URL(request.url);
@@ -102,6 +103,7 @@ async function handler(request) {
 
 }
 
+console.log(USERS.getFavoriteMoviesByUserId(2));
 
 // console.log(db.users);
 // console.log(db.reviews);
@@ -109,6 +111,6 @@ async function handler(request) {
 // console.log(User.getAllUsers());
 // console.log(Review.getAllReviews());
 
-console.log(Review.getAllReviewsByMovieId(6));
+// console.log(Review.getAllReviewsByMovieId(6));
 
 Deno.serve(handler);
