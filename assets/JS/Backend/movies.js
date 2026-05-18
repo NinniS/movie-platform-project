@@ -1,76 +1,88 @@
-// class MOVIES_CLASS {
-//     // constructor() {
-//     //     this.db = new DB_CLASS();
-//     // }
+import { DB_CLASS } from "./db.js";
 
-//     getAllMovies() {
-//         const movies = this.db.readDatabase();
-//         return movies;
-//     }
+class MOVIES_CLASS {
+    constructor() {
+        this.db = new DB_CLASS("../../../assets/database/movies.json");
+    }
 
-//     searchMovies(searchQuery) {
-//         const movies = this.db.readDatabase();
-//         let foundMovies = [];
+    getAllMovies() {
+        const movies = this.db.readDatabase();
+        return movies;
+    }
 
-//         for (let movie of movies) {
-//             const queryLower = searchQuery.toLowerCase(); //gör om så man kan söka på shrek och få fram Shrek (stora bokstäver)
-//             const titleLower = movie.title.toLowerCase();
-//             const genresLower = movie.genre.join(" ").toLowerCase(); //join för att slå ihop array till en sträng
-//             const descLower = movie.description.toLowerCase();
+    searchMovies(searchQuery) {
+        const movies = this.db.readDatabase();
+        let foundMovies = [];
 
-//             if (titleLower.includes(queryLower) || genresLower.includes(queryLower) || descLower.includes(queryLower)) {
-//                 foundMovies.push(movie);
-//             }
-//         }
-//         return foundMovies;
-//     }
+        for (let movie of movies) {
+            const queryLower = searchQuery.toLowerCase(); //gör om så man kan söka på shrek och få fram Shrek (stora bokstäver)
+            const titleLower = movie.title.toLowerCase();
+            const genresLower = movie.genre.join(" ").toLowerCase(); //join för att slå ihop array till en sträng
+            const descLower = movie.description.toLowerCase();
 
-//     getMovieById(id) {
-//         const movies = this.db.readDatabase();
-//         let movieById;
+            if (titleLower.includes(queryLower) || genresLower.includes(queryLower) || descLower.includes(queryLower)) {
+                foundMovies.push(movie);
+            }
+        }
+        return foundMovies;
+    }
 
-//         for (let movie of movies) {
-//             if (movie.id === id) {
-//                 movieById = movie;
-//                 return movieById;
-//             }
-//         }
-//         return null;
-//     }
+    getMovieById(id) {
+        const movies = this.db.readDatabase();
+        let movieById;
 
-//     getGenres() {
-//         const movies = this.db.readDatabase();
-//         let genres = [];
+        for (let movie of movies) {
+            if (movie.id === id) {
+                movieById = movie;
+                return movieById;
+            }
+        }
+        return null;
+    }
 
-//         for (let movie of movies) {
-//             for (let genre of movie.genre) { //loopar igenom genre-array för varje film(movie)
-//                 if (!genres.includes(genre)) {
-//                     genres.push(genre);
-//                 }
-//             }
-//         }
-//         return genres;
-//     }
+    getGenres() {
+        const movies = this.db.readDatabase();
+        let genres = [];
 
-//     filterMovies(genre, minYear, maxYear) {
-//         const movies = this.db.readDatabase();
-//         let filteredMovies = [];
+        for (let movie of movies) {
+            for (let genre of movie.genre) { //loopar igenom genre-array för varje film(movie)
+                if (!genres.includes(genre)) {
+                    genres.push(genre);
+                }
+            }
+        }
+        return genres;
+    }
 
-//         for (let movie of movies) {
+    getMovieByGenre(){
+        
+    }
 
-//             if (selectedGenre && moive.genre.includes(selectedGenre)) {
-//                 continue;
-//             }
-//             if (minYear && movie.year < minYear) {
-//                 continue;
-//             }
-//             if (maxYear && movie.year > maxYear) {
-//                 continue;
-//             }
-//             filteredMovies.push(movie);
-//         }
-//         return filteredMovies;
-//     }
-// }
+    filterMovies(selectedGenre, minYear, maxYear, minDuration, maxDuration) {
+        const movies = this.db.readDatabase();
+        let filteredMovies = [];
+        //kollar om filmen är inom filtreringen, om inte så continue; annars push
 
-// export const MOVIES = new MOVIES_CLASS();
+        for (let movie of movies) {
+            if (selectedGenre && !movie.genre.includes(selectedGenre)) {
+                continue;
+            }
+            if (minYear && movie.year < minYear) {
+                continue;
+            }
+            if (maxYear && movie.year > maxYear) {
+                continue;
+            }
+            if(minDuration && movie.duration < minDuration){
+                continue;
+            }
+            if(maxDuration && movie.duration > maxDuration){
+                continue;
+            }
+            filteredMovies.push(movie);
+        }
+        return filteredMovies;
+    }
+}
+
+export const MOVIES = new MOVIES_CLASS();
