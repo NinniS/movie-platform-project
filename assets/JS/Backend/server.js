@@ -101,6 +101,4 @@ async function handler(request) {
 
 }
 
-console.log(REVIEWS.getReviewsByUserId(2));
-
 Deno.serve(handler);

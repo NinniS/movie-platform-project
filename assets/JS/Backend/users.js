@@ -79,6 +79,9 @@ class REVIEW_CLASS{
         }
         return foundReviews;
     }
+    createReview(data){
+
+    }
 }
 
 export const USERS = new USERS_CLASS();
