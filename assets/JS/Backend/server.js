@@ -67,6 +67,9 @@ async function handler(request) {
         });
     }
 
+    if (url.pathname == "/homepage") {
+       return serveFile(request, "../../../frontend/homepage.html");
+    }
 
     if (url.pathname == "/movies") {
         // if (ACCEPT_HEADER != "application/json") {
@@ -98,6 +101,7 @@ async function handler(request) {
         }
 
     }
+     return serveDir(request, { fsRoot: "../../../"});
 
 }
 

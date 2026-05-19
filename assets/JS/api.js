@@ -12,4 +12,3 @@ class API_CLASS{
     }
 }
 
-export const API = new API_CLASS;
