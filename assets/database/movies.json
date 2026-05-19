@@ -112,5 +112,27 @@
         "genre": ["comedy", "science fiction", "action", "family"],
         "description": "Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.",
         "imageURL": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FS%2Fpv-target-images%2Fd3d170cab1ef757a9a437cb9aa70bb33a8897f31f327f02c2de4d5a50dd32ff4.jpg&f=1&nofb=1&ipt=61a47383d7936b91370455a18323eacb8180fe11cc6a3fdbf8f04029335d0b2f"
+    },
+    {
+        "id": 11,
+        "title": "Minions",
+        "director": "Kyle Balda, Pierre Coffin",
+        "year": 2015,
+        "duration": 91,
+        "rating": 0,
+        "genre": ["family", "comedy", "animation"],
+        "description": "Minions Stuart, Kevin and Bob are recruited by Scarlet Overkill, a super-villain who, alongside her inventor husband Herb, hatches a plot to take over the world.",
+        "imageURL": "https://a.ltrbxd.com/resized/film-poster/1/5/0/5/4/1/150541-minions-0-2000-0-3000-crop.jpg?v=5d8a2bb837"
+    },
+    {
+        "id": 12,
+        "title": "Shark Tale",
+        "director": "Bibo Bergeron, Rob Letterman, Vicky Jenson",
+        "year": 2004,
+        "duration": 90,
+        "rating": 0,
+        "genre": ["action", "comedy", "animation"],
+        "description": "Oscar is a small fish whose big aspirations often get him into trouble. Meanwhile, Lenny is a great white shark with a surprising secret that no sea creature would guess: He’s a vegetarian. When a lie turns Oscar into an improbable hero and Lenny becomes an outcast, the two form an unlikely friendship.",
+        "imageURL": "https://a.ltrbxd.com/resized/film-poster/4/6/1/1/7/46117-shark-tale-0-2000-0-3000-crop.jpg?v=cf45b90c76"
     }
 ]

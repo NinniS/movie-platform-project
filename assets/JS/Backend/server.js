@@ -7,7 +7,7 @@ const HEADERS = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept"
+    "Access-Control-Allow-Headers": "Content-Type, Authorization"
 }
 
 const cookie = [];
@@ -18,14 +18,6 @@ function makeResponse(type) {
             JSON.stringify({ error: "Not Authorized" }),
             {
                 status: 401,
-                headers: HEADERS
-            }
-        );
-    } else if (type == "accept") {
-        return new Response(
-            JSON.stringify({ error: "Not Accepted Header" }),
-            {
-                status: 406,
                 headers: HEADERS
             }
         );
@@ -58,7 +50,6 @@ function makeResponse(type) {
 
 async function handler(request) {
     const url = new URL(request.url);
-
     const ACCEPT_HEADER = request.headers.get("accept");
     const CONTENT_TYPE_HEADER = request.headers.get("Content-Type");
     const MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/:id" });
@@ -70,34 +61,8 @@ async function handler(request) {
         });
     }
 
-    if (url.pathname == "/movies") {
-        // if (ACCEPT_HEADER != "application/json") {
-        //     return makeResponse("accept");
-        // } 
-
-        if (request.method == "GET") {
-            let allMovies = MOVIES.getAllMovies();
-            return new Response(JSON.stringify(allMovies), { headers: HEADERS });
-        }
-
-    }
-
-    if (url.pathname == "/movies/genres") {
-        //kod om att ta ut alla genres
-        if (ACCEPT_HEADER != "application/json") {
-            return makeResponse("accept");
-        }
-    }
-
-    if (url.pathname == "/movies/search") {
-        let searchQuery = url.searchParams.get("q");
-        //Vill vi ha liknade koller efter felkoder som i U?
-        if (ACCEPT_HEADER != "application/json") {
-            return makeResponse("accept");
-        }
-        if (!searchQuery) {
-            return makeResponse("not found");
-        }
+    if (url.pathname == "/homepage") {
+        return serveFile(request, "../../../frontend/homepage.html");
     }
 
     if(url.pathname == "/login"){
@@ -122,6 +87,59 @@ async function handler(request) {
         }
     }
 
+    if (url.pathname == "/movies") {
+        if (request.method == "GET") {
+            let selectedGenre = url.searchParams.get("genre");
+            let minYear = url.searchParams.get("minYear");
+            let maxYear = url.searchParams.get("maxYear");
+            let minDuration = url.searchParams.get("minDuration");
+            let maxDuration = url.searchParams.get("maxDuration");
+
+            if (!selectedGenre && !minYear && !maxYear && !minDuration && !maxDuration) {
+                let allMovies = MOVIES.getAllMovies();
+                return new Response(JSON.stringify(allMovies), { headers: HEADERS });
+            }
+
+            let filteredMovies = MOVIES.filterMovies(selectedGenre, minYear, maxYear, minDuration, maxDuration);
+            return new Response(JSON.stringify(filteredMovies), { headers: HEADERS });
+        }
+
+    }
+
+    if (url.pathname == "/movies/genres") {
+        if (request.method == "GET") {
+            let allGenres = MOVIES.getGenres();
+            return new Response(JSON.stringify(allGenres), { headers: HEADERS });
+        }
+
+    }
+
+    if (url.pathname == "/movies/search") {
+        let searchQuery = url.searchParams.get("q");
+
+        let foundMovies = MOVIES.searchMovies(searchQuery);
+
+        if (!searchQuery) {
+            return makeResponse("not found");
+        }
+        return new Response(JSON.stringify(foundMovies), { headers: HEADERS });
+    }
+
+    if (MOVIE_ID_PATTERN.test(url)) {
+        let match = MOVIE_ID_PATTERN.exec(url);
+        let id = match.pathname.groups.id;
+
+        if (request.method == "GET") {
+
+            let movieById = MOVIES.getMovieById(id);
+
+            if (!movieById) {
+                return makeResponse("not found");
+            }
+            return new Response(JSON.stringify(movieById), { headers: HEADERS });
+        }
+    }
+    return serveDir(request, { fsRoot: "../../../" });
 
 }
 

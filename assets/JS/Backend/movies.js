@@ -30,9 +30,10 @@ class MOVIES_CLASS {
     getMovieById(id) {
         const movies = this.db.readDatabase();
         let movieById;
+        let stringId = parseInt(id);
 
         for (let movie of movies) {
-            if (movie.id === id) {
+            if (movie.id === stringId) {
                 movieById = movie;
                 return movieById;
             }
@@ -54,29 +55,29 @@ class MOVIES_CLASS {
         return genres;
     }
 
-    getMovieByGenre(){
-        
-    }
-
     filterMovies(selectedGenre, minYear, maxYear, minDuration, maxDuration) {
         const movies = this.db.readDatabase();
         let filteredMovies = [];
+        let numberMinYear = parseInt(minYear);
+        let numberMaxYear = parseInt(maxYear);
+        let numberMinDuration = parseInt(minDuration);
+        let numberMaxDuration = parseInt(maxDuration);
         //kollar om filmen är inom filtreringen, om inte så continue; annars push
 
         for (let movie of movies) {
             if (selectedGenre && !movie.genre.includes(selectedGenre)) {
                 continue;
             }
-            if (minYear && movie.year < minYear) {
+            if (numberMinYear && movie.year < numberMinYear) {
                 continue;
             }
-            if (maxYear && movie.year > maxYear) {
+            if (numberMaxYear && movie.year > numberMaxYear) {
                 continue;
             }
-            if(minDuration && movie.duration < minDuration){
+            if(numberMinDuration && movie.duration < numberMinDuration){
                 continue;
             }
-            if(maxDuration && movie.duration > maxDuration){
+            if(numberMaxDuration && movie.duration > numberMaxDuration){
                 continue;
             }
             filteredMovies.push(movie);

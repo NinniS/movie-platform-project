@@ -1,5 +1,3 @@
-import { API } from "./api.js";
-
 class UI_CLASS {
     async fillAllMovies() {
         const movieSection = document.querySelector("#all-movies");
@@ -11,18 +9,35 @@ class UI_CLASS {
                 divDM.innerHTML = `
             <div>
             <img src="${movie.imageURL}">
-            <h2>${movie.title}</h2>
+            <h3>${movie.title}</h3>
             </div>
             `;
                 divDM.classList.add("movie");
                 movieSection.appendChild(divDM);
             }
         } catch (error) {
+            //Säg till användaren att det inte funkade
+            console.log("Didn't work");
+            return;
+        }
+    }
+    async fillGenres() {
+        const genreSection = document.querySelector("#genre");
+        try {
+            const genres = await API.getResource("/movies/genres");
+            console.log(genres);
+            for (let genre of genres) {
+                genreSection.innerHTML += `<option value="${genre}">${genre}</option>`;
+            }
+        } catch (error) {
+            //Säg till användaren att det inte funkade
             console.log("Didn't work");
             return;
         }
     }
 }
 
-const UI = new UI_CLASS;
+const UI = new UI_CLASS();
+const API = new API_CLASS();
 UI.fillAllMovies();
+UI.fillGenres();
