@@ -70,10 +70,10 @@ class MOVIES_CLASS {
             if (maxYear && movie.year > maxYear) {
                 continue;
             }
-            if(minDuration && movie.duration < minDuration){
+            if (minDuration && movie.duration < minDuration){
                 continue;
             }
-            if(maxDuration && movie.duration > maxDuration){
+            if (maxDuration && movie.duration > maxDuration){
                 continue;
             }
             filteredMovies.push(movie);
