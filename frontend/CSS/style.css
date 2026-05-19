@@ -19,12 +19,8 @@ body {
 }
 
 main {
-    width: 500px;
+    width: 1000px;
     margin: auto;
-}
-
-#logo {
-    height: 25px;
 }
 
 h1 { /* Stora titlar som sidnamn*/
@@ -35,6 +31,13 @@ h1 { /* Stora titlar som sidnamn*/
 
 h2 {
     font-family: main-title;
+    padding: 10px;
+}
+
+h3 {
+    font-family: main-title;
+    max-width: 150px;
+    margin: 10px;
 }
 
 #navigation div {
@@ -44,7 +47,7 @@ h2 {
 }
 
 #navigation {
-    border-bottom: 1px solid rgb(0, 0, 0);
+    border-bottom: 1px solid var(--main-yellow-color);
     background-color: rgb(23, 22, 16);
     color: white;
     padding: 10px 20px;
@@ -130,6 +133,7 @@ h2 {
 
 #movie-section {
     text-align: center;
+    padding: 15px 0px;
 }
 
 #all-movies {
@@ -141,13 +145,15 @@ h2 {
 }
 
 .movie img {
-   height: 200px;
-    width: 150px;
+   height: 230px;
+    width: 170px;
 }
 
 .movie img:hover {
-    border: 3px solid var(--main-yellow-color);
+    outline: 3px solid var(--main-yellow-color);
     cursor: pointer;
-    transition: 0.3s;
 }
 
+footer {
+    border-top: 1px solid var(--main-yellow-color);
+}
