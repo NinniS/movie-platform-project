@@ -10,6 +10,7 @@ const HEADERS = {
     "Access-Control-Allow-Headers": "Content-Type, Authorization"
 }
 
+//SE MIG!!!!!
 const cookie = [];
 
 function makeResponse(type) {
