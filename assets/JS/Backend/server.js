@@ -60,19 +60,29 @@ async function handler(request) {
     }
 
     if (url.pathname == "/homepage") {
-       return serveFile(request, "../../../frontend/homepage.html");
+        return serveFile(request, "../../../frontend/homepage.html");
     }
 
     if (url.pathname == "/movies") {
         if (request.method == "GET") {
-            let allMovies = MOVIES.getAllMovies();
-            return new Response(JSON.stringify(allMovies), { headers: HEADERS });
+            let selectedGenre = url.searchParams.get("genre");
+            let minYear = url.searchParams.get("minYear");
+            let maxYear = url.searchParams.get("maxYear");
+            let minDuration = url.searchParams.get("minDuration");
+            let maxDuration = url.searchParams.get("maxDuration");
+
+            if (!selectedGenre && !minYear && !maxYear && !minDuration && !maxDuration) {
+                let allMovies = MOVIES.getAllMovies();
+                return new Response(JSON.stringify(allMovies), { headers: HEADERS });
+            }
+
+            let filteredMovies = MOVIES.filterMovies(selectedGenre, minYear, maxYear, minDuration, maxDuration);
+            return new Response(JSON.stringify(filteredMovies), { headers: HEADERS });
         }
 
     }
 
     if (url.pathname == "/movies/genres") {
-        //kod om att ta ut alla genres
         if (request.method == "GET") {
             let allGenres = MOVIES.getGenres();
             return new Response(JSON.stringify(allGenres), { headers: HEADERS });
@@ -106,7 +116,7 @@ async function handler(request) {
             return new Response(JSON.stringify(movieById), { headers: HEADERS });
         }
     }
-     return serveDir(request, { fsRoot: "../../../"});
+    return serveDir(request, { fsRoot: "../../../" });
 
 }
 
