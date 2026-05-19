@@ -30,9 +30,10 @@ class MOVIES_CLASS {
     getMovieById(id) {
         const movies = this.db.readDatabase();
         let movieById;
+        let stringId = parseInt(id);
 
         for (let movie of movies) {
-            if (movie.id === id) {
+            if (movie.id === stringId) {
                 movieById = movie;
                 return movieById;
             }
@@ -52,10 +53,6 @@ class MOVIES_CLASS {
             }
         }
         return genres;
-    }
-
-    getMovieByGenre(){
-        
     }
 
     filterMovies(selectedGenre, minYear, maxYear, minDuration, maxDuration) {
