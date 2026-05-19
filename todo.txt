@@ -12,7 +12,10 @@ Backend:
 
     Functioner users:
         x getUserById
-        createUser
         x getFavoriteMoviesByUserId
         x getWatchlistMoviesByUserId
         x getReviewsByUserId
+        createUser
+
+    Functioner reviews:
+        createReview

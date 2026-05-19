@@ -46,7 +46,7 @@ class USERS_CLASS{
         return watchlistMovies;
     }
     createUser(data){
-
+        if(data.profilePicture == undefined){}
     }
 }
 
@@ -79,6 +79,7 @@ class REVIEW_CLASS{
         }
         return foundReviews;
     }
+
     createReview(data){
 
     }
