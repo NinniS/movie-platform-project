@@ -1,7 +1,9 @@
 import { MOVIES } from "./movies.js";
+import { serveDir, serveFile } from "jsr:@std/http/file-server";
 
 async function handler(request) {
     const url = new URL(request.url);
+    console.log(url.pathname);
     const HEADERS = {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
@@ -64,6 +66,10 @@ async function handler(request) {
         });
     }
 
+    if (url.pathname == "/homepage") {
+        console.log("about to serve");
+       return serveFile(request, "../../../frontend/homepage.html");
+    }
 
     if (url.pathname == "/movies") {
         // if (ACCEPT_HEADER != "application/json") {
@@ -95,6 +101,7 @@ async function handler(request) {
         }
 
     }
+     return serveDir(request, { fsRoot: "../../../frontend"});
 
 }
 
