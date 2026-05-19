@@ -63,6 +63,10 @@ async function handler(request) {
         return serveFile(request, "../../../frontend/homepage.html");
     }
 
+    if (url.pathname == "/login") {
+        return serveFile(request, "../../../frontend/log-in.html");
+    }
+
     if (url.pathname == "/movies") {
         if (request.method == "GET") {
             let selectedGenre = url.searchParams.get("genre");

@@ -40,6 +40,11 @@ h3 {
     margin: 10px;
 }
 
+a {
+    color: white;
+    text-decoration: none;
+}
+
 #navigation div {
     display: flex;
     justify-content: space-between;
@@ -75,15 +80,28 @@ h3 {
 }
 
 #log-in, #sign-up {
+    margin: 40px;
     display: flex;
     flex-direction: column;
     text-align: center;
     gap: 10px;
 
-    background-color: rgb(253, 215, 126);
+    background-color: var(--main-yellow-color);
     border: 1px solid rgb(214, 165, 50);
-    padding: 40px;
+    padding: 30px;
     border-radius: 5px;
+}
+
+#log-in p, #sign-up p {
+    margin: 5px;
+    color: var(--main-red-color);
+    font-family: arial;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+#log-in input, #sign-up input {
+    padding: 10px;
 }
 
 .submit {
