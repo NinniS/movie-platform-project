@@ -1,5 +1,7 @@
-import { MOVIES } from "./movies.js";
 import { serveDir, serveFile } from "jsr:@std/http/file-server";
+import { MOVIES } from "./movies.js";
+import { USERS } from "./users.js";
+import { REVIEWS } from "./users.js";
 
 const HEADERS = {
     "Content-Type": "application/json",
@@ -57,6 +59,9 @@ async function handler(request) {
         });
     }
 
+    if (url.pathname == "/homepage") {
+       return serveFile(request, "../../../frontend/homepage.html");
+    }
 
     if (url.pathname == "/movies") {
         if (request.method == "GET") {
@@ -101,6 +106,7 @@ async function handler(request) {
             return new Response(JSON.stringify(movieById), { headers: HEADERS });
         }
     }
+     return serveDir(request, { fsRoot: "../../../"});
 
 }
 

@@ -1,0 +1,107 @@
+[
+    {
+        "id": 1,
+        "userId": 1,
+        "movieId": 1,
+        "score": 5,
+        "reviewText": "The best movie I have seen!"
+    },
+    {
+        "id": 2,
+        "userId": 2,
+        "movieId": 2,
+        "score": 4,
+        "reviewText": "Really solid film, great pacing and characters."
+    },
+    {
+        "id": 3,
+        "userId": 2,
+        "movieId": 3,
+        "score": 3,
+        "reviewText": "It was okay, some parts were a bit slow."
+    },
+    {
+        "id": 4,
+        "userId": 3,
+        "movieId": 1,
+        "score": 4,
+        "reviewText": "Loved it, but I think the ending could’ve been stronger."
+    },
+    {
+        "id": 5,
+        "userId": 4,
+        "movieId": 4,
+        "score": 5,
+        "reviewText": "Absolutely amazing visuals and story!"
+    },
+    {
+        "id": 6,
+        "userId": 6,
+        "movieId": 2,
+        "score": 2,
+        "reviewText": "Not really my type of movie, felt boring at times."
+    },
+    {
+        "id": 7,
+        "userId": 7,
+        "movieId": 5,
+        "score": 5,
+        "reviewText": "Incredible from start to finish!"
+    },
+    {
+        "id": 8,
+        "userId": 8,
+        "movieId": 3,
+        "score": 4,
+        "reviewText": "Pretty enjoyable overall, would watch again."
+    },
+    {
+        "id": 9,
+        "userId": 7,
+        "movieId": 6,
+        "score": 3,
+        "reviewText": "It had potential but didn’t fully deliver."
+    },
+    {
+        "id": 10,
+        "userId": 5,
+        "movieId": 10,
+        "score": 5,
+        "reviewText": "One of the most entertaining movies I’ve watched recently."
+    },
+    {
+        "id": 11,
+        "userId": 9,
+        "movieId": 5,
+        "score": 4,
+        "reviewText": "Good movie, strong performances throughout."
+    },
+    {
+        "id": 12,
+        "userId": 11,
+        "movieId": 6,
+        "score": 1,
+        "reviewText": "Did not enjoy it at all."
+    },
+    {
+        "id": 13,
+        "userId": 10,
+        "movieId": 7,
+        "score": 5,
+        "reviewText": "Surprisingly great, exceeded my expectations."
+    },
+    {
+        "id": 14,
+        "userId": 11,
+        "movieId": 8,
+        "score": 3,
+        "reviewText": "Decent, but a bit overrated in my opinion."
+    },
+    {
+        "id": 15,
+        "userId": 10,
+        "movieId": 9,
+        "score": 5,
+        "reviewText": "Fantastic storytelling and great characters."
+    }
+]

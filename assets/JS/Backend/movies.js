@@ -2,7 +2,7 @@ import { DB_CLASS } from "./db.js";
 
 class MOVIES_CLASS {
     constructor() {
-        this.db = new DB_CLASS();
+        this.db = new DB_CLASS("../../../assets/database/movies.json");
     }
 
     getAllMovies() {
