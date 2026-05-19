@@ -10,6 +10,8 @@ const HEADERS = {
     "Access-Control-Allow-Headers": "Content-Type, Authorization"
 }
 
+const cookie = [];
+
 function makeResponse(type) {
     if (type == "authorization") {
         return new Response(
@@ -63,8 +65,29 @@ async function handler(request) {
         return serveFile(request, "../../../frontend/homepage.html");
     }
 
-    if (url.pathname == "/login") {
-        return serveFile(request, "../../../frontend/log-in.html");
+    if(url.pathname == "/login"){
+        if(request.method == "GET"){
+            return serveFile(request, "../../../frontend/log-in.html");
+        }
+        if(request.method == "POST"){
+            // console.log("recived login");
+            let loginUser = await request.json();
+            let allUsers = USERS.getAllUsers();
+            // console.log("trying to login with", loginUser);
+            // console.log("what are you:", typeof loginUser);
+            // console.log("we have", allUsers.length, "users");
+            
+            for(let oneUser of allUsers){
+                // console.log("is this you", oneUser);
+                if(oneUser.username == loginUser.username && oneUser.password == loginUser.password){
+                    HEADERS["Set-Cookie"] = "session_id=secret-value; Max-Age=84600";
+                    // console.log("found user");
+                    return new Response(JSON.stringify({"welcome": "Welcome!"}), {headers: HEADERS});
+                }
+            }
+            // console.log("could not find user");
+            return makeResponse("authorization");
+        }
     }
 
     if (url.pathname == "/movies") {
@@ -102,7 +125,6 @@ async function handler(request) {
         if (!searchQuery) {
             return makeResponse("not found");
         }
-
         return new Response(JSON.stringify(foundMovies), { headers: HEADERS });
     }
 
