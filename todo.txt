@@ -1,12 +1,10 @@
 Backend:
     Functioner movies:
-        getAllMovies
-        getMovieById
-        getAllGenrer
-        getMovieByGenre
-        getMoviesByYear - filtrera
-        filterMoviesByDuration
-        searchMovie - söka på titel, genre, discription
+       x getAllMovies
+       x getMovieById
+       x getAllGenrer
+       x filterMoviesBy - Duration, year, genre
+       x searchMovie - söka på titel, genre, discription
         getReviewByMovieId
         updateRating - updaterar rating på en film när en användare lagt en ny review
 
