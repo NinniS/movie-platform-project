@@ -76,7 +76,9 @@ class REVIEW_CLASS{
         }
         return foundReviews;
     }
+    getAvrageScoreByMovieId(id){
 
+    }
     createReview(data){
 
     }
