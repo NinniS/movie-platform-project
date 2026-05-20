@@ -1,7 +1,6 @@
 import { serveDir, serveFile } from "jsr:@std/http/file-server";
 import { MOVIES } from "./movies.js";
-import { USERS } from "./users.js";
-import { REVIEWS } from "./users.js";
+import { USERS, REVIEWS } from "./users.js";
 
 const HEADERS = {
     "Content-Type": "application/json",
@@ -52,7 +51,13 @@ async function handler(request) {
     const url = new URL(request.url);
     const ACCEPT_HEADER = request.headers.get("accept");
     const CONTENT_TYPE_HEADER = request.headers.get("Content-Type");
+    const AVERAGE_MOVIE_SCORE_PATTERN = new URLPattern({ pathname: "/movies/reviews/score/:id" });
+    const REVIEW_BY_MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/reviews/:id" });
     const MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/:id" });
+    const REVIEW_BY_USER_ID_PATTERN = new URLPattern({ pathname: "/user/reviews/:id" });
+    const WATCHLIST_BY_ID_PATTERN = new URLPattern({ pathname: "/user/watchlist/:id" });
+
+
 
     if (request.method === "OPTIONS") {
         return new Response(null, {
@@ -65,8 +70,8 @@ async function handler(request) {
         return serveFile(request, "../../../frontend/homepage.html");
     }
 
-    if(url.pathname == "/login"){
-        if(request.method == "GET"){
+    if (url.pathname == "/login") {
+        if (request.method == "GET") {
             return serveFile(request, "../../../frontend/log-in.html");
         }
         if(request.method == "POST"){
@@ -129,7 +134,6 @@ async function handler(request) {
 
     if (url.pathname == "/movies/search") {
         let searchQuery = url.searchParams.get("q");
-
         let foundMovies = MOVIES.searchMovies(searchQuery);
 
         if (!searchQuery) {
@@ -138,12 +142,39 @@ async function handler(request) {
         return new Response(JSON.stringify(foundMovies), { headers: HEADERS });
     }
 
+    if (REVIEW_BY_MOVIE_ID_PATTERN.test(url)) {
+        let match = REVIEW_BY_MOVIE_ID_PATTERN.exec(url);
+        let id = match.pathname.groups.id;
+
+        if (request.method == "GET") {
+            let reviewByMovieId = REVIEWS.getAllReviewsByMovieId(id);
+
+            if (reviewByMovieId.length == 0) {
+                return makeResponse("not found");
+            }
+            return new Response(JSON.stringify(reviewByMovieId), { headers: HEADERS });
+        }
+    }
+
+    if (AVERAGE_MOVIE_SCORE_PATTERN.test(url)){
+        let match = AVERAGE_MOVIE_SCORE_PATTERN.exec(url);
+        let id = match.pathname.groups.id;
+
+        if(request.method == "GET"){
+            let averageScore = REVIEWS.getAverageScoreByMovieId(id);
+
+            if(!averageScore){
+                return makeResponse("not found");
+            }
+            return new Response(JSON.stringify(averageScore), {headers: HEADERS});
+        }
+    }
+
     if (MOVIE_ID_PATTERN.test(url)) {
         let match = MOVIE_ID_PATTERN.exec(url);
         let id = match.pathname.groups.id;
 
         if (request.method == "GET") {
-
             let movieById = MOVIES.getMovieById(id);
 
             if (!movieById) {
@@ -152,6 +183,36 @@ async function handler(request) {
             return new Response(JSON.stringify(movieById), { headers: HEADERS });
         }
     }
+
+    if (REVIEW_BY_USER_ID_PATTERN.test(url)) {
+        let match = REVIEW_BY_USER_ID_PATTERN.exec(url);
+        let id = match.pathname.groups.id;
+
+        if (request.method == "GET") {
+            let reviewsByUserId = REVIEWS.getReviewsByUserId(id);
+
+            if (reviewsByUserId.length == 0) {
+                return makeResponse("not found");
+            }
+            return new Response(JSON.stringify(reviewsByUserId), { headers: HEADERS });
+        }
+    }
+
+    if (WATCHLIST_BY_ID_PATTERN.test(url)) {
+        let match = WATCHLIST_BY_ID_PATTERN.exec(url);
+        let id = match.pathname.groups.id;
+
+        if (request.method == "GET") {
+            let watchlistById = USERS.getWatchlistMoviesByUserId(id);
+
+            if (!watchlistById) {
+                return makeResponse("not found");
+            }
+            return new Response(JSON.stringify(watchlistById), { headers: HEADERS });
+        }
+    }
+
+
     return serveDir(request, { fsRoot: "../../../" });
 
 }
