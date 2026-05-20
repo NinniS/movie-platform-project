@@ -79,8 +79,15 @@ class REVIEW_CLASS{
         }
         return foundReviews;
     }
-    getAvrageScoreByMovieId(id){
+    getAverageScoreByMovieId(id){
+        let allReviewsByMovieId = this.getAllReviewsByMovieId(id);
+        let totalScore = 0;
+        for(let score of allReviewsByMovieId){
+            totalScore += score.score;
+        }
 
+        let averageScore = totalScore / allReviewsByMovieId.length;
+        return averageScore;
     }
     createReview(data){
 
