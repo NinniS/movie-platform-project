@@ -19,7 +19,6 @@ class API_CLASS{
 
         let username = DOM_LOGIN_FORM.elements.username.value;
         let password = DOM_LOGIN_FORM.elements.password.value;
-        console.log(username, password);
 
         let url = "http://localhost:8000/login";
         let response = await fetch(url, {method:"POST", body: JSON.stringify({"username":`${username}`,"password": `${password}`}), headers:{"Content-Type":"application/json"}});
