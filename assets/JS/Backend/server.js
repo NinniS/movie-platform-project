@@ -70,28 +70,17 @@ async function handler(request) {
             return serveFile(request, "../../../frontend/log-in.html");
         }
         if(request.method == "POST"){
-            // console.log("recived login");
             let loginUser = await request.json();
             let allUsers = USERS.getAllUsers();
-            // console.log("trying to login with", loginUser);
-            // console.log("what are you:", typeof loginUser);
-            // console.log("we have", allUsers.length, "users");
             
             for(let oneUser of allUsers){
-                // console.log("is this you", oneUser);
                 if(oneUser.username == loginUser.username && oneUser.password == loginUser.password){
-                    console.log(cookies);
                     let sessionId = crypto.randomUUID();
                     HEADERS["Set-Cookie"] = `session_id=${sessionId}; Max-Age=86400`;
-                    // let newCookie = {};
-                    // newCookie[`${oneUser.id}`] = sessionId;
                     cookies.push(`session_id=${sessionId}`);
-                    console.log(cookies);
-                    // console.log("found user");
                     return new Response(JSON.stringify({"welcome": "Welcome!"}), {headers: HEADERS});
                 }
             }
-            // console.log("could not find user");
             return makeResponse("authorization");
         }
         //fetch("/login", {method:"POST", body: `{"username":"fat yoshi","password": "babyFat123!"}`, headers:{"Content-Type":"application/json"}})
@@ -100,9 +89,13 @@ async function handler(request) {
 
     if(url.pathname == "/logout"){
         if(request.method == "POST"){
+            let currentCookie = request.headers.get("cookie");
+            for(let i = 0; i< cookies.length; i++){
+                if(cookies[i] == currentCookie){
+                    cookies.splice(i, 1);
+                }
+            }
             HEADERS["Set-Cookie"] = `session_id=deleted; Max-Age=0`;
-            // let index = 0;
-            // cookies.splice(index, 1);
             return new Response(JSON.stringify({"goodbye": "Goodbye!"}), {headers: HEADERS});
         }
     }
