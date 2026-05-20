@@ -203,3 +203,7 @@ footer {
 #filter-number p {
     margin: 15px 0px 5px 0px;
 }
+
+#movie {
+    display: flex;
+}
