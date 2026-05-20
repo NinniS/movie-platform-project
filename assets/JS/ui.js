@@ -16,6 +16,21 @@ class UI_CLASS {
                 movieSection.appendChild(divDM);
             }
         } catch (error) {
+            //Säg till användaren att det inte funkade
+            console.log("Didn't work");
+            return;
+        }
+    }
+    async fillGenres() {
+        const genreSection = document.querySelector("#genre");
+        try {
+            const genres = await API.getResource("/movies/genres");
+            console.log(genres);
+            for (let genre of genres) {
+                genreSection.innerHTML += `<option value="${genre}">${genre}</option>`;
+            }
+        } catch (error) {
+            //Säg till användaren att det inte funkade
             console.log("Didn't work");
             return;
         }
@@ -25,3 +40,4 @@ class UI_CLASS {
 const UI = new UI_CLASS();
 const API = new API_CLASS();
 UI.fillAllMovies();
+UI.fillGenres();
