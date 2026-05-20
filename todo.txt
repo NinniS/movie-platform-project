@@ -17,3 +17,7 @@ Backend:
 
     Functioner reviews:
         createReview
+
+    Wilmas todo:
+        add createReview to server.js
+
