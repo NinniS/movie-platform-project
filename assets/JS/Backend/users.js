@@ -18,9 +18,6 @@ class USERS_CLASS{
         }
         return null;
     }
-    getReviewsByUserId(id){
-        return REVIEWS.getReviewsByUserId(id);
-    }
     getFavoriteMoviesByUserId(id){
         let foundUser = this.getUserById(id);
         if(foundUser == null){
