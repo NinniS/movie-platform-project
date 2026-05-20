@@ -54,6 +54,7 @@ async function handler(request) {
     const ACCEPT_HEADER = request.headers.get("accept");
     const CONTENT_TYPE_HEADER = request.headers.get("Content-Type");
     const MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/:id" });
+    const MOVIE_ID_PAGE_PATTERN = new URLPattern({ pathname: "/movie=:id"});
 
     if (request.method === "OPTIONS") {
         return new Response(null, {
@@ -66,24 +67,24 @@ async function handler(request) {
         return serveFile(request, "../../../frontend/homepage.html");
     }
 
-    if(url.pathname == "/login"){
-        if(request.method == "GET"){
+    if (url.pathname == "/login") {
+        if (request.method == "GET") {
             return serveFile(request, "../../../frontend/log-in.html");
         }
-        if(request.method == "POST"){
+        if (request.method == "POST") {
             // console.log("recived login");
             let loginUser = await request.json();
             let allUsers = USERS.getAllUsers();
             // console.log("trying to login with", loginUser);
             // console.log("what are you:", typeof loginUser);
             // console.log("we have", allUsers.length, "users");
-            
-            for(let oneUser of allUsers){
+
+            for (let oneUser of allUsers) {
                 // console.log("is this you", oneUser);
-                if(oneUser.username == loginUser.username && oneUser.password == loginUser.password){
+                if (oneUser.username == loginUser.username && oneUser.password == loginUser.password) {
                     HEADERS["Set-Cookie"] = "session_id=secret-value; Max-Age=84600";
                     // console.log("found user");
-                    return new Response(JSON.stringify({"welcome": "Welcome!"}), {headers: HEADERS});
+                    return new Response(JSON.stringify({ "welcome": "Welcome!" }), { headers: HEADERS });
                 }
             }
             // console.log("could not find user");
@@ -142,6 +143,9 @@ async function handler(request) {
             }
             return new Response(JSON.stringify(movieById), { headers: HEADERS });
         }
+    }
+    if (MOVIE_ID_PAGE_PATTERN.test(url)) {
+        return serveFile(request, "../../../frontend/movie-page.html");
     }
     return serveDir(request, { fsRoot: "../../../" });
 

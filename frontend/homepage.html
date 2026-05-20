@@ -10,7 +10,9 @@
 <body>
     <div id="navigation">
         <div>
-            <a href="/homepage"><h1>MWN Movieloverz</h1></a>
+            <a href="/homepage">
+                <h1>MWN Movieloverz</h1>
+            </a>
             <div id="login">
                 <a href="/login">LOG IN</a>
             </div>
@@ -18,7 +20,7 @@
     </div>
     <main>
         <section id="filtering">
-            <h1>Welcome!</h1>
+            <h2>Welcome!</h2>
             <div>
                 <input id="search-bar" type="text" placeholder="Search...">
                 <form id="movie-filter">
@@ -28,8 +30,20 @@
                     <select class="button" id="filter">
                         <option value="">FILTER</option>
                     </select>
-                    <input type="text" placeholder="Duration">
-                    <input type="text" placeholder="Year">
+                    <div id="filter-number">
+                        <div class="filter-input">
+                            <p>DURATION</p>
+                            <input type="text" placeholder="Min">
+                            <input type="text" placeholder="Max">
+                        </div>
+                        <div class="filter-input">
+                            <div>
+                                <p>YEAR</p>
+                                <input type="text" placeholder="Min">
+                                <input type="text" placeholder="Max">
+                            </div>
+                        </div>
+                    </div>
                     <submit class="button">Submit</submit>
                 </form>
             </div>
@@ -37,7 +51,7 @@
 
         <div id="movie-section">
             <div id="all-movies">
-                
+
             </div>
         </div>
     </main>

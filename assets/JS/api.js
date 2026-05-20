@@ -1,6 +1,7 @@
 class API_CLASS{
     async getResource (endpoint) {
         let url = "http://localhost:8000/";
+        console.log(url + endpoint);
         let response = await fetch(url + endpoint, {headers: {"Accept": "application/json"}});
 
         if (!response.ok) {
