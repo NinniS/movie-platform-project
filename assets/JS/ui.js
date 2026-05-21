@@ -7,10 +7,10 @@ class UI_CLASS {
             for (let movie of movies) {
                 let divDM = document.createElement("div");
                 divDM.innerHTML = `
-            <div>
+            <a href="/movie=${movie.id}"><div>
             <img src="${movie.imageURL}">
             <h3>${movie.title}</h3>
-            </div>
+            </div></a>
             `;
                 divDM.classList.add("movie");
                 movieSection.appendChild(divDM);
