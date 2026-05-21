@@ -204,18 +204,34 @@ async function handler(request) {
         if (request.method == "POST") {
             let CT = contentTypeCheck(CONTENT_TYPE_HEADER);
             if (CT) { return CT };
+            let foundUserId;
+
+            let currentCookie = request.headers.get("cookie");
+            for(let i = 0; i< COOKIES.length; i++){
+                if(COOKIES[i].cookie == currentCookie){
+                    foundUserId = COOKIES[i].userId;
+                    break;
+                }
+            }
+            if(!foundUserId){
+                return makeResponse("authorization");
+            }
 
             try {
                 let body = await request.json();
-                
-                body.movieId = parseInt(id);
-                body.userId = 
+                console.log("anropar createReview nu...");
+
+                body.userId = foundUserId;
+                body.movieId = id;
+
                 let newReview = REVIEWS.createReview(body);
+                console.log("nu har reviews anropats");
+                console.log(newReview);
+                console.log(typeof newReview);
 
                 if (!newReview) {
                     return makeResponse("bad request");
                 }
-
                 return makeResponse("created");
             } catch (error) {
                 return makeResponse("bad request");

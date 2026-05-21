@@ -110,12 +110,14 @@ class REVIEW_CLASS {
         return averageScore;
     }
 
-    createReview(data) { //data = objekt med nycklar
+    createReview(data) { 
+        console.log(data)
         if (data.userId == null || data.movieId == null || data.score == null || data.reviewText == null) {
             return null;
         }
 
         let dataBase = this.getAllReviews();
+        console.log(dataBase);
         let id = 0;
         for (let review of dataBase) {
             if (review.id > id) {
@@ -135,7 +137,6 @@ class REVIEW_CLASS {
         dataBase.push(newReview);
         this.db.writeDatabase(dataBase);
         return true;
-        console.log(newReview);
     }
 }
 

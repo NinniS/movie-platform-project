@@ -110,5 +110,12 @@
     "movieId": 5,
     "score": 3,
     "reviewText": "Best of the best, would recommend to everyone!"
+  },
+  {
+    "id": 17,
+    "userId": 9,
+    "movieId": "3",
+    "score": 1,
+    "reviewText": "Memorable characters but very weak plot"
   }
 ]
