@@ -24,6 +24,9 @@ DOM_LOGIN_FORM.addEventListener("submit", async function(event){
 
     let endpoint = "/login";
     let response = await fetch(endpoint, {method:"POST", body: JSON.stringify({"username":`${username}`,"password": `${password}`}), headers:{"Content-Type":"application/json"}});
+    if (response.ok) {
+        window.location.href = "/homepage";
+    }
 });
 
 
@@ -35,4 +38,7 @@ DOM_SIGN_UP_FORM.addEventListener("submit", async function(event){
 
     let endpoint = "/signup";
     let response = await fetch(endpoint, {method:"POST", body: JSON.stringify({"username":`${username}`,"password": `${password}`}), headers:{"Content-Type":"application/json"}});
+    if (response.ok) {
+        window.location.href = "/homepage";
+    }
 });

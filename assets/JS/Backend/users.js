@@ -66,7 +66,7 @@ class USERS_CLASS {
         }
         users.push(newUser);
         this.db.writeDatabase(users);
-        return true;
+        return id;
     }
 }
 
