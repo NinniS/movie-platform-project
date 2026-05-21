@@ -1,4 +1,5 @@
 const DOM_LOGIN_FORM = document.getElementById("log-in");
+const DOM_SIGN_UP_FORM = document.getElementById("sign-up");
 const FILTER_FORM = document.getElementById("movie-filter");
 
 class API_CLASS {
@@ -55,18 +56,6 @@ function buildQuery(filterValues) {
     return query;
 }
 
-if (DOM_LOGIN_FORM) {
-    DOM_LOGIN_FORM.addEventListener("submit", async function (event) {
-        event.preventDefault();
-
-        let username = DOM_LOGIN_FORM.elements.username.value;
-        let password = DOM_LOGIN_FORM.elements.password.value;
-
-        let url = "http://localhost:8000/login";
-        let response = await fetch(url, { method: "POST", body: JSON.stringify({ "username": `${username}`, "password": `${password}` }), headers: { "Content-Type": "application/json" } });
-    });
-}
-
 if (FILTER_FORM) {
     FILTER_FORM.addEventListener("submit", async function (event) {
         event.preventDefault();
@@ -85,7 +74,30 @@ if (FILTER_FORM) {
 
         let movies = await API.getResource("/movies?" + url);
         UI.fillFilteredMovies(movies);
-        
+
+    });
+}
+
+if (DOM_LOGIN_FORM) {
+    DOM_LOGIN_FORM.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        let username = DOM_LOGIN_FORM.elements.username.value;
+        let password = DOM_LOGIN_FORM.elements.password.value;
+        let endpoint = "/login";
+        let response = await fetch(endpoint, { method: "POST", body: JSON.stringify({ "username": `${username}`, "password": `${password}` }), headers: { "Content-Type": "application/json" } });
+    });
+}
+
+if (DOM_SIGN_UP_FORM) {
+    DOM_SIGN_UP_FORM.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        let username = DOM_SIGN_UP_FORM.elements.username.value;
+        let password = DOM_SIGN_UP_FORM.elements.password.value;
+
+        let endpoint = "/signup";
+        let response = await fetch(endpoint, { method: "POST", body: JSON.stringify({ "username": `${username}`, "password": `${password}` }), headers: { "Content-Type": "application/json" } });
     });
 }
 
