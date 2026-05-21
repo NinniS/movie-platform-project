@@ -1,5 +1,6 @@
 const DOM_LOGIN_FORM = document.getElementById("log-in");
 const DOM_SIGN_UP_FORM = document.getElementById("sign-up");
+const FILTER_FORM = document.getElementById("movie-filter");
 
 class API_CLASS{
     async getResource (endpoint) {

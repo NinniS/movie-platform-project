@@ -2,15 +2,15 @@ class UI_CLASS {
     async fillAllMovies() {
         const movieSection = document.querySelector("#all-movies");
         try {
-            const movies = await API.getResource("/movies")
+            const movies = await API.getResource("/movies");
 
             for (let movie of movies) {
                 let divDM = document.createElement("div");
                 divDM.innerHTML = `
-            <div>
+             <a href="/movie=${movie.id}"><div>
             <img src="${movie.imageURL}">
             <h3>${movie.title}</h3>
-            </div>
+            </div></a>
             `;
                 divDM.classList.add("movie");
                 movieSection.appendChild(divDM);
@@ -25,7 +25,6 @@ class UI_CLASS {
         const genreSection = document.querySelector("#genre");
         try {
             const genres = await API.getResource("/movies/genres");
-            console.log(genres);
             for (let genre of genres) {
                 genreSection.innerHTML += `<option value="${genre}">${genre}</option>`;
             }

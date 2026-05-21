@@ -56,8 +56,7 @@ async function handler(request) {
     const MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/:id" });
     const REVIEW_BY_USER_ID_PATTERN = new URLPattern({ pathname: "/user/reviews/:id" });
     const WATCHLIST_BY_ID_PATTERN = new URLPattern({ pathname: "/user/watchlist/:id" });
-
-
+    const MOVIE_ID_PAGE_PATTERN = new URLPattern({ pathname: "/movie=:id"});
 
     if (request.method === "OPTIONS") {
         return new Response(null, {
@@ -223,7 +222,9 @@ async function handler(request) {
         }
     }
 
-
+    if (MOVIE_ID_PAGE_PATTERN.test(url)) {
+        return serveFile(request, "../../../frontend/movie-page.html");
+    }
     return serveDir(request, { fsRoot: "../../../" });
 
 }
