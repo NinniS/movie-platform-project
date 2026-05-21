@@ -176,3 +176,12 @@ a {
 footer {
     border-top: 1px solid var(--main-yellow-color);
 }
+
+#movie-info {
+    display: flex;
+}
+#movie-info div div  {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+}
