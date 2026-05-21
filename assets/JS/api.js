@@ -1,4 +1,5 @@
 const DOM_LOGIN_FORM = document.getElementById("log-in");
+const FILTER_FORM = document.getElementById("movie-filter");
 
 class API_CLASS{
     async getResource (endpoint) {
@@ -23,3 +24,7 @@ class API_CLASS{
         let url = "http://localhost:8000/login";
         let response = await fetch(url, {method:"POST", body: JSON.stringify({"username":`${username}`,"password": `${password}`}), headers:{"Content-Type":"application/json"}});
     });
+
+    FILTER_FORM.addEventListener("submit", async function(event) {
+        event.preventDefault();
+    })
