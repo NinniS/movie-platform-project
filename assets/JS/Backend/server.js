@@ -47,15 +47,23 @@ function makeResponse(type) {
     }
 }
 
+function contentTypeCheck(ContentType) {
+    if (!ContentType || !ContentType.includes("application/json")) {
+        return new Response(JSON.stringify({ error: "Not acceptable" }), {
+            status: 406,
+            headers: HEADERS
+        });
+    }
+}
+
 async function handler(request) {
     const url = new URL(request.url);
-    const ACCEPT_HEADER = request.headers.get("accept");
     const CONTENT_TYPE_HEADER = request.headers.get("Content-Type");
     const AVERAGE_MOVIE_SCORE_PATTERN = new URLPattern({ pathname: "/movies/reviews/score/:id" });
     const REVIEW_BY_MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/reviews/:id" });
     const MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/:id" });
     const REVIEW_BY_USER_ID_PATTERN = new URLPattern({ pathname: "/user/reviews/:id" });
-    const WATCHLIST_BY_ID_PATTERN = new URLPattern({ pathname: "/user/watchlist/:id" });
+    const WATCHLIST_BY_USER_ID_PATTERN = new URLPattern({ pathname: "/user/watchlist/:id" });
 
 
 
@@ -74,16 +82,16 @@ async function handler(request) {
         if (request.method == "GET") {
             return serveFile(request, "../../../frontend/log-in.html");
         }
-        if(request.method == "POST"){
+        if (request.method == "POST") {
             let loginUser = await request.json();
             let allUsers = USERS.getAllUsers();
-            
-            for(let oneUser of allUsers){
-                if(oneUser.username == loginUser.username && oneUser.password == loginUser.password){
+
+            for (let oneUser of allUsers) {
+                if (oneUser.username == loginUser.username && oneUser.password == loginUser.password) {
                     let sessionId = crypto.randomUUID();
                     HEADERS["Set-Cookie"] = `session_id=${sessionId}; Max-Age=86400`;
                     cookies.push(`session_id=${sessionId}`);
-                    return new Response(JSON.stringify({"welcome": "Welcome!"}), {headers: HEADERS});
+                    return new Response(JSON.stringify({ "welcome": "Welcome!" }), { headers: HEADERS });
                 }
             }
             return makeResponse("authorization");
@@ -92,16 +100,16 @@ async function handler(request) {
         //fetch("/logout", {method:"POST", headers:{"Content-Type":"application/json"}})
     }
 
-    if(url.pathname == "/logout"){
-        if(request.method == "POST"){
+    if (url.pathname == "/logout") {
+        if (request.method == "POST") {
             let currentCookie = request.headers.get("cookie");
-            for(let i = 0; i< cookies.length; i++){
-                if(cookies[i] == currentCookie){
+            for (let i = 0; i < cookies.length; i++) {
+                if (cookies[i] == currentCookie) {
                     cookies.splice(i, 1);
                 }
             }
             HEADERS["Set-Cookie"] = `session_id=deleted; Max-Age=0`;
-            return new Response(JSON.stringify({"goodbye": "Goodbye!"}), {headers: HEADERS});
+            return new Response(JSON.stringify({ "goodbye": "Goodbye!" }), { headers: HEADERS });
         }
     }
 
@@ -156,17 +164,17 @@ async function handler(request) {
         }
     }
 
-    if (AVERAGE_MOVIE_SCORE_PATTERN.test(url)){
+    if (AVERAGE_MOVIE_SCORE_PATTERN.test(url)) {
         let match = AVERAGE_MOVIE_SCORE_PATTERN.exec(url);
         let id = match.pathname.groups.id;
 
-        if(request.method == "GET"){
+        if (request.method == "GET") {
             let averageScore = REVIEWS.getAverageScoreByMovieId(id);
 
-            if(!averageScore){
+            if (!averageScore) {
                 return makeResponse("not found");
             }
-            return new Response(JSON.stringify(averageScore), {headers: HEADERS});
+            return new Response(JSON.stringify(averageScore), { headers: HEADERS });
         }
     }
 
@@ -181,6 +189,27 @@ async function handler(request) {
                 return makeResponse("not found");
             }
             return new Response(JSON.stringify(movieById), { headers: HEADERS });
+        }
+
+        if (request.method == "POST") {
+            let CT = contentTypeCheck(CONTENT_TYPE_HEADER);
+            if (CT) { return CT };
+
+            try {
+                let body = await request.json();
+                
+                body.movieId = parseInt(id);
+                body.userId = 
+                let newReview = REVIEWS.createReview(body);
+
+                if (!newReview) {
+                    return makeResponse("bad request");
+                }
+
+                return makeResponse("created");
+            } catch (error) {
+                return makeResponse("bad request");
+            }
         }
     }
 
@@ -198,7 +227,7 @@ async function handler(request) {
         }
     }
 
-    if (WATCHLIST_BY_ID_PATTERN.test(url)) {
+    if (WATCHLIST_BY_USER_ID_PATTERN.test(url)) {
         let match = WATCHLIST_BY_ID_PATTERN.exec(url);
         let id = match.pathname.groups.id;
 

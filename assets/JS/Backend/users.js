@@ -110,8 +110,9 @@ class REVIEW_CLASS {
         }
 
         dataBase.push(newReview);
-        this.writeDatabase(dataBase);
+        this.db.writeDatabase(dataBase);
         return true;
+        console.log(newReview);
     }
 }
 
