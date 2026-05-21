@@ -12,7 +12,6 @@ if (pat.test(url)) {
 async function renderMovie(id) {
     const parentDiv = document.querySelector("#movie");
     let movie = await API.getResource(`/movies/${id}`);
-    console.log(movie);
     let movieDiv = document.createElement("div");
     movieDiv.setAttribute("id", "movie-info")
     movieDiv.innerHTML = `
