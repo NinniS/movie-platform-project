@@ -7,6 +7,11 @@
     src: url(test-signifier-vf-roman.woff2);
 }
 
+@font-face {
+    font-family: title;
+    src: url(porky_bold/Porky-Bold.otf);
+}
+
 :root {
     --main-yellow-color: rgb(243, 183, 0);
     --main-red-color: rgb(202, 60, 37)
@@ -30,8 +35,7 @@ h1 { /* Stora titlar som sidnamn*/
 }
 
 h2 {
-    font-family: main-title;
-    padding: 10px;
+    font-family: title;
 }
 
 h3 {
@@ -67,7 +71,7 @@ a {
 
 #login a {
     color: var(--main-red-color);
-    font-family: arial;
+    font-family: title;
     font-weight: 700;
     text-decoration: none;
 }
@@ -139,10 +143,11 @@ a {
 
 .button {
     text-align: center;
-    padding: 8px 25px;
+    width: 150px;
+    padding: 5px;
     margin: 0px 5px;
     font-size: 15px;
-    font-family: arial;
+    font-family: title;
     font-weight: 600;
     color: var(--main-red-color);
     background-color: var(--main-yellow-color);
