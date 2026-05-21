@@ -43,7 +43,30 @@ class USERS_CLASS {
         return watchlistMovies;
     }
     createUser(data) {
-        if (data.profilePicture == undefined) { }
+        if (data.profilePicture == undefined) {
+            data.profilePicture == "https://cdn.mos.cms.futurecdn.net/Mmp8BWEmWGCnGSgV2kRFVU.jpg";
+        }
+        const users = this.db.readDatabase();
+        let id = 0;
+        for (let user of users) {
+            if (user.id > id) {
+                id = user.id;
+            }
+        }
+        id++;
+
+        let newUser = {
+            id: id,
+            username: data.username,
+            reviews: [],
+            profilePicture: data.profilePicture,
+            favoriteMovies: [],
+            watchlistMovies: [],
+            password: data.password
+        }
+        users.push(newUser);
+        this.db.writeDatabase(users);
+        return true;
     }
 }
 

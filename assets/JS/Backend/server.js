@@ -9,7 +9,7 @@ const HEADERS = {
     "Access-Control-Allow-Headers": "Content-Type, Authorization"
 }
 
-const cookies = [];
+const COOKIES = [];
 
 function makeResponse(type) {
     if (type == "authorization") {
@@ -82,7 +82,10 @@ async function handler(request) {
                 if(oneUser.username == loginUser.username && oneUser.password == loginUser.password){
                     let sessionId = crypto.randomUUID();
                     HEADERS["Set-Cookie"] = `session_id=${sessionId}; Max-Age=86400`;
-                    cookies.push(`session_id=${sessionId}`);
+
+                    let newCookie = {"cookie": `session_id=${sessionId}`, "userId": oneUser.id};
+                    COOKIES.push(newCookie);
+                    // console.log("my new cookie", newCookie, "hela COOKIES", cookies);
                     return new Response(JSON.stringify({"welcome": "Welcome!"}), {headers: HEADERS});
                 }
             }
@@ -92,12 +95,20 @@ async function handler(request) {
         //fetch("/logout", {method:"POST", headers:{"Content-Type":"application/json"}})
     }
 
+    if (url.pathname == "/signup"){
+        if(request.method == "POST"){
+            let signupUser = await request.json();
+            let newUser = {"username": signupUser.username, "password": signupUser.password};
+            USERS.createUser(newUser);
+        }
+    }
+
     if(url.pathname == "/logout"){
         if(request.method == "POST"){
             let currentCookie = request.headers.get("cookie");
-            for(let i = 0; i< cookies.length; i++){
-                if(cookies[i] == currentCookie){
-                    cookies.splice(i, 1);
+            for(let i = 0; i< COOKIES.length; i++){
+                if(COOKIES[i].cookie == currentCookie){
+                    COOKIES.splice(i, 1);
                 }
             }
             HEADERS["Set-Cookie"] = `session_id=deleted; Max-Age=0`;
