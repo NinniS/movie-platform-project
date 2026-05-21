@@ -5,7 +5,7 @@ Backend:
        x getAllGenrer
        x filterMoviesBy - Duration, year, genre
        x searchMovie - söka på titel, genre, discription
-        getReviewByMovieId
+       x getReviewByMovieId
         updateRating - updaterar rating på en film när en användare lagt en ny review
 
     Functioner users:
@@ -17,3 +17,8 @@ Backend:
 
     Functioner reviews:
         createReview
+
+    Wilmas todo:
+        add createReview to server.js
+        editReview
+

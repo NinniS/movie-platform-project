@@ -1,7 +1,6 @@
 import { serveDir, serveFile } from "jsr:@std/http/file-server";
 import { MOVIES } from "./movies.js";
-import { USERS } from "./users.js";
-import { REVIEWS } from "./users.js";
+import { USERS, REVIEWS } from "./users.js";
 
 const HEADERS = {
     "Content-Type": "application/json",
@@ -10,8 +9,7 @@ const HEADERS = {
     "Access-Control-Allow-Headers": "Content-Type, Authorization"
 }
 
-//SE MIG!!!!!
-const cookie = [];
+const cookies = [];
 
 function makeResponse(type) {
     if (type == "authorization") {
@@ -53,6 +51,8 @@ async function handler(request) {
     const url = new URL(request.url);
     const ACCEPT_HEADER = request.headers.get("accept");
     const CONTENT_TYPE_HEADER = request.headers.get("Content-Type");
+    const AVERAGE_MOVIE_SCORE_PATTERN = new URLPattern({ pathname: "/movies/reviews/score/:id" });
+    const REVIEW_BY_MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/reviews/:id" });
     const MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/:id" });
     const MOVIE_ID_PAGE_PATTERN = new URLPattern({ pathname: "/movie=:id"});
 
@@ -71,24 +71,34 @@ async function handler(request) {
         if (request.method == "GET") {
             return serveFile(request, "../../../frontend/log-in.html");
         }
-        if (request.method == "POST") {
-            // console.log("recived login");
+        if(request.method == "POST"){
             let loginUser = await request.json();
             let allUsers = USERS.getAllUsers();
-            // console.log("trying to login with", loginUser);
-            // console.log("what are you:", typeof loginUser);
-            // console.log("we have", allUsers.length, "users");
-
-            for (let oneUser of allUsers) {
-                // console.log("is this you", oneUser);
-                if (oneUser.username == loginUser.username && oneUser.password == loginUser.password) {
-                    HEADERS["Set-Cookie"] = "session_id=secret-value; Max-Age=84600";
-                    // console.log("found user");
-                    return new Response(JSON.stringify({ "welcome": "Welcome!" }), { headers: HEADERS });
+            
+            for(let oneUser of allUsers){
+                if(oneUser.username == loginUser.username && oneUser.password == loginUser.password){
+                    let sessionId = crypto.randomUUID();
+                    HEADERS["Set-Cookie"] = `session_id=${sessionId}; Max-Age=86400`;
+                    cookies.push(`session_id=${sessionId}`);
+                    return new Response(JSON.stringify({"welcome": "Welcome!"}), {headers: HEADERS});
                 }
             }
-            // console.log("could not find user");
             return makeResponse("authorization");
+        }
+        //fetch("/login", {method:"POST", body: `{"username":"fat yoshi","password": "babyFat123!"}`, headers:{"Content-Type":"application/json"}})
+        //fetch("/logout", {method:"POST", headers:{"Content-Type":"application/json"}})
+    }
+
+    if(url.pathname == "/logout"){
+        if(request.method == "POST"){
+            let currentCookie = request.headers.get("cookie");
+            for(let i = 0; i< cookies.length; i++){
+                if(cookies[i] == currentCookie){
+                    cookies.splice(i, 1);
+                }
+            }
+            HEADERS["Set-Cookie"] = `session_id=deleted; Max-Age=0`;
+            return new Response(JSON.stringify({"goodbye": "Goodbye!"}), {headers: HEADERS});
         }
     }
 
@@ -121,7 +131,6 @@ async function handler(request) {
 
     if (url.pathname == "/movies/search") {
         let searchQuery = url.searchParams.get("q");
-
         let foundMovies = MOVIES.searchMovies(searchQuery);
 
         if (!searchQuery) {
@@ -130,12 +139,39 @@ async function handler(request) {
         return new Response(JSON.stringify(foundMovies), { headers: HEADERS });
     }
 
+    if (REVIEW_BY_MOVIE_ID_PATTERN.test(url)) {
+        let match = REVIEW_BY_MOVIE_ID_PATTERN.exec(url);
+        let id = match.pathname.groups.id;
+
+        if (request.method == "GET") {
+            let reviewByMovieId = REVIEWS.getAllReviewsByMovieId(id);
+
+            if (reviewByMovieId.length == 0) {
+                return makeResponse("not found");
+            }
+            return new Response(JSON.stringify(reviewByMovieId), { headers: HEADERS });
+        }
+    }
+
+    if (AVERAGE_MOVIE_SCORE_PATTERN.test(url)){
+        let match = AVERAGE_MOVIE_SCORE_PATTERN.exec(url);
+        let id = match.pathname.groups.id;
+
+        if(request.method == "GET"){
+            let averageScore = REVIEWS.getAverageScoreByMovieId(id);
+
+            if(!averageScore){
+                return makeResponse("not found");
+            }
+            return new Response(JSON.stringify(averageScore), {headers: HEADERS});
+        }
+    }
+
     if (MOVIE_ID_PATTERN.test(url)) {
         let match = MOVIE_ID_PATTERN.exec(url);
         let id = match.pathname.groups.id;
 
         if (request.method == "GET") {
-
             let movieById = MOVIES.getMovieById(id);
 
             if (!movieById) {
@@ -144,6 +180,36 @@ async function handler(request) {
             return new Response(JSON.stringify(movieById), { headers: HEADERS });
         }
     }
+
+    if (REVIEW_BY_USER_ID_PATTERN.test(url)) {
+        let match = REVIEW_BY_USER_ID_PATTERN.exec(url);
+        let id = match.pathname.groups.id;
+
+        if (request.method == "GET") {
+            let reviewsByUserId = REVIEWS.getReviewsByUserId(id);
+
+            if (reviewsByUserId.length == 0) {
+                return makeResponse("not found");
+            }
+            return new Response(JSON.stringify(reviewsByUserId), { headers: HEADERS });
+        }
+    }
+
+    if (WATCHLIST_BY_ID_PATTERN.test(url)) {
+        let match = WATCHLIST_BY_ID_PATTERN.exec(url);
+        let id = match.pathname.groups.id;
+
+        if (request.method == "GET") {
+            let watchlistById = USERS.getWatchlistMoviesByUserId(id);
+
+            if (!watchlistById) {
+                return makeResponse("not found");
+            }
+            return new Response(JSON.stringify(watchlistById), { headers: HEADERS });
+        }
+    }
+
+
     if (MOVIE_ID_PAGE_PATTERN.test(url)) {
         return serveFile(request, "../../../frontend/movie-page.html");
     }

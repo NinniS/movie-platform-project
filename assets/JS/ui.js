@@ -2,7 +2,7 @@ class UI_CLASS {
     async fillAllMovies() {
         const movieSection = document.querySelector("#all-movies");
         try {
-            const movies = await API.getResource("/movies")
+            const movies = await API.getResource("/movies");
 
             for (let movie of movies) {
                 let divDM = document.createElement("div");
