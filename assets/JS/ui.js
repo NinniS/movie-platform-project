@@ -7,7 +7,7 @@ class UI_CLASS {
             for (let movie of movies) {
                 let divDM = document.createElement("div");
                 divDM.innerHTML = `
-            <a href="/movie=${movie.id}"><div>
+             <a href="/movie=${movie.id}"><div>
             <img src="${movie.imageURL}">
             <h3>${movie.title}</h3>
             </div></a>
@@ -25,7 +25,6 @@ class UI_CLASS {
         const genreSection = document.querySelector("#genre");
         try {
             const genres = await API.getResource("/movies/genres");
-            console.log(genres);
             for (let genre of genres) {
                 genreSection.innerHTML += `<option value="${genre}">${genre}</option>`;
             }
