@@ -15,7 +15,7 @@ async function renderMovie(id) {
     let movieDiv = document.createElement("div");
     movieDiv.setAttribute("id", "movie-info")
     movieDiv.innerHTML = `
-        <img style="height: 300px" src="${movie.imageURL}">
+        <img style="height: 500px" src="${movie.imageURL}">
         
         <div>
             <div>

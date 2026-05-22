@@ -125,6 +125,11 @@ a {
     opacity: 70%;
 }
 
+#search-filter {
+    display: flex;
+    justify-content: center;
+}
+
 #search-bar:hover {
     opacity: 100%;
     transition: 0.5s;
@@ -138,6 +143,9 @@ a {
 }
 
 #movie-filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 }
 
