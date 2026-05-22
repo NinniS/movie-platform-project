@@ -15,6 +15,18 @@ class API_CLASS {
         let resource = await response.json();
         return resource;
     }
+    async loggedIn(params) {
+        let endpoint = "/login/cookie";
+        let response = await fetch(endpoint);
+        let foundCookie = await response.json();
+
+        if(foundCookie.found == true){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
 
 function buildQuery(filterValues) {
@@ -109,22 +121,17 @@ if (DOM_SIGN_UP_FORM) {
 
 if(LOGIN_BUTTON){
     LOGIN_BUTTON.addEventListener("click", async function (event) {
-        console.log("du klickade");
         let endpoint = "/login/cookie";
         let response = await fetch(endpoint);
-        console.log("response:", response);
         let foundCookie = await response.json();
-        console.log("efter json parse:", foundCookie);
 
         if(foundCookie.found == true){
             endpoint = "/logout";
             let secondResponse = await fetch(endpoint, {method:"POST", headers:{"Content-Type":"application/json"}});
-            window.location.href = "/login";
-            console.log("succsessful logout");
+            window.location.href = "/homepage";
         }
         else{
             window.location.href = "/login";
-            console.log("du behöver logga in");
         }
     });
 }

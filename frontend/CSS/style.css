@@ -67,9 +67,10 @@ a {
 
     padding: 10px 15px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
-#login a {
+#login span {
     color: var(--main-red-color);
     font-family: title;
     font-weight: 700;
