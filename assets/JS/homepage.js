@@ -1,0 +1,2 @@
+UI.fillAllMovies();
+UI.fillGenres();

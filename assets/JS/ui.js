@@ -53,9 +53,18 @@ class UI_CLASS {
             }
         }
     }
+    async loginButton(){
+        let loggedIn = await API.loggedIn();
+        const loginButton = document.getElementById("login");
+        console.log("är den logged in:", loggedIn);
+        if(loggedIn){
+            loginButton.innerHTML = `<span>LOG OUT</span>`;
+        }
+        else{
+            loginButton.innerHTML = `<span>LOG IN</span>`;
+        }
+    }
 }
 
 const UI = new UI_CLASS();
 const API = new API_CLASS();
-UI.fillAllMovies();
-UI.fillGenres();
