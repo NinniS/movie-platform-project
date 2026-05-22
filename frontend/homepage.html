@@ -23,13 +23,12 @@
         <section id="filtering">
             <h2>Welcome!</h2>
             <div>
-                <input id="search-bar" type="text" placeholder="Search...">
+                <form id="search-filter">
+                    <input id="search-bar" name="search" type="text" placeholder="Search...">
+                </form>
                 <form id="movie-filter">
                     <select class="button" id="genre" name="genre">
                         <option value="">GENRE</option>
-                    </select>
-                    <select class="button" id="filter" name="filter">
-                        <option value="">FILTER</option>
                     </select>
 
                     <div id="filter-number">
@@ -47,7 +46,7 @@
                         </div>
                     </div>
 
-                    <input class="button" type="submit" value="Submit"></input>
+                    <input class="button" type="submit" value="Filter"></input>
                 </form>
             </div>
         </section>

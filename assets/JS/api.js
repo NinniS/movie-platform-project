@@ -2,6 +2,7 @@ const DOM_LOGIN_FORM = document.getElementById("log-in");
 const DOM_SIGN_UP_FORM = document.getElementById("sign-up");
 const FILTER_FORM = document.getElementById("movie-filter");
 const LOGIN_BUTTON = document.getElementById("login");
+const SEARCH_FORM = document.getElementById("search-filter");
 
 class API_CLASS {
     async getResource(endpoint) {
@@ -75,7 +76,6 @@ if (FILTER_FORM) {
 
         const filterValues = {
             genre: formElements.genre.value,
-            filter: formElements.filter.value,
             yearMin: formElements.year_min.value,
             yearMax: formElements.year_max.value,
             durationMin: formElements.duration_min.value,
@@ -133,5 +133,14 @@ if(LOGIN_BUTTON){
         else{
             window.location.href = "/login";
         }
+    });
+}
+if (SEARCH_FORM) {
+    SEARCH_FORM.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        let formValues = event.target.elements;
+        let search = formValues.search.value;
+        let movies = await API.getResource("/movies/search?q=" + search);
+        UI.fillFilteredMovies(movies);
     });
 }
