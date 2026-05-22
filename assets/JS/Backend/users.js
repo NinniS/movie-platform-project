@@ -172,6 +172,23 @@ class REVIEW_CLASS {
         this.db.writeDatabase(dataBase);
         return true;
     }
+
+    deleteReview(id) {
+        const reviews = this.getAllReviews();
+        let found = false;
+
+        for (let i = 0; i < reviews.length; i++) {
+            if (reviews[i].id == id) {
+                reviews.splice(i, 1);
+                found = true;
+                break;
+            }
+        }
+        if(!found){return false};
+
+        this.db.writeDatabase(reviews);
+        return true;
+    }
 }
 
 export const USERS = new USERS_CLASS();

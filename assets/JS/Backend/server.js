@@ -220,19 +220,16 @@ async function handler(request) {
             let currentCookie = request.headers.get("cookie");
 
             if (!currentCookie) {
-                console.log("hittar ej cookie i headers");
                 return makeResponse("authorization");
             }
 
             for (let i = 0; i < COOKIES.length; i++) {
                 if (COOKIES[i].cookie == currentCookie) {
-                    console.log(COOKIES[i].userId);
                     foundUserId = COOKIES[i].userId;
                     break;
                 }
             }
             if (!foundUserId) {
-                console.log("ej inloggad");
                 return makeResponse("authorization");
             }
 
@@ -299,6 +296,15 @@ async function handler(request) {
             } catch (error) {
                 return makeResponse("bad request");
             }
+        }
+
+        if (request.method == "DELETE") {
+            let deleteReview = REVIEWS.deleteReview(id);
+
+            if (!deleteReview) {
+                return makeResponse("bad request");
+            }
+            return makeResponse("no content");
         }
     }
 
