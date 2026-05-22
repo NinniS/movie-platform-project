@@ -1,6 +1,7 @@
 const DOM_LOGIN_FORM = document.getElementById("log-in");
 const DOM_SIGN_UP_FORM = document.getElementById("sign-up");
 const FILTER_FORM = document.getElementById("movie-filter");
+const LOGIN_BUTTON = document.getElementById("login");
 
 class API_CLASS {
     async getResource(endpoint) {
@@ -102,6 +103,28 @@ if (DOM_SIGN_UP_FORM) {
         let response = await fetch(endpoint, {method:"POST", body: JSON.stringify({"username":`${username}`,"password": `${password}`}), headers:{"Content-Type":"application/json"}});
         if (response.ok) {
             window.location.href = "/homepage";
+        }
+    });
+}
+
+if(LOGIN_BUTTON){
+    LOGIN_BUTTON.addEventListener("click", async function (event) {
+        console.log("du klickade");
+        let endpoint = "/login/cookie";
+        let response = await fetch(endpoint);
+        console.log("response:", response);
+        let foundCookie = await response.json();
+        console.log("efter json parse:", foundCookie);
+
+        if(foundCookie.found == true){
+            endpoint = "/logout";
+            let secondResponse = await fetch(endpoint, {method:"POST", headers:{"Content-Type":"application/json"}});
+            window.location.href = "/login";
+            console.log("succsessful logout");
+        }
+        else{
+            window.location.href = "/login";
+            console.log("du behöver logga in");
         }
     });
 }
