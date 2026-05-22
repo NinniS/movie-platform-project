@@ -77,6 +77,22 @@ async function handler(request) {
         return serveFile(request, "../../../frontend/homepage.html");
     }
 
+    if (url.pathname == "/login/cookie"){
+        if (request.method == "GET") {
+            let currentCookie = request.headers.get("cookie");
+            if(currentCookie == undefined){
+                return new Response(JSON.stringify({found: false}), {headers: HEADERS});
+            }
+            let found = false;
+            for(let i = 0; i< COOKIES.length; i++){
+                if(COOKIES[i].cookie == currentCookie){
+                    found = true;
+                }
+            }
+            return new Response(JSON.stringify({found: found}), {headers: HEADERS});
+        }
+    }
+
     if (url.pathname == "/login") {
         if (request.method == "GET") {
             return serveFile(request, "../../../frontend/log-in.html");

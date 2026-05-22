@@ -1,6 +1,7 @@
 const DOM_LOGIN_FORM = document.getElementById("log-in");
 const DOM_SIGN_UP_FORM = document.getElementById("sign-up");
 const FILTER_FORM = document.getElementById("movie-filter");
+const LOGIN_BUTTON = document.getElementById("login");
 const SEARCH_FORM = document.getElementById("search-filter");
 
 class API_CLASS {
@@ -14,6 +15,18 @@ class API_CLASS {
 
         let resource = await response.json();
         return resource;
+    }
+    async loggedIn(params) {
+        let endpoint = "/login/cookie";
+        let response = await fetch(endpoint);
+        let foundCookie = await response.json();
+
+        if(foundCookie.found == true){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
 
@@ -106,6 +119,22 @@ if (DOM_SIGN_UP_FORM) {
     });
 }
 
+if(LOGIN_BUTTON){
+    LOGIN_BUTTON.addEventListener("click", async function (event) {
+        let endpoint = "/login/cookie";
+        let response = await fetch(endpoint);
+        let foundCookie = await response.json();
+
+        if(foundCookie.found == true){
+            endpoint = "/logout";
+            let secondResponse = await fetch(endpoint, {method:"POST", headers:{"Content-Type":"application/json"}});
+            window.location.href = "/homepage";
+        }
+        else{
+            window.location.href = "/login";
+        }
+    });
+}
 if (SEARCH_FORM) {
     SEARCH_FORM.addEventListener("submit", async function (event) {
         event.preventDefault();
@@ -113,5 +142,5 @@ if (SEARCH_FORM) {
         let search = formValues.search.value;
         let movies = await API.getResource("/movies/search?q=" + search);
         UI.fillFilteredMovies(movies);
-    })
+    });
 }

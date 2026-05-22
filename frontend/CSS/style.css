@@ -67,9 +67,10 @@ a {
 
     padding: 10px 15px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
-#login a {
+#login span {
     color: var(--main-red-color);
     font-family: title;
     font-weight: 700;
@@ -118,11 +119,11 @@ a {
     transition: 0.5s;
     padding: 15px;
     margin: 10px;
-    width: 500px;
-    border-radius: 20px;
+    width: 550px;
+    border-radius: 30px;
     font-size: 18px;
     border: 0;
-    opacity: 70%;
+    opacity: 60%;
 }
 
 #search-filter {
@@ -188,6 +189,7 @@ a {
 
 footer {
     border-top: 1px solid var(--main-yellow-color);
+    background-color: rgb(23, 22, 16);
 }
 
 .filter-input input {
@@ -206,15 +208,7 @@ footer {
     gap: 20px;
     margin: 0px 30px 30px 30px;
 } 
+
 #filter-number p {
     margin: 15px 0px 5px 0px;
-}
-
-#movie-info {
-    display: flex;
-}
-#movie-info div div  {
-    width: 400px;
-    display: flex;
-    justify-content: space-between;
 }
