@@ -10,7 +10,9 @@
 <body>
     <div id="navigation">
         <div>
-            <a href="/homepage"><h1>MWN Movieloverz</h1></a>
+            <a href="/homepage">
+                <h1>MWN Movieloverz</h1>
+            </a>
             <div id="login">
                 <a href="/login">LOG IN</a>
             </div>
@@ -20,38 +22,37 @@
         <section id="filtering">
             <h2>Welcome!</h2>
             <div>
-                <input id="search-bar" type="text" placeholder="Search...">
+                <form id="search-filter">
+                    <input id="search-bar" name="search" type="text" placeholder="Search...">
+                </form>
                 <form id="movie-filter">
-                    <select class="button" id="genre">
+                    <select class="button" id="genre" name="genre">
                         <option value="">GENRE</option>
-                    </select>
-                    <select class="button" id="filter">
-                        <option value="">FILTER</option>
                     </select>
 
                     <div id="filter-number">
                         <div class="filter-input">
                             <p>DURATION</p>
-                            <input type="text" placeholder="Min">
-                            <input type="text" placeholder="Max">
+                            <input type="number" name="duration_min" placeholder="Min">
+                            <input type="number" name="duration_max" placeholder="Max">
                         </div>
                         <div class="filter-input">
                             <div>
                                 <p>YEAR</p>
-                                <input type="text" placeholder="Min">
-                                <input type="text" placeholder="Max">
+                                <input type="text" name="year_min" placeholder="Min">
+                                <input type="text" name="year_max" placeholder="Max">
                             </div>
                         </div>
                     </div>
-                    
-                    <submit class="button">Submit</submit>
+
+                    <input class="button" type="submit" value="Filter"></input>
                 </form>
             </div>
         </section>
 
         <div id="movie-section">
             <div id="all-movies">
-                
+
             </div>
         </div>
     </main>

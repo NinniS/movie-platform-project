@@ -88,12 +88,14 @@ async function handler(request) {
             for (let oneUser of allUsers) {
                 if (oneUser.username == loginUser.username && oneUser.password == loginUser.password) {
                     let sessionId = crypto.randomUUID();
-                    HEADERS["Set-Cookie"] = `session_id=${sessionId}; Max-Age=86400`;
+                    HEADERS["Set-Cookie"] = `session_id=${sessionId}; Max-Age=86400; Path=/`;
 
                     let newCookie = { "cookie": `session_id=${sessionId}`, "userId": oneUser.id };
                     COOKIES.push(newCookie);
                     // console.log("my new cookie", newCookie, "hela COOKIES", cookies);
-                    return new Response(JSON.stringify({ "welcome": "Welcome!" }), { headers: HEADERS });
+                    // return Response.redirect("http://localhost:8000/homepage", 302);
+                    return new Response(JSON.stringify({success: true}), {headers: HEADERS});
+                    // return serveFile(request, "../../../frontend/homepage.html");
                 }
             }
             return makeResponse("authorization");
@@ -105,8 +107,17 @@ async function handler(request) {
     if (url.pathname == "/signup") {
         if (request.method == "POST") {
             let signupUser = await request.json();
-            let newUser = { "username": signupUser.username, "password": signupUser.password };
-            USERS.createUser(newUser);
+            let newUser = {"username": signupUser.username, "password": signupUser.password};
+            let userId = USERS.createUser(newUser);
+
+
+            let sessionId = crypto.randomUUID();
+            HEADERS["Set-Cookie"] = `session_id=${sessionId}; Max-Age=86400; Path=/`;
+
+            let newCookie = {"cookie": `session_id=${sessionId}`, "userId": userId};
+            COOKIES.push(newCookie);
+            return new Response(JSON.stringify({success: true}), {headers: HEADERS});
+            // return new Response(JSON.stringify({"welcome": "Welcome!"}), {headers: HEADERS});
         }
     }
 

@@ -1,0 +1,56 @@
+@font-face {
+    font-family: main-title;
+    src: url(Test\ Tiempos\ Collection/test-tiempos-headline-vf-roman.woff2);
+}
+@font-face {
+    font-family: text;
+    src: url(test-signifier-vf-roman.woff2);
+}
+
+@font-face {
+    font-family: title;
+    src: url(porky_bold/Porky\ Bold.otf);
+}
+
+:root {
+    --main-yellow-color: rgb(243, 183, 0);
+    --main-red-color: rgb(202, 60, 37)
+}
+
+body {
+    color: rgb(255, 255, 255);
+    margin: 0;
+    background-color:rgb(35, 29, 29);
+}
+
+main {
+    width: 1000px;
+    margin: auto;
+}
+
+#navigation div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#navigation {
+    border-bottom: 1px solid var(--main-yellow-color);
+    background-color: rgb(23, 22, 16);
+    color: white;
+    padding: 10px 20px;
+}
+
+#login {
+    background-color: var(--main-yellow-color);
+
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+#login a {
+    color: var(--main-red-color);
+    font-family: title;
+    font-weight: 700;
+    text-decoration: none;
+}

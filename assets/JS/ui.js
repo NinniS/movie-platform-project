@@ -34,6 +34,25 @@ class UI_CLASS {
             return;
         }
     }
+    fillFilteredMovies(movies) {
+        const movieSection = document.querySelector("#all-movies");
+        movieSection.innerHTML = "";
+        if (movies.length == 0) {
+            movieSection.innerHTML = `<p>Couldn't find any movies!</p>`
+        } else {
+            for (let movie of movies) {
+                let divDM = document.createElement("div");
+                divDM.innerHTML = `
+             <a href="/movie=${movie.id}"><div>
+            <img src="${movie.imageURL}">
+            <h3>${movie.title}</h3>
+            </div></a>
+            `;
+                divDM.classList.add("movie");
+                movieSection.appendChild(divDM);
+            }
+        }
+    }
 }
 
 const UI = new UI_CLASS();
