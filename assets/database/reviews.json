@@ -117,5 +117,12 @@
     "movieId": "3",
     "score": 1,
     "reviewText": "Memorable characters but very weak plot"
+  },
+  {
+    "id": 18,
+    "userId": 1,
+    "movieId": 4,
+    "score": 5,
+    "reviewText": "The best movie in the whole franchise"
   }
 ]

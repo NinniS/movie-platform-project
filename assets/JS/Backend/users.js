@@ -18,7 +18,7 @@ class USERS_CLASS {
         }
         return null;
     }
-    getFavoriteMoviesByUserId(id){
+    getFavoriteMoviesByUserId(id) {
         let foundUser = this.getUserById(id);
         if (foundUser == null) {
             return null;
@@ -110,7 +110,18 @@ class REVIEW_CLASS {
         return averageScore;
     }
 
-    createReview(data) { 
+    getReviewById(id) {
+        const reviews = this.getAllReviews();
+        let reviewById;
+        for (let review of reviews) {
+            if (review.id == id) {
+                reviewById = review;
+            }
+        }
+        return reviewById;
+    }
+
+    createReview(data) {
         console.log(data)
         if (data.userId == null || data.movieId == null || data.score == null || data.reviewText == null) {
             return null;
@@ -136,6 +147,25 @@ class REVIEW_CLASS {
 
         dataBase.push(newReview);
         this.db.writeDatabase(dataBase);
+        return true;
+    }
+
+    editReview(data, id) {
+        let dataBase = this.db.readDatabase();
+
+        let reviewToEdit;
+
+        for (let review of database) {
+            if (review.id == database.id) {
+                reviewToEdit = review;
+            }
+        }
+
+        if (!reviewToEdit) { return null };
+
+        for (let key in data) {
+            reviewToEdit[key] = data[key];
+        }
         return true;
     }
 }

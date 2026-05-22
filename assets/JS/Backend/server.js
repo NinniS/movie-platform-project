@@ -4,7 +4,6 @@ import { USERS, REVIEWS } from "./users.js";
 
 const HEADERS = {
     "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type, Authorization"
 }
@@ -60,11 +59,12 @@ async function handler(request) {
     const url = new URL(request.url);
     const CONTENT_TYPE_HEADER = request.headers.get("Content-Type");
     const AVERAGE_MOVIE_SCORE_PATTERN = new URLPattern({ pathname: "/movies/reviews/score/:id" });
-    const REVIEW_BY_MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/reviews/:id" });
+    const REVIEW_BY_ID_PATTERN = new URLPattern({ pathname: "/movies/reviews/:id" });
+    const REVIEW_BY_MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/:id/reviews" });
     const MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/:id" });
     const REVIEW_BY_USER_ID_PATTERN = new URLPattern({ pathname: "/user/reviews/:id" });
     const WATCHLIST_BY_USER_ID_PATTERN = new URLPattern({ pathname: "/user/watchlist/:id" });
-    const MOVIE_ID_PAGE_PATTERN = new URLPattern({ pathname: "/movie=:id"});
+    const MOVIE_ID_PAGE_PATTERN = new URLPattern({ pathname: "/movie=:id" });
 
     if (request.method === "OPTIONS") {
         return new Response(null, {
@@ -90,10 +90,10 @@ async function handler(request) {
                     let sessionId = crypto.randomUUID();
                     HEADERS["Set-Cookie"] = `session_id=${sessionId}; Max-Age=86400`;
 
-                    let newCookie = {"cookie": `session_id=${sessionId}`, "userId": oneUser.id};
+                    let newCookie = { "cookie": `session_id=${sessionId}`, "userId": oneUser.id };
                     COOKIES.push(newCookie);
                     // console.log("my new cookie", newCookie, "hela COOKIES", cookies);
-                    return new Response(JSON.stringify({"welcome": "Welcome!"}), {headers: HEADERS});
+                    return new Response(JSON.stringify({ "welcome": "Welcome!" }), { headers: HEADERS });
                 }
             }
             return makeResponse("authorization");
@@ -102,19 +102,19 @@ async function handler(request) {
         //fetch("/logout", {method:"POST", headers:{"Content-Type":"application/json"}})
     }
 
-    if (url.pathname == "/signup"){
-        if(request.method == "POST"){
+    if (url.pathname == "/signup") {
+        if (request.method == "POST") {
             let signupUser = await request.json();
-            let newUser = {"username": signupUser.username, "password": signupUser.password};
+            let newUser = { "username": signupUser.username, "password": signupUser.password };
             USERS.createUser(newUser);
         }
     }
 
-    if(url.pathname == "/logout"){
-        if(request.method == "POST"){
+    if (url.pathname == "/logout") {
+        if (request.method == "POST") {
             let currentCookie = request.headers.get("cookie");
-            for(let i = 0; i< COOKIES.length; i++){
-                if(COOKIES[i].cookie == currentCookie){
+            for (let i = 0; i < COOKIES.length; i++) {
+                if (COOKIES[i].cookie == currentCookie) {
                     COOKIES.splice(i, 1);
                 }
             }
@@ -207,33 +207,39 @@ async function handler(request) {
             let foundUserId;
 
             let currentCookie = request.headers.get("cookie");
-            for(let i = 0; i< COOKIES.length; i++){
-                if(COOKIES[i].cookie == currentCookie){
+
+            if (!currentCookie) {
+                console.log("hittar ej cookie i headers");
+                return makeResponse("authorization");
+            }
+
+            for (let i = 0; i < COOKIES.length; i++) {
+                if (COOKIES[i].cookie == currentCookie) {
+                    console.log(COOKIES[i].userId);
                     foundUserId = COOKIES[i].userId;
                     break;
                 }
             }
-            if(!foundUserId){
+            if (!foundUserId) {
+                console.log("ej inloggad");
                 return makeResponse("authorization");
             }
 
             try {
                 let body = await request.json();
-                console.log("anropar createReview nu...");
 
                 body.userId = foundUserId;
-                body.movieId = id;
+                body.movieId = parseInt(id);
 
                 let newReview = REVIEWS.createReview(body);
-                console.log("nu har reviews anropats");
-                console.log(newReview);
-                console.log(typeof newReview);
 
                 if (!newReview) {
+                    console.log("new review skapades ej")
                     return makeResponse("bad request");
                 }
                 return makeResponse("created");
             } catch (error) {
+                console.log(error.message);
                 return makeResponse("bad request");
             }
         }
@@ -250,6 +256,29 @@ async function handler(request) {
                 return makeResponse("not found");
             }
             return new Response(JSON.stringify(reviewsByUserId), { headers: HEADERS });
+        }
+    }
+
+    if (REVIEW_BY_ID_PATTERN.test(url)) {
+        let match = REVIEW_BY_ID_PATTERN.exec(url);
+        let id = match.pathname.groups.id;
+
+        if (request.method = "PATCH") {
+            let CT = contentTypeCheck(CONTENT_TYPE_HEADER);
+            if (CT) { return CT };
+
+            try {
+                let body = await request.json();
+
+                let editedReview = editReview(body, id);
+
+                if (!editedReview) {
+                    return makeResponse("bad request");
+                }
+                return makeResponse("no content");
+            } catch (error) {
+                return makeResponse("bad request");
+            }
         }
     }
 
