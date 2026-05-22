@@ -114,15 +114,15 @@
   {
     "id": 17,
     "userId": 9,
-    "movieId": "3",
-    "score": 1,
-    "reviewText": "Memorable characters but very weak plot"
+    "movieId": 3,
+    "score": 2,
+    "reviewText": "Memorable characters but very weak plot. Would only recommend if you want to waste your time on nonsense"
   },
   {
     "id": 18,
     "userId": 1,
     "movieId": 4,
     "score": 5,
-    "reviewText": "The best movie in the whole franchise"
+    "reviewText": "The best movie in the whole franchise, I could watch it every day"
   }
 ]

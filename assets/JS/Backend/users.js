@@ -116,6 +116,7 @@ class REVIEW_CLASS {
         for (let review of reviews) {
             if (review.id == id) {
                 reviewById = review;
+                break;
             }
         }
         return reviewById;
@@ -151,13 +152,14 @@ class REVIEW_CLASS {
     }
 
     editReview(data, id) {
-        let dataBase = this.db.readDatabase();
+        let dataBase = this.getAllReviews();
 
         let reviewToEdit;
 
-        for (let review of database) {
-            if (review.id == database.id) {
+        for (let review of dataBase) {
+            if (review.id == id) {
                 reviewToEdit = review;
+                break;
             }
         }
 
@@ -166,6 +168,8 @@ class REVIEW_CLASS {
         for (let key in data) {
             reviewToEdit[key] = data[key];
         }
+
+        this.db.writeDatabase(dataBase);
         return true;
     }
 }

@@ -94,7 +94,7 @@ async function handler(request) {
                     COOKIES.push(newCookie);
                     // console.log("my new cookie", newCookie, "hela COOKIES", cookies);
                     // return Response.redirect("http://localhost:8000/homepage", 302);
-                    return new Response(JSON.stringify({success: true}), {headers: HEADERS});
+                    return new Response(JSON.stringify({ success: true }), { headers: HEADERS });
                     // return serveFile(request, "../../../frontend/homepage.html");
                 }
             }
@@ -107,16 +107,16 @@ async function handler(request) {
     if (url.pathname == "/signup") {
         if (request.method == "POST") {
             let signupUser = await request.json();
-            let newUser = {"username": signupUser.username, "password": signupUser.password};
+            let newUser = { "username": signupUser.username, "password": signupUser.password };
             let userId = USERS.createUser(newUser);
 
 
             let sessionId = crypto.randomUUID();
             HEADERS["Set-Cookie"] = `session_id=${sessionId}; Max-Age=86400; Path=/`;
 
-            let newCookie = {"cookie": `session_id=${sessionId}`, "userId": userId};
+            let newCookie = { "cookie": `session_id=${sessionId}`, "userId": userId };
             COOKIES.push(newCookie);
-            return new Response(JSON.stringify({success: true}), {headers: HEADERS});
+            return new Response(JSON.stringify({ success: true }), { headers: HEADERS });
             // return new Response(JSON.stringify({"welcome": "Welcome!"}), {headers: HEADERS});
         }
     }
@@ -274,14 +274,23 @@ async function handler(request) {
         let match = REVIEW_BY_ID_PATTERN.exec(url);
         let id = match.pathname.groups.id;
 
-        if (request.method = "PATCH") {
+        if (request.method == "GET") {
+            let reviewById = REVIEWS.getReviewById(id);
+
+            if (!reviewById) {
+                return makeResponse("not found");
+            }
+            return new Response(JSON.stringify(reviewById), { headers: HEADERS });
+        }
+
+        if (request.method == "PATCH") {
             let CT = contentTypeCheck(CONTENT_TYPE_HEADER);
             if (CT) { return CT };
 
             try {
                 let body = await request.json();
 
-                let editedReview = editReview(body, id);
+                let editedReview = REVIEWS.editReview(body, id);
 
                 if (!editedReview) {
                     return makeResponse("bad request");
