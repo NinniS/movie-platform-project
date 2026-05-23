@@ -43,16 +43,18 @@ async function renderMovie(id) {
 
 async function renderMovieReviews() {
     let reviews = await getReviews();
+    console.log(reviews);
     let reviewSection = document.querySelector("#all-reviews");
     if (reviews == null) {
         reviewSection.innerHTML += `<p class="review-text">No reviews yet!</p>`
     } else {
         for (let review of reviews) {
+            
             let divDM = document.createElement("div");
-            let user = await API.getResource("/user/" + review.userId);
+            let username = await API.getResource(`/user/${review.userId}`);
             divDM.innerHTML = `
             <div class="review">
-                <h4>${user.username}</h4>
+                <h3>${username}</h3>
                 <div>
                     <p class="review-text">"${review.reviewText}"</p>
                 </div>
@@ -75,7 +77,6 @@ function getGenres(genres) {
 
 async function getReviews() {
     try {
-        console.log("/movie/" + id + "/reviews");
         let reviews = await API.getResource("/movie/" + id + "/reviews");
         return reviews;
     } catch (error) {

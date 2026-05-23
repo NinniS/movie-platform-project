@@ -344,11 +344,11 @@ async function handler(request) {
         let id = match.pathname.groups.id;
 
         if (request.method == "GET") {
-            let user = USERS.getUserById(id);
-            if (user == null) {
+            let username = USERS.getUsername(id);
+            if (username == null) {
                 return makeResponse("not found");
             }
-            return new Response(JSON.stringify(user), { headers: HEADERS });
+            return new Response(JSON.stringify(username), { headers: HEADERS });
         }
     }
 

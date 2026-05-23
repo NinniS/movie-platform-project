@@ -68,6 +68,10 @@ class USERS_CLASS {
         this.db.writeDatabase(users);
         return id;
     }
+    getUsername(id) {
+        const user = this.getUserById(id);
+        return user.username;
+    }
 }
 
 class REVIEW_CLASS {
