@@ -55,6 +55,26 @@ function contentTypeCheck(ContentType) {
     }
 }
 
+function cookiesCheck(request) {
+    let foundUserId;
+
+    let currentCookie = request.headers.get("cookie");
+
+    if (!currentCookie) {
+        return null;
+    }
+
+    for (let i = 0; i < COOKIES.length; i++) {
+        if (COOKIES[i].cookie == currentCookie) {
+            foundUserId = COOKIES[i].userId;
+            return COOKIES[i].userId;
+        }
+    }
+    if (!foundUserId) {
+        return null;
+    }
+}
+
 async function handler(request) {
     const url = new URL(request.url);
     const CONTENT_TYPE_HEADER = request.headers.get("Content-Type");
@@ -65,7 +85,7 @@ async function handler(request) {
     const REVIEW_BY_USER_ID_PATTERN = new URLPattern({ pathname: "/user/reviews/:id" });
     const WATCHLIST_BY_USER_ID_PATTERN = new URLPattern({ pathname: "/user/watchlist/:id" });
     const MOVIE_ID_PAGE_PATTERN = new URLPattern({ pathname: "/movie=:id" });
-    const USER_BY_ID_PATTERN = new URLPattern({ pathname: "/user/:id"});
+    const USER_BY_ID_PATTERN = new URLPattern({ pathname: "/user/:id" });
 
     if (request.method === "OPTIONS") {
         return new Response(null, {
@@ -78,19 +98,19 @@ async function handler(request) {
         return serveFile(request, "../../../frontend/homepage.html");
     }
 
-    if (url.pathname == "/login/cookie"){
+    if (url.pathname == "/login/cookie") {
         if (request.method == "GET") {
             let currentCookie = request.headers.get("cookie");
-            if(currentCookie == undefined){
-                return new Response(JSON.stringify({found: false}), {headers: HEADERS});
+            if (currentCookie == undefined) {
+                return new Response(JSON.stringify({ found: false }), { headers: HEADERS });
             }
             let found = false;
-            for(let i = 0; i< COOKIES.length; i++){
-                if(COOKIES[i].cookie == currentCookie){
+            for (let i = 0; i < COOKIES.length; i++) {
+                if (COOKIES[i].cookie == currentCookie) {
                     found = true;
                 }
             }
-            return new Response(JSON.stringify({found: found}), {headers: HEADERS});
+            return new Response(JSON.stringify({ found: found }), { headers: HEADERS });
         }
     }
 
@@ -148,6 +168,18 @@ async function handler(request) {
             }
             HEADERS["Set-Cookie"] = `session_id=deleted; Max-Age=0`;
             return new Response(JSON.stringify({ "goodbye": "Goodbye!" }), { headers: HEADERS });
+        }
+    }
+
+    if (url.pathname == "/user/reviews") {
+        if (request.method == "GET") {
+            let checkCookies = cookiesCheck(request);
+            if (!checkCookies) {
+                return makeResponse("authorization");
+            }
+
+            return serveFile(request, "../../../frontend/review-page.html");
+
         }
     }
 
@@ -275,6 +307,11 @@ async function handler(request) {
         let id = match.pathname.groups.id;
 
         if (request.method == "GET") {
+            let checkCookies = cookiesCheck(request);
+            if (!checkCookies) {
+                return makeResponse("authorization");
+            }
+
             let reviewsByUserId = REVIEWS.getReviewsByUserId(id);
 
             if (reviewsByUserId.length == 0) {

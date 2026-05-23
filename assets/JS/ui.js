@@ -53,17 +53,41 @@ class UI_CLASS {
             }
         }
     }
-    async loginButton(){
+    async loginButton() {
         let loggedIn = await API.loggedIn();
         const loginButton = document.getElementById("login");
         console.log("är den logged in:", loggedIn);
-        if(loggedIn){
+        if (loggedIn) {
             loginButton.innerHTML = `<span>LOG OUT</span>`;
         }
-        else{
+        else {
             loginButton.innerHTML = `<span>LOG IN</span>`;
         }
     }
+
+    async myReviewsButton() {
+        const userReviewButton = document.getElementById("user-review-button");
+        try {
+            let loggedIn = await API.loggedIn();
+            if (loggedIn) {
+                userReviewButton.innerHTML = `<span> My reviews </span>`;
+                userReviewButton.classList.add("logged-in");
+                userReviewButton.addEventListener("click", function (event) {
+                    window.location.href = "/user/reviews";
+                });
+            }
+        } catch (error) {
+            console.log("could not verify log in:", error);
+        }
+    }
+
+    // async fillUserReviews(){
+    //     const myReviewsContainer = document.getElementById("my-reviews");
+
+    //     try{
+    //         const userReviews = await API.getResource("")
+    //     }
+    // }
 }
 
 const UI = new UI_CLASS();

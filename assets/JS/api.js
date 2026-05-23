@@ -3,6 +3,7 @@ const DOM_SIGN_UP_FORM = document.getElementById("sign-up");
 const FILTER_FORM = document.getElementById("movie-filter");
 const LOGIN_BUTTON = document.getElementById("login");
 const SEARCH_FORM = document.getElementById("search-filter");
+const USER_REVIEW_BUTTON = document.getElementById("user-review-button");
 
 class API_CLASS {
     async getResource(endpoint) {
@@ -21,10 +22,10 @@ class API_CLASS {
         let response = await fetch(endpoint);
         let foundCookie = await response.json();
 
-        if(foundCookie.found == true){
+        if (foundCookie.found == true) {
             return true;
         }
-        else{
+        else {
             return false;
         }
     }
@@ -97,7 +98,7 @@ if (DOM_LOGIN_FORM) {
         let username = DOM_LOGIN_FORM.elements.username.value;
         let password = DOM_LOGIN_FORM.elements.password.value;
         let endpoint = "/login";
-        let response = await fetch(endpoint, {method:"POST", body: JSON.stringify({"username":`${username}`,"password": `${password}`}), headers:{"Content-Type":"application/json"}});
+        let response = await fetch(endpoint, { method: "POST", body: JSON.stringify({ "username": `${username}`, "password": `${password}` }), headers: { "Content-Type": "application/json" } });
         if (response.ok) {
             window.location.href = "/homepage";
         }
@@ -112,25 +113,25 @@ if (DOM_SIGN_UP_FORM) {
         let password = DOM_SIGN_UP_FORM.elements.password.value;
 
         let endpoint = "/signup";
-        let response = await fetch(endpoint, {method:"POST", body: JSON.stringify({"username":`${username}`,"password": `${password}`}), headers:{"Content-Type":"application/json"}});
+        let response = await fetch(endpoint, { method: "POST", body: JSON.stringify({ "username": `${username}`, "password": `${password}` }), headers: { "Content-Type": "application/json" } });
         if (response.ok) {
             window.location.href = "/homepage";
         }
     });
 }
 
-if(LOGIN_BUTTON){
+if (LOGIN_BUTTON) {
     LOGIN_BUTTON.addEventListener("click", async function (event) {
         let endpoint = "/login/cookie";
         let response = await fetch(endpoint);
         let foundCookie = await response.json();
 
-        if(foundCookie.found == true){
+        if (foundCookie.found == true) {
             endpoint = "/logout";
-            let secondResponse = await fetch(endpoint, {method:"POST", headers:{"Content-Type":"application/json"}});
+            let secondResponse = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" } });
             window.location.href = "/homepage";
         }
-        else{
+        else {
             window.location.href = "/login";
         }
     });
