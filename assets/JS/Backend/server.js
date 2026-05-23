@@ -55,6 +55,7 @@ async function handler(request) {
     const REVIEW_BY_MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/reviews/:id" });
     const MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/:id" });
     const REVIEW_BY_USER_ID_PATTERN = new URLPattern({ pathname: "/user/reviews/:id" });
+    const USER_BY_ID_PATTERN = new URLPattern({ pathname: "/user/:id"});
     const WATCHLIST_BY_ID_PATTERN = new URLPattern({ pathname: "/user/watchlist/:id" });
     const MOVIE_ID_PAGE_PATTERN = new URLPattern({ pathname: "/movie=:id"});
 
@@ -216,6 +217,19 @@ async function handler(request) {
                 return makeResponse("not found");
             }
             return new Response(JSON.stringify(reviewsByUserId), { headers: HEADERS });
+        }
+    }
+
+    if (USER_BY_ID_PATTERN.test(url)) {
+        let match = USER_BY_ID_PATTERN.exec(url);
+        let id = match.pathname.groups.id;
+
+        if (request.method == "GET") {
+            let user = USERS.getUserById(id);
+            if (user == null) {
+                return makeResponse("not found");
+            }
+            return new Response(JSON.stringify(user), { headers: HEADERS });
         }
     }
 

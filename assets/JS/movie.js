@@ -1,10 +1,11 @@
 const url = new URL(window.location.href);
 const pat = new URLPattern({ pathname: "/movie=:id" });
 const API = new API_CLASS();
+let id;
 
 if (pat.test(url)) {
     let match = pat.exec(url);
-    let id = match.pathname.groups.id;
+    id = match.pathname.groups.id;
     renderMovie(id);
 
 }
@@ -18,21 +19,48 @@ async function renderMovie(id) {
         <div id="movie-section">
             <img style="height: 500px" src="${movie.imageURL}">
             <div>
-                <div style="border-bottom: 1px solid var(--main-yellow-color)">
+                <div style="border-bottom: 1px solid var(--main-yellow-color); display: flex; justify-content: space-between">
                     <h2>${movie.title}</h2>
                     <h2>${movie.year}</h2>
                 </div>
-                <div style="border-bottom: 1px solid var(--main-yellow-color)">
+                <div style="border-bottom: 1px solid var(--main-yellow-color); padding: 10px">
                     <p id="movie-description">${movie.description}</p>
                 </div>
                 <div>
                     <div id="all-genres"></div>
                 </div>
             </div>
+            <div id="all-reviews">
+                <h2>Reviews:</h2>
+            </div>
         </div>
     `;
     parentDiv.appendChild(movieDiv);
     getGenres(movie.genre);
+    renderMovieReviews();
+
+}
+
+async function renderMovieReviews() {
+    let reviews = await getReviews();
+    let reviewSection = document.querySelector("#all-reviews");
+    if (reviews == null) {
+        reviewSection.innerHTML += `<p class="review-text">No reviews yet!</p>`
+    } else {
+        for (let review of reviews) {
+            let divDM = document.createElement("div");
+            let user = await API.getResource("/user/" + review.userId);
+            divDM.innerHTML = `
+            <div class="review">
+                <h4>${user.username}</h4>
+                <div>
+                    <p class="review-text">"${review.reviewText}"</p>
+                </div>
+            </div>
+        `
+            reviewSection.appendChild(divDM);
+        }
+    }
 }
 
 function getGenres(genres) {
@@ -43,4 +71,14 @@ function getGenres(genres) {
         pDM.textContent = genre;
         parentDiv.appendChild(pDM);
     }
+}
+
+async function getReviews() {
+    try {
+        let reviews = await API.getResource("/movies/reviews/" + id);
+        return reviews;
+    } catch (error) {
+        return null;
+    }
+
 }
