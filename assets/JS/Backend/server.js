@@ -66,6 +66,7 @@ async function handler(request) {
     const WATCHLIST_BY_USER_ID_PATTERN = new URLPattern({ pathname: "/user/watchlist/:id" });
     const MOVIE_ID_PAGE_PATTERN = new URLPattern({ pathname: "/movie=:id" });
     const USER_BY_ID_PATTERN = new URLPattern({ pathname: "/user/:id"});
+    const REVIEW_PAGE_PATTERN = new URLPattern({ pathname: "/movie=:id/review-page"});
 
     if (request.method === "OPTIONS") {
         return new Response(null, {
@@ -354,6 +355,10 @@ async function handler(request) {
 
     if (MOVIE_ID_PAGE_PATTERN.test(url)) {
         return serveFile(request, "../../../frontend/movie-page.html");
+    }
+
+    if (REVIEW_PAGE_PATTERN.test(url)) { //Ska bara visas om användaren är inloggad
+        return serveFile(request, "../../../frontend/review-page.html");
     }
     return serveDir(request, { fsRoot: "../../../" });
 
