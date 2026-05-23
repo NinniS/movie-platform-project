@@ -339,6 +339,19 @@ async function handler(request) {
         }
     }
 
+    if (USER_BY_ID_PATTERN.test(url)) {
+        let match = USER_BY_ID_PATTERN.exec(url);
+        let id = match.pathname.groups.id;
+
+        if (request.method == "GET") {
+            let user = USERS.getUserById(id);
+            if (user == null) {
+                return makeResponse("not found");
+            }
+            return new Response(JSON.stringify(user), { headers: HEADERS });
+        }
+    }
+
     if (MOVIE_ID_PAGE_PATTERN.test(url)) {
         return serveFile(request, "../../../frontend/movie-page.html");
     }
