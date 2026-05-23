@@ -140,3 +140,16 @@ p {
     max-width: 300px;
 }
 
+.button {
+    text-align: center;
+    width: 150px;
+    padding: 5px;
+    margin: 0px 5px;
+    font-size: 15px;
+    font-family: main-title;
+    font-weight: 600;
+    color: var(--main-yellow-color);
+    background-color: var(--main-red-color);
+    border: 0px;
+    border-radius: 5px;
+}

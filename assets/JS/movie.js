@@ -2,6 +2,7 @@ const url = new URL(window.location.href);
 const pat = new URLPattern({ pathname: "/movie=:id" });
 const API = new API_CLASS();
 let id;
+let addReviewButton;
 
 if (pat.test(url)) {
     let match = pat.exec(url);
@@ -45,10 +46,9 @@ async function renderMovieReviews() {
     let reviews = await getReviews();
     let reviewSection = document.querySelector("#all-reviews");
     if (reviews == null) {
-        reviewSection.innerHTML += `<p class="review-text">No reviews yet!</p>`
+        reviewSection.innerHTML += `<p style="margin: 20px 0px" class="review-text">No reviews yet!</p>`
     } else {
         for (let review of reviews) {
-            
             let divDM = document.createElement("div");
             let username = await API.getResource(`/user/${review.userId}`);
             divDM.innerHTML = `
@@ -62,6 +62,12 @@ async function renderMovieReviews() {
             reviewSection.appendChild(divDM);
         }
     }
+    let addReview = document.createElement("div");
+    addReview.setAttribute("id", "add-review");
+    addReview.classList.add("button");
+    addReview.textContent = "Add Review";
+    reviewSection.appendChild(addReview);
+    addReviewButton = document.getElementById("add-review");
 }
 
 function getGenres(genres) {
@@ -82,4 +88,10 @@ async function getReviews() {
         return null;
     }
 
+}
+
+if (addReviewButton) {
+    addReviewButton.addEventListener("click", function (event) {
+        //Funktion som antingen tar dig till log-in sidan om man inte är inloggad eller låter dig skapa en review
+    })
 }
