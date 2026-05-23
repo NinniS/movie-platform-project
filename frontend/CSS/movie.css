@@ -38,10 +38,18 @@ h2 {
     font-family: main-title;
     font-size: 32px;
     letter-spacing: 1px;
-    margin: 10px;
+    margin: 10px 0px;
     color: var(--main-yellow-color);
 }
 
+h4 {
+    font-family: arial;
+    margin: 0px;
+}
+
+p {
+    margin: 5px 0px;
+}
 
 #navigation div {
     display: flex;
@@ -80,11 +88,11 @@ h2 {
     max-width: 500px;
 }
 
-#movie-info div div div {
+/* #movie-info-section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+} */
 
 #movie-description {
     max-width: 80%;
@@ -99,12 +107,14 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 40px;
 }
 
 #all-genres {
     margin: 10px;
     border: none;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .genres {
@@ -116,3 +126,17 @@ h2 {
     margin: 10px;
     padding: 2px;
 }
+
+.review {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 20px 0px;
+}
+
+.review-text {
+    font-family: arial;
+    color: rgb(211, 211, 211);
+    max-width: 300px;
+}
+
