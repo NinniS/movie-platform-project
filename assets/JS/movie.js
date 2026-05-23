@@ -75,7 +75,8 @@ function getGenres(genres) {
 
 async function getReviews() {
     try {
-        let reviews = await API.getResource("/movies/reviews/" + id);
+        console.log("/movie/" + id + "/reviews");
+        let reviews = await API.getResource("/movie/" + id + "/reviews");
         return reviews;
     } catch (error) {
         return null;

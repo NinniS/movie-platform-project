@@ -60,7 +60,7 @@ async function handler(request) {
     const CONTENT_TYPE_HEADER = request.headers.get("Content-Type");
     const AVERAGE_MOVIE_SCORE_PATTERN = new URLPattern({ pathname: "/movies/reviews/score/:id" });
     const REVIEW_BY_ID_PATTERN = new URLPattern({ pathname: "/movies/reviews/:id" });
-    const REVIEW_BY_MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/:id/reviews" });
+    const REVIEW_BY_MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movie/:id/reviews" });
     const MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/:id" });
     const REVIEW_BY_USER_ID_PATTERN = new URLPattern({ pathname: "/user/reviews/:id" });
     const WATCHLIST_BY_USER_ID_PATTERN = new URLPattern({ pathname: "/user/watchlist/:id" });
