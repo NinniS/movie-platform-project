@@ -92,6 +92,5 @@ async function getReviews() {
 
 if (addReviewButton) {
     addReviewButton.addEventListener("click", function (event) {
-        //Funktion som antingen tar dig till log-in sidan om man inte är inloggad eller låter dig skapa en review
-    })
+    });
 }
