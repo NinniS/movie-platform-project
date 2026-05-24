@@ -113,7 +113,7 @@ class UI_CLASS {
             }
 
         } catch (error) {
-            myReviewsContainer.innerHTML = "<p> You have not written any reviews</p>";
+            myReviewsContainer.innerHTML = `<img src="../frontend/images/idk.png" height=400px><p> You have not written any reviews</p>`;
             return;
 
         }
