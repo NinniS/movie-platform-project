@@ -155,6 +155,7 @@ p {
     background-color: var(--main-red-color);
     border: 0px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 /* Gömmer knappen*/

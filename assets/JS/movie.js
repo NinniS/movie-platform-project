@@ -49,14 +49,14 @@ async function renderMovieReviews() {
     let reviews = await getReviews();
     let reviewSection = document.querySelector("#all-reviews");
     let movieScore = await getMovieScore();
-    if (movieScore == null) {
+    if (movieScore == null || !movieScore.ok) {
         reviewSection.innerHTML += `<p style="margin: 20px 0px" class="review-text">No rating yet!</p>`
     } else {
         let scoreDM = document.createElement("div");
         scoreDM.textContent = `Rating: ${movieScore}/5`;
         reviewSection.appendChild(scoreDM);
     }
-    if (reviews == null) {
+    if (reviews == null || !reviews.ok) {
         reviewSection.innerHTML += `<p style="margin: 20px 0px" class="review-text">No reviews yet!</p>`
     } else {
         for (let review of reviews) {
@@ -79,6 +79,15 @@ async function renderMovieReviews() {
     addReview.textContent = "Add Review";
     reviewSection.appendChild(addReview);
     addReviewButton = document.getElementById("add-review");
+
+    addReview.addEventListener("click", async function (event) {
+        let loggedIn = await API.loggedIn();
+        if (loggedIn) {
+            window.location.href = "/movie=" + id + "/review-page";
+        } else {
+            window.location.href = "/login";
+        }
+    });
 }
 
 function getGenres(genres) {
@@ -108,10 +117,4 @@ async function getMovieScore() {
     } catch (error) {
         return null;
     }
-}
-
-if (addReviewButton) {
-    addReviewButton.addEventListener("click", function (event) {
-        //Funktion som antingen tar dig till log-in sidan om man inte är inloggad eller låter dig skapa en review
-    })
 }

@@ -297,9 +297,6 @@ async function handler(request) {
             try {
                 let body = await request.json();
 
-                body.userId = foundUserId;
-                body.movieId = parseInt(id);
-
                 let newReview = REVIEWS.createReview(body);
 
                 if (!newReview) {

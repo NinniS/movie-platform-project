@@ -67,6 +67,9 @@ class UI_CLASS {
 
     async myReviewsButton() {
         const userReviewButton = document.getElementById("user-review-button");
+        if (!userReviewButton) {
+            return;
+        }
         try {
             let loggedIn = await API.loggedIn();
             if (loggedIn) {
