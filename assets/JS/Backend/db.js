@@ -1,8 +1,8 @@
 export class DB_CLASS {
-    constructor(url){
+    constructor(url) {
         this.dbUrl = new URL(url, import.meta.url);
     }
-    
+
     readDatabase() {
         try {
             const json = Deno.readTextFileSync(this.dbUrl);

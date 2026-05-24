@@ -15,9 +15,9 @@ class MOVIES_CLASS {
         let foundMovies = [];
 
         for (let movie of movies) {
-            const queryLower = searchQuery.toLowerCase(); 
+            const queryLower = searchQuery.toLowerCase();
             const titleLower = movie.title.toLowerCase();
-            const genresLower = movie.genre.join(" ").toLowerCase(); 
+            const genresLower = movie.genre.join(" ").toLowerCase();
             const descLower = movie.description.toLowerCase();
 
             if (titleLower.includes(queryLower) || genresLower.includes(queryLower) || descLower.includes(queryLower)) {
@@ -46,7 +46,7 @@ class MOVIES_CLASS {
         let genres = [];
 
         for (let movie of movies) {
-            for (let genre of movie.genre) { 
+            for (let genre of movie.genre) {
                 if (!genres.includes(genre)) {
                     genres.push(genre);
                 }

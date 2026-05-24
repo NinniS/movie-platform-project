@@ -149,20 +149,20 @@ if (SEARCH_FORM) {
     });
 }
 
-if(EDIT_FORM){
-    EDIT_FORM["select-review"].addEventListener("change", function (e){
+if (EDIT_FORM) {
+    EDIT_FORM["select-review"].addEventListener("change", function (e) {
         UI.fillEditForm();
     });
 }
 
-if(SAVE_BUTTON){
-    SAVE_BUTTON.addEventListener("click", function (e){
+if (SAVE_BUTTON) {
+    SAVE_BUTTON.addEventListener("click", function (e) {
         UI.editReview();
     });
 }
 
-if(DELETE_BUTTON){
-    DELETE_BUTTON.addEventListener("click", function (e){
+if (DELETE_BUTTON) {
+    DELETE_BUTTON.addEventListener("click", function (e) {
         UI.deleteReview();
     });
 }

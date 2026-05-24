@@ -13,7 +13,7 @@
     src: url(porky_bold/Porky\ Bold.otf);
 }
 
-@font-face{
+@font-face {
     font-family: logo;
     src: url(white_on_black/White\ On\ Black.ttf);
 }
@@ -243,6 +243,6 @@ footer {
     padding: 15px;
 }
 
-#navigation a{
+#navigation a {
     display: flex;
 }

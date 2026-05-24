@@ -97,12 +97,6 @@ p {
     max-width: 500px;
 }
 
-/* #movie-info-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-} */
-
 #movie-description {
     max-width: 80%;
     letter-spacing: 0.7px;

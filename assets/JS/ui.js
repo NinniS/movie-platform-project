@@ -29,7 +29,6 @@ class UI_CLASS {
                 genreSection.innerHTML += `<option value="${genre}">${genre}</option>`;
             }
         } catch (error) {
-            //Säg till användaren att det inte funkade
             console.log("Didn't work");
             return;
         }
