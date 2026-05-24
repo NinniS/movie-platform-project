@@ -274,11 +274,8 @@ async function handler(request) {
         if (request.method == "POST") {
             let CT = contentTypeCheck(CONTENT_TYPE_HEADER);
             if (CT) { return CT };
-            let foundUserId;
-
-            let currentCookie = request.headers.get("cookie");
-
-            if (!currentCookie) {
+            let checkCookies = cookiesCheck(request);
+            if (!checkCookies) {
                 return makeResponse("authorization");
             }
 

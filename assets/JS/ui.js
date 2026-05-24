@@ -101,16 +101,24 @@ class UI_CLASS {
                 return;
             }
 
-            for(let oneReview of userReviews){
+            for (let oneReview of userReviews) {
+                const movie = await API.getResource(`/movies/${oneReview.movieId}`);
+
+                let movieDiv = document.createElement("div");
+                movieDiv.innerHTML = `
+                <h3>${movie.title}</h3>
+                <img src="${movie.imageURL}">
+                `;
                 let divDom = document.createElement("div");
                 divDom.innerHTML = `
                 <p> Score: ${oneReview.score}</p>
                 <p> Review: ${oneReview.reviewText}</p>
                 `;
+                myReviewsContainer.appendChild(movieDiv);
                 myReviewsContainer.appendChild(divDom);
             }
 
-        } catch (error){
+        } catch (error) {
             console.log("Couldn't load reviews");
         }
     }
