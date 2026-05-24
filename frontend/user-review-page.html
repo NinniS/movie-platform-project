@@ -11,6 +11,7 @@
     <div id="navigation">
         <div>
             <a href="/homepage">
+                <img src="/frontend/images/pointer.png" height=60px>
                 <h1>MWN Movieloverz</h1>
             </a>
             <div>
@@ -21,30 +22,38 @@
     </div>
 
     <h1> My reviews </h1>
+    <div id="main-section">
+        <div id="my-reviews"></div>
 
-    <div id="my-reviews"></div>
+        <div>
 
-    <div class="review-form">
+            <form id="edit-review-form">
+                <div id="edit-review-titel">
+                    <h3> Edit review </h3>
+                    <img src="/frontend/images/great.png" height="60px">
+                </div>
 
-        <form id="edit-review-form">
-            <h3> Edit review </h3>
-
-            <p> Select review: </p>
-            <select name="select-review">
-                <option value=""> Select review </option>
-            </select>
+                <div>
+                    <p> Select review: </p>
+                    <select name="select-review">
+                        <option value=""> Select review </option>
+                    </select>
 
 
-            <p> Score: </p>
-            <input type="text" name="score" placeholder="Score..." required> </input>
+                    <p> Score: </p>
+                    <input type="text" name="score" placeholder="Score..." required> </input>
 
-            <p> Review text: </p>
-            <textarea name="reviewText" placeholder="Review text..." required> </textarea>
+                    <p> Review text: </p>
+                    <textarea name="reviewText" placeholder="Review text..." required> </textarea>
+                </div>
+                <div>
+                    <button id="edit-review-button" type="button"> SAVE </button>
+                    <button id="delete-review-button" type="button"> DELETE</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-            <button id="edit-review-button" type="button"> SAVE </button>
-            <button id="delete-review-button" type="button"> DELETE</button>
-
-    <div id="user-reviews"> </div>
     <script src="/assets/JS/api.js"></script>
     <script src="/assets/JS/ui.js"></script>
     <script src="/assets/JS/userReviews.js"></script>

@@ -161,7 +161,7 @@ class REVIEW_CLASS {
                 break;
             }
         }
-        if(!found){return false};
+        if (!found) { return false };
 
         this.db.writeDatabase(reviews);
         return true;

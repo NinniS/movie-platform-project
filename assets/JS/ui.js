@@ -29,7 +29,6 @@ class UI_CLASS {
                 genreSection.innerHTML += `<option value="${genre}">${genre}</option>`;
             }
         } catch (error) {
-            //Säg till användaren att det inte funkade
             console.log("Didn't work");
             return;
         }
@@ -56,7 +55,6 @@ class UI_CLASS {
     async loginButton() {
         let loggedIn = await API.loggedIn();
         const loginButton = document.getElementById("login");
-        console.log("är den logged in:", loggedIn);
         if (loggedIn) {
             loginButton.innerHTML = `<span>LOG OUT</span>`;
         }
@@ -99,30 +97,34 @@ class UI_CLASS {
 
             myReviewsContainer.innerHTML = "";
 
-            if (!userReviews || userReviews.length === 0) {
-                myReviewsContainer.innerHTML = "<p> You have not written any reviews</p>";
-                return;
-            }
-
             for (let oneReview of userReviews) {
                 const movie = await API.getResource(`/movies/${oneReview.movieId}`);
 
                 let movieDiv = document.createElement("div");
-                movieDiv.innerHTML = `
-                <h3>${movie.title}</h3>
-                <img src="${movie.imageURL}">
+                movieDiv.classList.add("one-review");
+
+                let pictureDiv = document.createElement("div");
+                pictureDiv.classList.add("picture-div");
+                pictureDiv.innerHTML = `
+                    <h3>${movie.title}</h3>
+                    <img src="${movie.imageURL}">
                 `;
-                let divDom = document.createElement("div");
-                divDom.innerHTML = `
-                <p> Score: ${oneReview.score}</p>
-                <p> Review: ${oneReview.reviewText}</p>
+                let textDiv = document.createElement("div");
+                textDiv.innerHTML = `
+                    <h4> Score: ${oneReview.score}</h4>
+                    <p> Review: ${oneReview.reviewText}</p>
                 `;
+
+                movieDiv.appendChild(pictureDiv);
+                movieDiv.appendChild(textDiv);
+
                 myReviewsContainer.appendChild(movieDiv);
-                myReviewsContainer.appendChild(divDom);
             }
 
         } catch (error) {
-            console.log("Couldn't load reviews");
+            myReviewsContainer.innerHTML = `<img src="../frontend/images/idk.png" height=400px><p> You have not written any reviews</p>`;
+            return;
+
         }
     }
 
@@ -176,28 +178,67 @@ class UI_CLASS {
         }
     }
 
-    // async editReview() {
-    //     const editForm = document.getElementById("edit-review-form");
-    //     if(!editForm) return;
+    async editReview() {
+        const editForm = document.getElementById("edit-review-form");
+        if (!editForm) return;
 
-    //     const reviewId = editForm["select-review"].value;
-    //     if(!reviewId){
-    //         alert("Please select a review to edit");
-    //         return;
-    //     }
+        const reviewId = editForm["select-review"].value;
+        if (!reviewId) {
+            alert("Please select a review to edit");
+            return;
+        }
 
-    //     const editedData = {
-    //         score: parseInt(editForm.score.value),
-    //         reviewText: editForm.reviewText.value
-    //     };
+        const editedData = {
+            score: parseInt(editForm.score.value),
+            reviewText: editForm.reviewText.value
+        };
 
-    //     try {
-    //         const response = await fetch(``)
-    //     }
-    // }
+        try {
+            const response = await fetch(`/movies/reviews/${reviewId}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(editedData)
+            });
+
+            if (response.status === 204 || response.ok) {
+                alert("Review updated successfully!");
+                window.location.reload();
+            } else {
+                alert("Could not update review. Bad request.");
+            }
+        } catch (error) {
+            console.log(("Error updating review:", error));
+        }
+    }
 
     async deleteReview() {
+        const editForm = document.getElementById("edit-review-form");
+        if (!editForm) return;
 
+        const reviewId = editForm["select-review"].value;
+        if (!reviewId) {
+            alert("Please select a review to delete");
+            return;
+        }
+
+        try {
+            const response = await fetch(`/movies/reviews/${reviewId}`, {
+                method: "DELETE"
+            });
+
+            if (response.status === 204 || response.ok) {
+                alert("Review deleted successfully!");
+
+                editForm.score.value = "";
+                editForm.reviewText.value = "";
+                window.location.reload();
+            }
+            else {
+                alert("Could not delete review. Server error.");
+            }
+        } catch (error) {
+            console.log("Error deleting review:", error);
+        }
     }
 }
 

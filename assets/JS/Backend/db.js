@@ -1,11 +1,8 @@
-//En egen fil med funktioner för att läsa in och läsa av databasen
 export class DB_CLASS {
-    constructor(url){
-        //skapar en url instans för sökvägen
-        //import.meta.url är till så att deno hittar sökvägen oavsett ifall vi startar programmet(demo) från rotmappen 
+    constructor(url) {
         this.dbUrl = new URL(url, import.meta.url);
     }
-    
+
     readDatabase() {
         try {
             const json = Deno.readTextFileSync(this.dbUrl);

@@ -2,6 +2,7 @@
     font-family: main-title;
     src: url(Test\ Tiempos\ Collection/test-tiempos-headline-vf-roman.woff2);
 }
+
 @font-face {
     font-family: text;
     src: url(test-signifier-vf-roman.woff2);
@@ -12,6 +13,11 @@
     src: url(porky_bold/Porky\ Bold.otf);
 }
 
+@font-face {
+    font-family: logo;
+    src: url(white_on_black/White\ On\ Black.ttf);
+}
+
 :root {
     --main-yellow-color: rgb(243, 183, 0);
     --main-red-color: rgb(202, 60, 37)
@@ -20,7 +26,7 @@
 body {
     color: rgb(255, 255, 255);
     margin: 0;
-    background-color:rgb(35, 29, 29);
+    background-color: rgb(35, 29, 29);
 }
 
 main {
@@ -29,7 +35,7 @@ main {
 }
 
 h1 {
-    font-family: main-title;
+    font-family: logo;
     letter-spacing: 1px;
     margin: 10px;
 }
@@ -65,7 +71,7 @@ p {
     margin-bottom: 40px;
 }
 
-#navigation a{
+#navigation a {
     color: white;
     text-decoration: none;
 }
@@ -86,16 +92,10 @@ p {
 }
 
 
-#movie-info div div  {
+#movie-info div div {
     font-family: title;
     max-width: 500px;
 }
-
-/* #movie-info-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-} */
 
 #movie-description {
     max-width: 80%;
@@ -158,12 +158,10 @@ p {
     cursor: pointer;
 }
 
-/* Gömmer knappen*/
 #user-review-button {
     display: none;
 }
 
-/* Visa knappen ENDAST när den har klassen .logged-in */
 #user-review-button.logged-in span {
     display: inline-block;
     background-color: var(--main-yellow-color);
@@ -173,5 +171,58 @@ p {
     font-family: title;
     font-weight: 700;
     cursor: pointer;
-    /* Eller inline-block beroende på design */
+}
+
+#main-section{
+    display: flex;
+    justify-content: space-between;
+}
+
+#my-reviews img{
+    height: 300px;
+}
+
+.one-review{
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+    border-bottom: 1px solid var(--main-yellow-color);
+    padding: 10px;
+    margin: 10px;
+
+    font-family: arial;
+    color: rgb(211, 211, 211);
+    max-width: 600px;
+}
+
+.one-review h4{
+    color: var(--main-yellow-color);
+}
+
+.picture-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#edit-review-form{
+    margin-right: 30px;
+}
+
+#edit-review-form #edit-review-titel{
+    display: flex;
+    align-items: center;
+}
+
+#edit-review-form img{
+    margin-left: 5px;
+}
+
+#edit-review-form button{
+    width: 100px;
+}
+
+#navigation a {
+    display: flex;
 }

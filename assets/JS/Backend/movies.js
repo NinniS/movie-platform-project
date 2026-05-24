@@ -15,9 +15,9 @@ class MOVIES_CLASS {
         let foundMovies = [];
 
         for (let movie of movies) {
-            const queryLower = searchQuery.toLowerCase(); //gör om så man kan söka på shrek och få fram Shrek (stora bokstäver)
+            const queryLower = searchQuery.toLowerCase();
             const titleLower = movie.title.toLowerCase();
-            const genresLower = movie.genre.join(" ").toLowerCase(); //join för att slå ihop array till en sträng
+            const genresLower = movie.genre.join(" ").toLowerCase();
             const descLower = movie.description.toLowerCase();
 
             if (titleLower.includes(queryLower) || genresLower.includes(queryLower) || descLower.includes(queryLower)) {
@@ -46,7 +46,7 @@ class MOVIES_CLASS {
         let genres = [];
 
         for (let movie of movies) {
-            for (let genre of movie.genre) { //loopar igenom genre-array för varje film(movie)
+            for (let genre of movie.genre) {
                 if (!genres.includes(genre)) {
                     genres.push(genre);
                 }
@@ -62,7 +62,6 @@ class MOVIES_CLASS {
         let numberMaxYear = parseInt(maxYear);
         let numberMinDuration = parseInt(minDuration);
         let numberMaxDuration = parseInt(maxDuration);
-        //kollar om filmen är inom filtreringen, om inte så continue; annars push
 
         for (let movie of movies) {
             if (selectedGenre && !movie.genre.includes(selectedGenre)) {
@@ -74,10 +73,10 @@ class MOVIES_CLASS {
             if (numberMaxYear && movie.year > numberMaxYear) {
                 continue;
             }
-            if(numberMinDuration && movie.duration < numberMinDuration){
+            if (numberMinDuration && movie.duration < numberMinDuration) {
                 continue;
             }
-            if(numberMaxDuration && movie.duration > numberMaxDuration){
+            if (numberMaxDuration && movie.duration > numberMaxDuration) {
                 continue;
             }
             filteredMovies.push(movie);

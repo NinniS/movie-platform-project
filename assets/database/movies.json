@@ -167,5 +167,61 @@
         "genre": ["crime", "comedy", "thriller"],
         "description": "Inspired by a true story, an oddball group of cops, criminals, tourists and teens converge in a Georgia forest where a 500-pound black bear goes on a murderous rampage after unintentionally ingesting cocaine.",
         "imageURL": "https://a.ltrbxd.com/resized/film-poster/7/2/1/3/3/3/721333-cocaine-bear-0-2000-0-3000-crop.jpg?v=4486ee174d"
+    },
+    {
+        "id": 16,
+        "title": "Ratatoing",
+        "director": "Michelle Gabriel",
+        "year": 2004,
+        "duration": 44,
+        "rating": 0,
+        "genre": ["family", "comedy", "action"],
+        "description": "Marcelle Toing, owner of the best restaurant in Rio de Janeiro, must go on missions to steal ingredients from human restaurants to keep his meals the best.",
+        "imageURL": "https://a.ltrbxd.com/resized/film-poster/1/4/3/2/9/0/143290-ratatoing-0-2000-0-3000-crop.jpg?v=008cffc23d"
+    },
+    {
+        "id": 17,
+        "title": "Jaws: The Revenge",
+        "director": "Joseph Sargent",
+        "year": 1987,
+        "duration": 89,
+        "rating": 0,
+        "genre": ["adventure", "horror", "thriller"],
+        "description": "After another deadly shark attack, Ellen Brody decides she has had enough of New England’s Amity Island and moves to the Caribbean to join her son, Michael, and his family. But a great white shark has followed her there, hungry for more lives.",
+        "imageURL": "https://a.ltrbxd.com/resized/sm/upload/bs/vb/3y/6i/jaws-the-revenge-0-2000-0-3000-crop.jpg?v=b75468752b"
+    },
+    {
+        "id": 18,
+        "title": "Fifty Shades of Grey",
+        "director": "Sam Taylor-Johnson",
+        "year": 2015,
+        "duration": 125,
+        "rating": 0,
+        "genre": ["romance", "thriller", "drama"],
+        "description": "When college senior Anastasia Steele steps in for her sick roommate to interview prominent businessman Christian Grey for their campus paper, little does she realize the path her life will take. Christian, as enigmatic as he is rich and powerful, finds himself strangely drawn to Ana, and she to him. Though sexually inexperienced, Ana plunges headlong into an affair – and learns that Christian’s true sexual proclivities push the boundaries of pain and pleasure.",
+        "imageURL": "https://a.ltrbxd.com/resized/sm/upload/fb/qp/f7/re/v8OHt1ZG1K7c5KvDCGpX2zvlWzA-0-2000-0-3000-crop.jpg?v=db84f91ac7"
+    },
+    {
+        "id": 19,
+        "title": "The Last Airbender",
+        "director": "M. Night Shyamalan",
+        "year": 2010,
+        "duration": 103,
+        "rating": 0,
+        "genre": ["fantasy", "adventure", "action"],
+        "description": "A century has passed since the Fire Nation declared war on the other three nations of air, water, and earth in its attempt for global domination. Aang, the long-lost Avatar, is found by Water Tribe siblings Katara and Sokka and must learn to master water, earth, and fire bending to defeat the Fire Nation and restore balance to the world.",
+        "imageURL": "https://a.ltrbxd.com/resized/film-poster/4/6/4/5/5/46455-the-last-airbender-0-2000-0-3000-crop.jpg?v=fbb4ff717f"
+    },
+    {
+        "id": 20,
+        "title": "He’s All That",
+        "director": "Mark Waters",
+        "year": 2021,
+        "duration": 91,
+        "rating": 0,
+        "genre": ["comedy", "romance"],
+        "description": "To get revenge on her ex-boyfriend, an influencer attempts to transform an unpopular classmate into prom king.",
+        "imageURL": "https://a.ltrbxd.com/resized/film-poster/2/7/7/9/9/3/277993-he-s-all-that-0-2000-0-3000-crop.jpg?v=501de21b7c"
     }
+
 ]

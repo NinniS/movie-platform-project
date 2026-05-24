@@ -83,7 +83,6 @@ async function handler(request) {
     const REVIEW_BY_MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movie/:id/reviews" });
     const MOVIE_ID_PATTERN = new URLPattern({ pathname: "/movies/:id" });
     const REVIEW_BY_USER_ID_PATTERN = new URLPattern({ pathname: "/user/reviews/:id" });
-    const WATCHLIST_BY_USER_ID_PATTERN = new URLPattern({ pathname: "/user/watchlist/:id" });
     const MOVIE_ID_PAGE_PATTERN = new URLPattern({ pathname: "/movie=:id" });
     const USER_BY_ID_PATTERN = new URLPattern({ pathname: "/user/:id"});
     const REVIEW_PAGE_PATTERN = new URLPattern({ pathname: "/movie=:id/review-page"});
@@ -130,16 +129,11 @@ async function handler(request) {
 
                     let newCookie = { "cookie": `session_id=${sessionId}`, "userId": oneUser.id };
                     COOKIES.push(newCookie);
-                    // console.log("my new cookie", newCookie, "hela COOKIES", cookies);
-                    // return Response.redirect("http://localhost:8000/homepage", 302);
                     return new Response(JSON.stringify({ success: true }), { headers: HEADERS });
-                    // return serveFile(request, "../../../frontend/homepage.html");
                 }
             }
             return makeResponse("authorization");
         }
-        //fetch("/login", {method:"POST", body: `{"username":"fat yoshi","password": "babyFat123!"}`, headers:{"Content-Type":"application/json"}})
-        //fetch("/logout", {method:"POST", headers:{"Content-Type":"application/json"}})
     }
 
     if (url.pathname == "/signup") {
@@ -155,7 +149,6 @@ async function handler(request) {
             let newCookie = { "cookie": `session_id=${sessionId}`, "userId": userId };
             COOKIES.push(newCookie);
             return new Response(JSON.stringify({ success: true }), { headers: HEADERS });
-            // return new Response(JSON.stringify({"welcome": "Welcome!"}), {headers: HEADERS});
         }
     }
 
@@ -368,20 +361,6 @@ async function handler(request) {
                 return makeResponse("bad request");
             }
             return makeResponse("no content");
-        }
-    }
-
-    if (WATCHLIST_BY_USER_ID_PATTERN.test(url)) {
-        let match = WATCHLIST_BY_ID_PATTERN.exec(url);
-        let id = match.pathname.groups.id;
-
-        if (request.method == "GET") {
-            let watchlistById = USERS.getWatchlistMoviesByUserId(id);
-
-            if (!watchlistById) {
-                return makeResponse("not found");
-            }
-            return new Response(JSON.stringify(watchlistById), { headers: HEADERS });
         }
     }
 

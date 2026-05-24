@@ -5,6 +5,8 @@ const LOGIN_BUTTON = document.getElementById("login");
 const SEARCH_FORM = document.getElementById("search-filter");
 const USER_REVIEW_BUTTON = document.getElementById("user-review-button");
 const EDIT_FORM = document.getElementById("edit-review-form");
+const SAVE_BUTTON = document.getElementById("edit-review-button");
+const DELETE_BUTTON = document.getElementById("delete-review-button");
 
 class API_CLASS {
     async getResource(endpoint) {
@@ -113,6 +115,9 @@ if (DOM_LOGIN_FORM) {
         if (response.ok) {
             window.location.href = "/homepage";
         }
+        if(!response.ok){
+            alert("Wrong username or password. Try again!");
+        }
     });
 }
 
@@ -157,8 +162,20 @@ if (SEARCH_FORM) {
     });
 }
 
-if(EDIT_FORM){
-    EDIT_FORM["select-review"].addEventListener("change", function (e){
+if (EDIT_FORM) {
+    EDIT_FORM["select-review"].addEventListener("change", function (e) {
         UI.fillEditForm();
-    })
+    });
+}
+
+if (SAVE_BUTTON) {
+    SAVE_BUTTON.addEventListener("click", function (e) {
+        UI.editReview();
+    });
+}
+
+if (DELETE_BUTTON) {
+    DELETE_BUTTON.addEventListener("click", function (e) {
+        UI.deleteReview();
+    });
 }
