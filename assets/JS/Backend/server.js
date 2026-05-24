@@ -85,7 +85,6 @@ async function handler(request) {
     const REVIEW_BY_USER_ID_PATTERN = new URLPattern({ pathname: "/user/reviews/:id" });
     const WATCHLIST_BY_USER_ID_PATTERN = new URLPattern({ pathname: "/user/watchlist/:id" });
     const MOVIE_ID_PAGE_PATTERN = new URLPattern({ pathname: "/movie=:id" });
-    const USER_BY_ID_PATTERN = new URLPattern({ pathname: "/user/:id" });
 
     if (request.method === "OPTIONS") {
         return new Response(null, {
@@ -218,6 +217,17 @@ async function handler(request) {
             return makeResponse("not found");
         }
         return new Response(JSON.stringify(foundMovies), { headers: HEADERS });
+    }
+
+    if (url.pathname == "/user") {
+        if (request.method == "GET") {
+            let userId = cookiesCheck(request);
+            if (!userId) {
+                return makeResponse("authorization");
+            }
+
+            return new Response(JSON.stringify(userId), { headers: HEADERS });
+        }
     }
 
     if (REVIEW_BY_MOVIE_ID_PATTERN.test(url)) {
@@ -373,19 +383,6 @@ async function handler(request) {
                 return makeResponse("not found");
             }
             return new Response(JSON.stringify(watchlistById), { headers: HEADERS });
-        }
-    }
-
-    if (USER_BY_ID_PATTERN.test(url)) {
-        let match = USER_BY_ID_PATTERN.exec(url);
-        let id = match.pathname.groups.id;
-
-        if (request.method == "GET") {
-            let username = USERS.getUsername(id);
-            if (username == null) {
-                return makeResponse("not found");
-            }
-            return new Response(JSON.stringify(username), { headers: HEADERS });
         }
     }
 
