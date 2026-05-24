@@ -163,12 +163,10 @@ p {
     border-radius: 5px;
 }
 
-/* Gömmer knappen*/
 #user-review-button {
     display: none;
 }
 
-/* Visa knappen ENDAST när den har klassen .logged-in */
 #user-review-button.logged-in span {
     display: inline-block;
     background-color: var(--main-yellow-color);
@@ -178,5 +176,8 @@ p {
     font-family: title;
     font-weight: 700;
     cursor: pointer;
-    /* Eller inline-block beroende på design */
+}
+
+#navigation a {
+    display: flex;
 }
