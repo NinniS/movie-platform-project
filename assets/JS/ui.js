@@ -29,7 +29,6 @@ class UI_CLASS {
                 genreSection.innerHTML += `<option value="${genre}">${genre}</option>`;
             }
         } catch (error) {
-            //Säg till användaren att det inte funkade
             console.log("Didn't work");
             return;
         }
@@ -123,6 +122,119 @@ class UI_CLASS {
             myReviewsContainer.innerHTML = `<img src="../frontend/images/idk.png" height=400px><p> You have not written any reviews</p>`;
             return;
 
+        }
+    }
+
+    async fillSelectReview() {
+        const editForm = document.getElementById("edit-review-form");
+        if (!editForm) return;
+        const selectElement = editForm["select-review"];
+
+        try {
+            const userId = await API.getResource("/user");
+            if (!userId) {
+                console.log("User not logged in");
+                return;
+            }
+
+            const userReviews = await API.getResource(`/user/reviews/${userId}`);
+            selectElement.innerHTML = '<option value=""> Select review </option>';
+
+            for (let oneReview of userReviews) {
+                let movie = await API.getResource(`/movies/${oneReview.movieId}`);
+
+                let optionDom = document.createElement("option");
+                optionDom.value = oneReview.id;
+                optionDom.textContent = movie.title;
+                selectElement.appendChild(optionDom);
+            }
+
+        } catch (error) {
+            console.log("Could not load edit form:", error);
+        }
+    }
+
+    async fillEditForm() {
+        const editForm = document.getElementById("edit-review-form");
+        if (!editForm) return;
+
+        let reviewId = editForm["select-review"].value;
+        if (!reviewId) {
+            editForm.score.value = "";
+            editForm.reviewText.value = "";
+            return;
+        }
+
+        try {
+            const review = await API.getResource(`/movies/reviews/${reviewId}`);
+
+            editForm.score.value = review.score;
+            editForm.reviewText.value = review.reviewText;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async editReview() {
+        const editForm = document.getElementById("edit-review-form");
+        if (!editForm) return;
+
+        const reviewId = editForm["select-review"].value;
+        if (!reviewId) {
+            alert("Please select a review to edit");
+            return;
+        }
+
+        const editedData = {
+            score: parseInt(editForm.score.value),
+            reviewText: editForm.reviewText.value
+        };
+
+        try {
+            const response = await fetch(`/movies/reviews/${reviewId}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(editedData)
+            });
+
+            if (response.status === 204 || response.ok) {
+                alert("Review updated successfully!");
+                window.location.reload();
+            } else {
+                alert("Could not update review. Bad request.");
+            }
+        } catch (error) {
+            console.log(("Error updating review:", error));
+        }
+    }
+
+    async deleteReview() {
+        const editForm = document.getElementById("edit-review-form");
+        if (!editForm) return;
+
+        const reviewId = editForm["select-review"].value;
+        if (!reviewId) {
+            alert("Please select a review to delete");
+            return;
+        }
+
+        try {
+            const response = await fetch(`/movies/reviews/${reviewId}`, {
+                method: "DELETE"
+            });
+
+            if (response.status === 204 || response.ok) {
+                alert("Review deleted successfully!");
+
+                editForm.score.value = "";
+                editForm.reviewText.value = "";
+                window.location.reload();
+            }
+            else {
+                alert("Could not delete review. Server error.");
+            }
+        } catch (error) {
+            console.log("Error deleting review:", error);
         }
     }
 }

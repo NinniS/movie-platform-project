@@ -133,8 +133,6 @@ async function handler(request) {
             }
             return makeResponse("authorization");
         }
-        //fetch("/login", {method:"POST", body: `{"username":"fat yoshi","password": "babyFat123!"}`, headers:{"Content-Type":"application/json"}})
-        //fetch("/logout", {method:"POST", headers:{"Content-Type":"application/json"}})
     }
 
     if (url.pathname == "/signup") {
@@ -150,7 +148,6 @@ async function handler(request) {
             let newCookie = { "cookie": `session_id=${sessionId}`, "userId": userId };
             COOKIES.push(newCookie);
             return new Response(JSON.stringify({ success: true }), { headers: HEADERS });
-            // return new Response(JSON.stringify({"welcome": "Welcome!"}), {headers: HEADERS});
         }
     }
 
@@ -286,16 +283,6 @@ async function handler(request) {
             if (CT) { return CT };
             let checkCookies = cookiesCheck(request);
             if (!checkCookies) {
-                return makeResponse("authorization");
-            }
-
-            for (let i = 0; i < COOKIES.length; i++) {
-                if (COOKIES[i].cookie == currentCookie) {
-                    foundUserId = COOKIES[i].userId;
-                    break;
-                }
-            }
-            if (!foundUserId) {
                 return makeResponse("authorization");
             }
 
