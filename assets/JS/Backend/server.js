@@ -85,6 +85,7 @@ async function handler(request) {
     const REVIEW_BY_USER_ID_PATTERN = new URLPattern({ pathname: "/user/reviews/:id" });
     const WATCHLIST_BY_USER_ID_PATTERN = new URLPattern({ pathname: "/user/watchlist/:id" });
     const MOVIE_ID_PAGE_PATTERN = new URLPattern({ pathname: "/movie=:id" });
+    const USER_BY_ID_PATTERN = new URLPattern({ pathname: "/user/:id" });
 
     if (request.method === "OPTIONS") {
         return new Response(null, {
@@ -227,6 +228,19 @@ async function handler(request) {
             }
 
             return new Response(JSON.stringify(userId), { headers: HEADERS });
+        }
+    }
+
+    if (USER_BY_ID_PATTERN.test(url)) {
+        let match = USER_BY_ID_PATTERN.exec(url);
+        let id = match.pathname.groups.id;
+
+        if (request.method == "GET") {
+            let user = USERS.getUserById(id);
+            if (user == null) {
+                return makeResponse("not found");
+            }
+            return new Response(JSON.stringify(user), { headers: HEADERS });
         }
     }
 
