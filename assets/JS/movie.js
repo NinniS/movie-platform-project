@@ -1,5 +1,6 @@
 const url = new URL(window.location.href);
 const pat = new URLPattern({ pathname: "/movie=:id" });
+
 let id;
 let addReviewButton;
 
