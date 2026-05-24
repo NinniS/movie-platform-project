@@ -36,9 +36,9 @@ async function renderMovie(id) {
             </div>
         </div>
     `;
-    parentDiv.appendChild(movieDiv);
-    getGenres(movie.genre);
-    renderMovieReviews();
+        parentDiv.appendChild(movieDiv);
+        getGenres(movie.genre);
+        renderMovieReviews();
     } catch (error) {
         movieDiv.innerHTML = `<div>Couldn't render movie, try again!</div`;
     }
@@ -49,14 +49,14 @@ async function renderMovieReviews() {
     let reviews = await getReviews();
     let reviewSection = document.querySelector("#all-reviews");
     let movieScore = await getMovieScore();
-    if (movieScore == null || !movieScore.ok) {
+    if (movieScore == null) {
         reviewSection.innerHTML += `<p style="margin: 20px 0px" class="review-text">No rating yet!</p>`
     } else {
         let scoreDM = document.createElement("div");
         scoreDM.textContent = `Rating: ${movieScore}/5`;
         reviewSection.appendChild(scoreDM);
     }
-    if (reviews == null || !reviews.ok) {
+    if (reviews == null) {
         reviewSection.innerHTML += `<p style="margin: 20px 0px" class="review-text">No reviews yet!</p>`
     } else {
         for (let review of reviews) {
@@ -73,6 +73,7 @@ async function renderMovieReviews() {
             reviewSection.appendChild(divDM);
         }
     }
+
     let addReview = document.createElement("div");
     addReview.setAttribute("id", "add-review");
     addReview.classList.add("button");
