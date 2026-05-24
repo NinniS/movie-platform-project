@@ -202,6 +202,8 @@ class UI_CLASS {
 
             if (response.status === 204 || response.ok) {
                 alert("Review updated successfully!");
+                editForm.score.value = "";
+                editForm.reviewText.value = "";
                 window.location.reload();
             } else {
                 alert("Could not update review. Bad request.");
