@@ -56,7 +56,6 @@ class UI_CLASS {
     async loginButton() {
         let loggedIn = await API.loggedIn();
         const loginButton = document.getElementById("login");
-        console.log("är den logged in:", loggedIn);
         if (loggedIn) {
             loginButton.innerHTML = `<span>LOG OUT</span>`;
         }
