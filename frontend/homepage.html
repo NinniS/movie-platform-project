@@ -22,32 +22,32 @@
     <main>
         <section id="filtering">
             <h2>Welcome!</h2>
-            <div>
-                <form id="search-filter">
-                    <input id="search-bar" name="search" type="text" placeholder="Search...">
-                </form>
-                <form id="movie-filter">
-                    <select class="button" id="genre" name="genre">
-                        <option value="">GENRE</option>
-                    </select>
 
-                    <div id="filter-number">
-                        <div class="filter-input">
-                            <p>DURATION</p>
-                            <input type="number" name="duration_min" placeholder="Min">
-                            <input type="number" name="duration_max" placeholder="Max">
-                        </div>
-                        <div class="filter-input">
-                            <div>
-                                <p>YEAR</p>
-                                <input type="text" name="year_min" placeholder="Min">
-                                <input type="text" name="year_max" placeholder="Max">
-                            </div>
+            <form id="search-filter">
+                <input id="search-bar" name="search" type="text" placeholder="Search...">
+            </form>
+            <form id="movie-filter">
+                <select class="button" id="genre" name="genre">
+                    <option value="">GENRE</option>
+                </select>
+
+                <div id="filter-number">
+                    <div class="filter-input">
+                        <p>DURATION</p>
+                        <input type="number" name="duration_min" placeholder="Min">
+                        <input type="number" name="duration_max" placeholder="Max">
+                    </div>
+                    <div class="filter-input">
+                        <div>
+                            <p>YEAR</p>
+                            <input type="text" name="year_min" placeholder="Min">
+                            <input type="text" name="year_max" placeholder="Max">
                         </div>
                     </div>
+                </div>
 
-                    <input class="button" type="submit" value="Filter"></input>
-                </form>
+                <input class="button" type="submit" value="Filter"></input>
+            </form>
             </div>
         </section>
 
@@ -58,7 +58,8 @@
         </div>
     </main>
     <footer>
-        <p></p>
+        <img class="expressions" src="/frontend/images/expressions.gif" height=150px>
+        <p>MWN Movieloverz</p>
     </footer>
     <script src="/assets/JS/api.js"></script>
     <script src="/assets/JS/ui.js"></script>

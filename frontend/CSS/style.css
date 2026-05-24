@@ -13,6 +13,11 @@
     src: url(porky_bold/Porky\ Bold.otf);
 }
 
+@font-face{
+    font-family: logo;
+    src: url(white_on_black/White\ On\ Black.ttf);
+}
+
 :root {
     --main-yellow-color: rgb(243, 183, 0);
     --main-red-color: rgb(202, 60, 37)
@@ -30,8 +35,7 @@ main {
 }
 
 h1 {
-    /* Stora titlar som sidnamn*/
-    font-family: main-title;
+    font-family: logo;
     letter-spacing: 1px;
     margin: 10px;
 }
@@ -195,6 +199,7 @@ a {
 footer {
     border-top: 1px solid var(--main-yellow-color);
     background-color: rgb(23, 22, 16);
+    text-align: center;
 }
 
 .filter-input input {
@@ -218,12 +223,10 @@ footer {
     margin: 15px 0px 5px 0px;
 }
 
-/* Gömmer knappen*/
 #user-review-button {
     display: none;
 }
 
-/* Visa knappen ENDAST när den har klassen .logged-in */
 #user-review-button.logged-in span {
     display: inline-block;
     background-color: var(--main-yellow-color);
@@ -233,5 +236,9 @@ footer {
     font-family: title;
     font-weight: 700;
     cursor: pointer;
-    /* Eller inline-block beroende på design */
+}
+
+.expressions {
+    border-radius: 50%;
+    padding: 15px;
 }
