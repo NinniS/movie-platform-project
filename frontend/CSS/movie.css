@@ -205,20 +205,20 @@ p {
     align-items: center;
 }
 
-#edit-review{
+#edit-review-form{
     margin-right: 30px;
 }
 
-#edit-review #edit-review-titel{
+#edit-review-form #edit-review-titel{
     display: flex;
     align-items: center;
 }
 
-#edit-review img{
+#edit-review-form img{
     margin-left: 5px;
 }
 
-#edit-review button{
+#edit-review-form button{
     width: 100px;
 }
 
