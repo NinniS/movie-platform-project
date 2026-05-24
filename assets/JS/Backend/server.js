@@ -178,7 +178,7 @@ async function handler(request) {
                 return makeResponse("authorization");
             }
 
-            return serveFile(request, "../../../frontend/review-page.html");
+            return serveFile(request, "../../../frontend/user-review-page.html");
 
         }
     }
