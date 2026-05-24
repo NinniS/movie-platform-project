@@ -13,7 +13,6 @@ async function fillMovieTitle() {
     try {
         let movieOption = document.createElement("option");
         let movie = await API.getResource("/movies/" + id);
-        console.log(movie);
         if (!movie.ok) {
             movieOption.textContent = "Couldn't find movie";
         }
