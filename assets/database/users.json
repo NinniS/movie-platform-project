@@ -1,1 +1,67 @@
-[]
+[    {
+        "id": 1,
+        "username": "fat yoshi",
+        "profilePicture": "https://cdn.mos.cms.futurecdn.net/Mmp8BWEmWGCnGSgV2kRFVU.jpg",
+        "password": "babyFat123!"
+    },
+    {
+        "id": 2,
+        "username": "sleepy toad",
+        "profilePicture": "https://cdn.mos.cms.futurecdn.net/Mmp8BWEmWGCnGSgV2kRFVU.jpg",
+        "password": "toadNap99!"
+    },
+    {
+        "id": 3,
+        "username": "cranky luigi",
+        "profilePicture": "https://cdn.mos.cms.futurecdn.net/Mmp8BWEmWGCnGSgV2kRFVU.jpg",
+        "password": "greenMario77!"
+    },
+    {
+        "id": 4,
+        "username": "glitch peach",
+        "profilePicture": "https://cdn.mos.cms.futurecdn.net/Mmp8BWEmWGCnGSgV2kRFVU.jpg",
+        "password": "peachyBug42!"
+    },
+    {
+        "id": 5,
+        "username": "speedrun bowser",
+        "profilePicture": "https://cdn.mos.cms.futurecdn.net/Mmp8BWEmWGCnGSgV2kRFVU.jpg",
+        "password": "koopaRush88!"
+    },
+    {
+        "id": 6,
+        "username": "pixel toadette",
+        "profilePicture": "https://cdn.mos.cms.futurecdn.net/Mmp8BWEmWGCnGSgV2kRFVU.jpg",
+        "password": "toadettePixel12!"
+    },
+    {
+        "id": 7,
+        "username": "laggy yoshi",
+        "profilePicture": "https://cdn.mos.cms.futurecdn.net/Mmp8BWEmWGCnGSgV2kRFVU.jpg",
+        "password": "yoshiLag404!"
+    },
+    {
+        "id": 8,
+        "username": "banana wario",
+        "profilePicture": "https://cdn.mos.cms.futurecdn.net/Mmp8BWEmWGCnGSgV2kRFVU.jpg",
+        "password": "warioGold21!"
+    },
+    {
+        "id": 9,
+        "username": "ghost mario",
+        "profilePicture": "https://cdn.mos.cms.futurecdn.net/Mmp8BWEmWGCnGSgV2kRFVU.jpg",
+        "password": "booMario66!"
+    },
+    {
+        "id": 10,
+        "username": "debug toad",
+        "profilePicture": "https://cdn.mos.cms.futurecdn.net/Mmp8BWEmWGCnGSgV2kRFVU.jpg",
+        "password": "debugMode99!"
+    },
+    {
+        "id": 11,
+        "username": "rainbow peach",
+        "profilePicture": "https://cdn.mos.cms.futurecdn.net/Mmp8BWEmWGCnGSgV2kRFVU.jpg",
+        "password": "peachRainbow33!"
+    }
+]

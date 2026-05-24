@@ -173,25 +173,38 @@ class UI_CLASS {
         }
     }
 
-    // async editReview() {
-    //     const editForm = document.getElementById("edit-review-form");
-    //     if(!editForm) return;
+    async editReview() {
+        const editForm = document.getElementById("edit-review-form");
+        if (!editForm) return;
 
-    //     const reviewId = editForm["select-review"].value;
-    //     if(!reviewId){
-    //         alert("Please select a review to edit");
-    //         return;
-    //     }
+        const reviewId = editForm["select-review"].value;
+        if (!reviewId) {
+            alert("Please select a review to edit");
+            return;
+        }
 
-    //     const editedData = {
-    //         score: parseInt(editForm.score.value),
-    //         reviewText: editForm.reviewText.value
-    //     };
+        const editedData = {
+            score: parseInt(editForm.score.value),
+            reviewText: editForm.reviewText.value
+        };
 
-    //     try {
-    //         const response = await fetch(``)
-    //     }
-    // }
+        try {
+            const response = await fetch(`/movies/reviews/${reviewId}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(editedData)
+            });
+
+            if (response.status === 204 || response.ok) {
+                alert("Review updated successfully!");
+                await this.fillSelectReview();
+            } else {
+                alert("Could not update review. Bad request.");
+            }
+        } catch (error){
+            console.log(("Error updating review:", error));
+        }
+    }
 
     async deleteReview() {
 
