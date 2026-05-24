@@ -201,13 +201,40 @@ class UI_CLASS {
             } else {
                 alert("Could not update review. Bad request.");
             }
-        } catch (error){
+        } catch (error) {
             console.log(("Error updating review:", error));
         }
     }
 
     async deleteReview() {
+        const editForm = document.getElementById("edit-review-form");
+        if (!editForm) return;
 
+        const reviewId = editForm["select-review"].value;
+        if (!reviewId) {
+            alert("Please select a review to delete");
+            return;
+        }
+
+        try {
+            const response = await fetch(`/movies/reviews/${reviewId}`, {
+                method: "DELETE"
+            });
+
+            if (response.status === 204 || response.ok) {
+                alert("Review deleted successfully!");
+
+                editForm.score.value = "";
+                editForm.reviewText.value = "";
+
+                await this.fillSelectReview();
+            }
+            else {
+                alert("Could not delete review. Server error.");
+            }
+        } catch (error) {
+            console.log("Error deleting review:", error);
+        }
     }
 }
 

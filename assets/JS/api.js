@@ -6,6 +6,7 @@ const SEARCH_FORM = document.getElementById("search-filter");
 const USER_REVIEW_BUTTON = document.getElementById("user-review-button");
 const EDIT_FORM = document.getElementById("edit-review-form");
 const SAVE_BUTTON = document.getElementById("edit-review-button");
+const DELETE_BUTTON = document.getElementById("delete-review-button");
 
 class API_CLASS {
     async getResource(endpoint) {
@@ -157,5 +158,11 @@ if(EDIT_FORM){
 if(SAVE_BUTTON){
     SAVE_BUTTON.addEventListener("click", function (e){
         UI.editReview();
+    });
+}
+
+if(DELETE_BUTTON){
+    DELETE_BUTTON.addEventListener("click", function (e){
+        UI.deleteReview();
     });
 }
