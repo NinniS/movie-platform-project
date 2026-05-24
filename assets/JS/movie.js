@@ -8,15 +8,15 @@ if (pat.test(url)) {
     let match = pat.exec(url);
     id = match.pathname.groups.id;
     renderMovie(id);
-
 }
 
 async function renderMovie(id) {
-    const parentDiv = document.querySelector("#movie");
-    let movie = await API.getResource(`/movies/${id}`);
-    let movieDiv = document.createElement("div");
-    movieDiv.setAttribute("id", "movie-info")
-    movieDiv.innerHTML = `
+    try {
+        const parentDiv = document.querySelector("#movie");
+        let movie = await API.getResource(`/movies/${id}`);
+        let movieDiv = document.createElement("div");
+        movieDiv.setAttribute("id", "movie-info")
+        movieDiv.innerHTML = `
         <div id="movie-section">
             <img style="height: 500px" src="${movie.imageURL}">
             <div>
@@ -39,6 +39,9 @@ async function renderMovie(id) {
     parentDiv.appendChild(movieDiv);
     getGenres(movie.genre);
     renderMovieReviews();
+    } catch (error) {
+        movieDiv.innerHTML = `<div>Couldn't render movie, try again!</div`;
+    }
 
 }
 

@@ -7,8 +7,7 @@ const USER_REVIEW_BUTTON = document.getElementById("user-review-button");
 
 class API_CLASS {
     async getResource(endpoint) {
-        let url = "http://localhost:8000/";
-        let response = await fetch(url + endpoint, { headers: { "Accept": "application/json" } });
+        let response = await fetch(endpoint, { headers: { "Accept": "application/json" } });
 
         if (!response.ok) {
             throw new Error("API Error: " + response.status);
@@ -27,6 +26,16 @@ class API_CLASS {
         }
         else {
             return false;
+        }
+    }
+    async postReview(endpoint, data) {
+        let response = await fetch(endpoint, {  
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: { "Content-Type": "application/json"}
+        });
+        if (!response.ok) {
+            throw new Error("API Error: " + response.status);
         }
     }
 }
