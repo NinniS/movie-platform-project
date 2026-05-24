@@ -1,6 +1,5 @@
 const url = new URL(window.location.href);
 const pat = new URLPattern({ pathname: "/movie=:id" });
-const API = new API_CLASS();
 let id;
 let addReviewButton;
 

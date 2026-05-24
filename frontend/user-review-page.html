@@ -23,6 +23,25 @@
 
     <div id="my-reviews"></div>
 
+      <div class="review-form">
+
+    <form id="edit-review">
+      <h3> Edit review </h3>
+
+      <p> Review: </p>
+      <input type="text" name="review" placeholder="Review..." required> </input>
+
+      <p> Score: </p>
+      <input type="text" name="score" placeholder="Score..." required> </input>
+
+      <p> Review text: </p>
+      <textarea name="review-text" placeholder="Review text..." required> </textarea>
+
+      <button id="edit-review-button" type="button"> SAVE </button>
+      <button id="delete-review-button" type="button"> DELETE</button>
+
+    </form>
+
     <div id="user-reviews"> </div>
     <script src="/assets/JS/api.js"></script>
     <script src="/assets/JS/ui.js"></script>
