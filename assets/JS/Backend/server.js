@@ -293,16 +293,6 @@ async function handler(request) {
                 return makeResponse("authorization");
             }
 
-            for (let i = 0; i < COOKIES.length; i++) {
-                if (COOKIES[i].cookie == currentCookie) {
-                    foundUserId = COOKIES[i].userId;
-                    break;
-                }
-            }
-            if (!foundUserId) {
-                return makeResponse("authorization");
-            }
-
             try {
                 let body = await request.json();
 

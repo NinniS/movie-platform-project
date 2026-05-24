@@ -23,29 +23,32 @@
 
     <div id="my-reviews"></div>
 
-      <div class="review-form">
+    <div class="review-form">
 
-    <form id="edit-review">
-      <h3> Edit review </h3>
+        <form id="edit-review-form">
+            <h3> Edit review </h3>
 
-      <p> Review: </p>
-      <input type="text" name="review" placeholder="Review..." required> </input>
+            <p> Select review: </p>
+            <select name="select-review">
+                <option value=""> Select review </option>
+            </select>
 
-      <p> Score: </p>
-      <input type="text" name="score" placeholder="Score..." required> </input>
 
-      <p> Review text: </p>
-      <textarea name="review-text" placeholder="Review text..." required> </textarea>
+            <p> Score: </p>
+            <input type="text" name="score" placeholder="Score..." required> </input>
 
-      <button id="edit-review-button" type="button"> SAVE </button>
-      <button id="delete-review-button" type="button"> DELETE</button>
+            <p> Review text: </p>
+            <textarea name="reviewText" placeholder="Review text..." required> </textarea>
 
-    </form>
+            <button id="edit-review-button" type="button"> SAVE </button>
+            <button id="delete-review-button" type="button"> DELETE</button>
 
-    <div id="user-reviews"> </div>
-    <script src="/assets/JS/api.js"></script>
-    <script src="/assets/JS/ui.js"></script>
-    <script src="/assets/JS/userReviews.js"></script>
+        </form>
+
+        <div id="user-reviews"> </div>
+        <script src="/assets/JS/api.js"></script>
+        <script src="/assets/JS/ui.js"></script>
+        <script src="/assets/JS/userReviews.js"></script>
 </body>
 
 </html>
