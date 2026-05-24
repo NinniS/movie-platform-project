@@ -48,6 +48,7 @@ ADD_REVIEW_FORM.addEventListener("submit", async function (event) {
         alert("Couldn't add review");
     } else {
         alert("Review successfully added!");
+        window.location.href = `/movie=${id}`;
     }
 
 });
