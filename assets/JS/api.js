@@ -102,6 +102,9 @@ if (DOM_LOGIN_FORM) {
         if (response.ok) {
             window.location.href = "/homepage";
         }
+        if(!response.ok){
+            alert("Wrong username or password. Try again!");
+        }
     });
 }
 

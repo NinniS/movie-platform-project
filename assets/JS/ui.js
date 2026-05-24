@@ -96,11 +96,6 @@ class UI_CLASS {
 
             myReviewsContainer.innerHTML = "";
 
-            if (!userReviews || userReviews.length === 0) {
-                myReviewsContainer.innerHTML = "<p> You have not written any reviews</p>";
-                return;
-            }
-
             for (let oneReview of userReviews) {
                 const movie = await API.getResource(`/movies/${oneReview.movieId}`);
 
@@ -119,7 +114,9 @@ class UI_CLASS {
             }
 
         } catch (error) {
-            console.log("Couldn't load reviews");
+            myReviewsContainer.innerHTML = "<p> You have not written any reviews</p>";
+            return;
+
         }
     }
 }
