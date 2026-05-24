@@ -197,7 +197,7 @@ class UI_CLASS {
 
             if (response.status === 204 || response.ok) {
                 alert("Review updated successfully!");
-                await this.fillSelectReview();
+                window.location.reload();
             } else {
                 alert("Could not update review. Bad request.");
             }
@@ -226,8 +226,7 @@ class UI_CLASS {
 
                 editForm.score.value = "";
                 editForm.reviewText.value = "";
-
-                await this.fillSelectReview();
+                window.location.reload();
             }
             else {
                 alert("Could not delete review. Server error.");
