@@ -92,7 +92,7 @@ class UI_CLASS {
             }
 
             const endpoint = `/user/reviews/${userId}`;
-            const userReviews = API.getResource(endpoint);
+            const userReviews = await API.getResource(endpoint);
 
             myReviewsContainer.innerHTML = "";
 
