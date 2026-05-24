@@ -129,16 +129,11 @@ async function handler(request) {
 
                     let newCookie = { "cookie": `session_id=${sessionId}`, "userId": oneUser.id };
                     COOKIES.push(newCookie);
-                    // console.log("my new cookie", newCookie, "hela COOKIES", cookies);
-                    // return Response.redirect("http://localhost:8000/homepage", 302);
                     return new Response(JSON.stringify({ success: true }), { headers: HEADERS });
-                    // return serveFile(request, "../../../frontend/homepage.html");
                 }
             }
             return makeResponse("authorization");
         }
-        //fetch("/login", {method:"POST", body: `{"username":"fat yoshi","password": "babyFat123!"}`, headers:{"Content-Type":"application/json"}})
-        //fetch("/logout", {method:"POST", headers:{"Content-Type":"application/json"}})
     }
 
     if (url.pathname == "/signup") {
@@ -154,7 +149,6 @@ async function handler(request) {
             let newCookie = { "cookie": `session_id=${sessionId}`, "userId": userId };
             COOKIES.push(newCookie);
             return new Response(JSON.stringify({ success: true }), { headers: HEADERS });
-            // return new Response(JSON.stringify({"welcome": "Welcome!"}), {headers: HEADERS});
         }
     }
 
