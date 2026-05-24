@@ -99,17 +99,24 @@ class UI_CLASS {
                 const movie = await API.getResource(`/movies/${oneReview.movieId}`);
 
                 let movieDiv = document.createElement("div");
-                movieDiv.innerHTML = `
-                <h3>${movie.title}</h3>
-                <img src="${movie.imageURL}">
+                movieDiv.classList.add("one-review");
+
+                let pictureDiv = document.createElement("div");
+                pictureDiv.classList.add("picture-div");
+                pictureDiv.innerHTML = `
+                    <h3>${movie.title}</h3>
+                    <img src="${movie.imageURL}">
                 `;
-                let divDom = document.createElement("div");
-                divDom.innerHTML = `
-                <p> Score: ${oneReview.score}</p>
-                <p> Review: ${oneReview.reviewText}</p>
+                let textDiv = document.createElement("div");
+                textDiv.innerHTML = `
+                    <h4> Score: ${oneReview.score}</h4>
+                    <p> Review: ${oneReview.reviewText}</p>
                 `;
+
+                movieDiv.appendChild(pictureDiv);
+                movieDiv.appendChild(textDiv);
+
                 myReviewsContainer.appendChild(movieDiv);
-                myReviewsContainer.appendChild(divDom);
             }
 
         } catch (error) {

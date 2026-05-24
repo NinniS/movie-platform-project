@@ -174,3 +174,53 @@ p {
     cursor: pointer;
     /* Eller inline-block beroende på design */
 }
+
+#main-section{
+    display: flex;
+    justify-content: space-between;
+}
+
+#my-reviews img{
+    height: 300px;
+}
+
+.one-review{
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+    border-bottom: 1px solid var(--main-yellow-color);
+    padding: 10px;
+    margin: 10px;
+
+    font-family: arial;
+    color: rgb(211, 211, 211);
+    max-width: 600px;
+}
+
+.one-review h4{
+    color: var(--main-yellow-color);
+}
+
+.picture-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#edit-review{
+    margin-right: 30px;
+}
+
+#edit-review #edit-review-titel{
+    display: flex;
+    align-items: center;
+}
+
+#edit-review img{
+    margin-left: 5px;
+}
+
+#edit-review button{
+    width: 100px;
+}
