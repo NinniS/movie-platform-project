@@ -2,6 +2,7 @@
     font-family: main-title;
     src: url(Test\ Tiempos\ Collection/test-tiempos-headline-vf-roman.woff2);
 }
+
 @font-face {
     font-family: text;
     src: url(test-signifier-vf-roman.woff2);
@@ -20,7 +21,7 @@
 body {
     color: rgb(255, 255, 255);
     margin: 0;
-    background-color:rgb(35, 29, 29);
+    background-color: rgb(35, 29, 29);
 }
 
 main {
@@ -28,7 +29,8 @@ main {
     margin: auto;
 }
 
-h1 { /* Stora titlar som sidnamn*/
+h1 {
+    /* Stora titlar som sidnamn*/
     font-family: main-title;
     letter-spacing: 1px;
     margin: 10px;
@@ -66,7 +68,7 @@ a {
 
 #login {
     background-color: var(--main-yellow-color);
-
+    margin-left: 10px;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
@@ -86,7 +88,8 @@ a {
     gap: 20px;
 }
 
-#log-in, #sign-up {
+#log-in,
+#sign-up {
     margin: 40px;
     display: flex;
     flex-direction: column;
@@ -99,7 +102,8 @@ a {
     border-radius: 5px;
 }
 
-#log-in p, #sign-up p {
+#log-in p,
+#sign-up p {
     margin: 5px;
     color: var(--main-red-color);
     font-family: arial;
@@ -107,7 +111,8 @@ a {
     font-size: 18px;
 }
 
-#log-in input, #sign-up input {
+#log-in input,
+#sign-up input {
     padding: 10px;
 }
 
@@ -180,7 +185,7 @@ a {
 }
 
 .movie img {
-   height: 230px;
+    height: 230px;
     width: 170px;
 }
 
@@ -209,7 +214,7 @@ footer {
     justify-content: center;
     gap: 20px;
     margin: 0px 30px 30px 30px;
-} 
+}
 
 #filter-number p {
     margin: 15px 0px 5px 0px;
@@ -233,4 +238,21 @@ footer {
     flex-direction: column;
     align-items: center;
     margin: 20px 0px;
+}
+/* Gömmer knappen*/
+#user-review-button {
+    display: none;
+}
+
+/* Visa knappen ENDAST när den har klassen .logged-in */
+#user-review-button.logged-in span {
+    display: inline-block;
+    background-color: var(--main-yellow-color);
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: var(--main-red-color);
+    font-family: title;
+    font-weight: 700;
+    cursor: pointer;
+    /* Eller inline-block beroende på design */
 }

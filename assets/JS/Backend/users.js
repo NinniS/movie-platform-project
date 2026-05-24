@@ -18,30 +18,6 @@ class USERS_CLASS {
         }
         return null;
     }
-    getFavoriteMoviesByUserId(id) {
-        let foundUser = this.getUserById(id);
-        if (foundUser == null) {
-            return null;
-        }
-        const favorieMoviesIds = foundUser.favoriteMovies;
-        let favorieMovies = [];
-        for (let movieId of favorieMoviesIds) {
-            favorieMovies.push(MOVIES.getMovieById(movieId));
-        }
-        return favorieMovies;
-    }
-    getWatchlistMoviesByUserId(id) {
-        let foundUser = this.getUserById(id);
-        if (foundUser == null) {
-            return null;
-        }
-        const watchlistMoviesIds = foundUser.watchlistMovies;
-        let watchlistMovies = [];
-        for (let movieId of watchlistMoviesIds) {
-            watchlistMovies.push(MOVIES.getMovieById(movieId));
-        }
-        return watchlistMovies;
-    }
     createUser(data) {
         if (data.profilePicture == undefined) {
             data.profilePicture == "https://cdn.mos.cms.futurecdn.net/Mmp8BWEmWGCnGSgV2kRFVU.jpg";
@@ -58,10 +34,7 @@ class USERS_CLASS {
         let newUser = {
             id: id,
             username: data.username,
-            reviews: [],
             profilePicture: data.profilePicture,
-            favoriteMovies: [],
-            watchlistMovies: [],
             password: data.password
         }
         users.push(newUser);

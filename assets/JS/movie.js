@@ -1,6 +1,6 @@
 const url = new URL(window.location.href);
 const pat = new URLPattern({ pathname: "/movie=:id" });
-const API = new API_CLASS();
+
 let id;
 let addReviewButton;
 
@@ -61,7 +61,7 @@ async function renderMovieReviews() {
             let username = await API.getResource(`/user/${review.userId}`);
             divDM.innerHTML = `
             <div class="review">
-                <h4>${username}</h4>
+                <h4>${username.username}</h4>
                 <div>
                     <p class="review-text">"${review.reviewText}"</p>
                 </div>
