@@ -81,13 +81,39 @@ class UI_CLASS {
         }
     }
 
-    // async fillUserReviews(){
-    //     const myReviewsContainer = document.getElementById("my-reviews");
+    async fillUserReviews() {
+        const myReviewsContainer = document.getElementById("my-reviews");
 
-    //     try{
-    //         const userReviews = await API.getResource("")
-    //     }
-    // }
+        try {
+            const userId = await API.getResource("/user");
+            if (!userId) {
+                myReviewsContainer.innerHTML = `<p> You need to be logged in </p>`
+                return;
+            }
+
+            const endpoint = `/user/reviews/${userId}`;
+            const userReviews = API.getResource(endpoint);
+
+            myReviewsContainer.innerHTML = "";
+
+            if (!userReviews || userReviews.length === 0) {
+                myReviewsContainer.innerHTML = "<p> You have not written any reviews</p>";
+                return;
+            }
+
+            for(let oneReview of userReviews){
+                let divDom = document.createElement("div");
+                divDom.innerHTML = `
+                <p> Score: ${oneReview.score}</p>
+                <p> Review: ${oneReview.reviewText}</p>
+                `;
+                myReviewsContainer.appendChild(divDom);
+            }
+
+        } catch (error){
+            console.log("Couldn't load reviews");
+        }
+    }
 }
 
 const UI = new UI_CLASS();
