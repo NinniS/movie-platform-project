@@ -24,11 +24,17 @@ async function renderMovie(id) {
                     <h2>${movie.title}</h2>
                     <h2>${movie.year}</h2>
                 </div>
+                <div style="opacity: 40%">
+                    <h4 style="margin: 15px 10px 0px 10px">Directed by: ${movie.director}</h4>
+                </div>
                 <div style="border-bottom: 1px solid var(--main-yellow-color); padding: 10px">
                     <p id="movie-description">${movie.description}</p>
                 </div>
                 <div>
                     <div id="all-genres"></div>
+                </div>
+                <div style="opacity: 40%; margin: 10px">
+                    <h4>Duration: ${movie.duration} min</h4>
                 </div>
             </div>
             <div id="all-reviews">
