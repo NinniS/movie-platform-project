@@ -45,6 +45,14 @@ async function renderMovie(id) {
 async function renderMovieReviews() {
     let reviews = await getReviews();
     let reviewSection = document.querySelector("#all-reviews");
+    let movieScore = await getMovieScore();
+    if (movieScore == null) {
+        reviewSection.innerHTML += `<p style="margin: 20px 0px" class="review-text">No rating yet!</p>`
+    } else {
+        let scoreDM = document.createElement("div");
+        scoreDM.textContent = `Rating: ${movieScore}/5`;
+        reviewSection.appendChild(scoreDM);
+    }
     if (reviews == null) {
         reviewSection.innerHTML += `<p style="margin: 20px 0px" class="review-text">No reviews yet!</p>`
     } else {
@@ -88,6 +96,15 @@ async function getReviews() {
         return null;
     }
 
+}
+
+async function getMovieScore() {
+    try {
+        let score = await API.getResource("/movies/reviews/score/" + id);
+        return score;
+    } catch (error) {
+        return null;
+    }
 }
 
 if (addReviewButton) {
